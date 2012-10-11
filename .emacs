@@ -85,11 +85,11 @@
     ("/home/andrew/rubydev/workspace/reverbnation" "reverbnation"))
   "A cumulative list of source paths I want to add to ECB. Must be specified in the reverse order that it shows up in the list.")
 (defun ahw-add-ecb-source-paths ()
-  (require 'ecb)
+  (require 'ecb-snapshot-autoloads)
   (dolist (p ahw-ecb-source-paths)
     (when (file-directory-p (car p))
       (add-to-list 'ecb-source-path p))))
-(add-hook 'after-init-hook 'ahw-add-ecb-source-paths)
+(add-hook 'ecb-activate-before-layout-draw-hook 'ahw-add-ecb-source-paths)
 
 ;; Custom.
 (custom-set-variables
