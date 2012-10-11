@@ -64,6 +64,29 @@
 (add-to-list 'tramp-default-proxies-alist
 	     '("\\.reverbnation\\.lan" nil "/ssh:awatts@angus.reverbnation.com:"))
 
+;; ECB source paths.
+(defun ahw-add-ecb-source-paths ()
+  (require 'ecb)
+  (dolist (p '(("/home/andrew/rubydev/workspace/reverbnation" "reverbnation")
+               ("/home/andrew/.rvm/gems/ree-1.8.7-2012.02@reverbnation/gems" "reverbnation gems")
+               ("/home/andrew/rubydev/workspace/manticore" "manticore")
+               ("/home/andrew/.rvm/gems/ruby-1.9.3-p194@manticore/gems" "manticore gems")
+               ("/home/andrew/rubydev/workspace/msmstats" "msmstats")
+               ("/home/andrew/.rvm/gems/ree-1.8.7-2012.02@msmstats/gems" "msmstats gems")
+               ("/home/andrew/rubydev/workspace/rn-chef" "rn-chef")
+               ("/home/andrew/.rvm/gems/ree-1.8.7-2012.02@chef_client/gems" "rn-chef gems")
+               ("/home/andrew/rubydev/workspace/rn-god" "rn-god")
+               ("/home/andrew/rubydev/workspace/apache-upload-progress-module" "apache-upload-progress-module")
+               ("/home/andrew/rubydev/workspace/scripts" "scripts")
+               ("/home/andrew/rpmbuild" "reverb-rpms")
+               ("C:/Users/andrew/Documents/Projects/euler" "euler")
+               ("C:/Users/andrew" "homedir")
+               ("/home/andrew" "homedir")
+               ("/" "/")))
+    (when (file-directory-p (car p))
+      (add-to-list 'ecb-source-path p))))
+(add-hook 'after-init-hook 'ahw-add-ecb-source-paths)
+
 ;; Custom.
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -73,7 +96,6 @@
  '(ecb-layout-name "right1")
  '(ecb-options-version "2.40")
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
- '(ecb-source-path (quote (("/home/andrew/rubydev/workspace/reverbnation" "reverbnation") ("/home/andrew/.rvm/gems/ree-1.8.7-2012.02@reverbnation/gems" "reverbnation gems") ("/home/andrew/rubydev/workspace/manticore" "manticore") ("/home/andrew/.rvm/gems/ruby-1.9.3-p194@manticore/gems" "manticore gems") ("/home/andrew/rubydev/workspace/msmstats" "msmstats") ("/home/andrew/.rvm/gems/ree-1.8.7-2012.02@msmstats/gems" "msmstats gems") ("/home/andrew/rubydev/workspace/rn-chef" "rn-chef") ("/home/andrew/.rvm/gems/ree-1.8.7-2012.02@chef_client/gems" "rn-chef gems") ("/home/andrew/rubydev/workspace/rn-god" "rn-god") ("/home/andrew/rubydev/workspace/apache-upload-progress-module" "apache-upload-progress-module") ("/home/andrew/rubydev/workspace/scripts" "scripts") ("/home/andrew/rpmbuild" "reverb-rpms") ("/home/andrew" "homedir") ("/" "/"))))
  '(ecb-tip-of-the-day nil)
  '(ecb-windows-width 0.25))
 (custom-set-faces
