@@ -108,3 +108,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; Maximize on Windows.
+(when (string= "w32" window-system)
+  (w32-send-sys-command 61488))
