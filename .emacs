@@ -91,6 +91,7 @@
  '(ecb-tip-of-the-day nil)
  '(ecb-windows-width 0.25)
  '(make-backup-files t)
+ '(nrepl-popup-stacktraces nil)
  '(ruby-deep-indent-paren (quote (t))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
