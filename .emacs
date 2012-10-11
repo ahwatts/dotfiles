@@ -1,6 +1,6 @@
-;; Emacs config.
+;; -*- mode: emacs-lisp -*-
 
-;; Start the server
+;; Start the server.
 (server-mode)
 
 ;; Miscellaneous setq's.
