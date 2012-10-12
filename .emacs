@@ -30,7 +30,7 @@
     (package-install p)))
 
 ;; Set the default font.
-(set-face-attribute 'default nil :height 100)
+(set-face-attribute 'default nil :height 110)
 (require 'cl)
 (let ((font-name (find-if (lambda (name) (x-list-fonts name))
                           '("Consolas" "Inconsolata" "Bitstream Vera Sans Mono" "DejaVu Sans Mono"))))
