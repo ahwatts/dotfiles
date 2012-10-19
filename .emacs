@@ -25,7 +25,9 @@
              yaml-mode
              clojure-mode
              nrepl
-             ac-nrepl))
+             ac-nrepl
+             ruby-tools
+             ruby-end))
   (when (not (package-installed-p p))
     (package-install p)))
 
@@ -80,6 +82,11 @@
     (when (file-directory-p (car p))
       (add-to-list 'ecb-source-path p))))
 (add-hook 'ecb-activate-before-layout-draw-hook 'ahw-add-ecb-source-paths)
+
+;; Ruby configuration.
+(add-hook 'ruby-mode-hook 'esk-paredit-nonlisp)
+(add-hook 'ruby-mode-hook 'ruby-tools-mode)
+(add-hook 'ruby-mode-hook 'ruby-end-mode)
 
 ;; Custom.
 (custom-set-variables
