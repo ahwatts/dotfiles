@@ -27,7 +27,8 @@
              nrepl
              ac-nrepl
              ruby-tools
-             ruby-end))
+             ruby-end
+             flymake-ruby))
   (when (not (package-installed-p p))
     (package-install p)))
 
@@ -87,6 +88,7 @@
 (add-hook 'ruby-mode-hook 'esk-paredit-nonlisp)
 (add-hook 'ruby-mode-hook 'ruby-tools-mode)
 (add-hook 'ruby-mode-hook 'ruby-end-mode)
+(add-hook 'ruby-mode-hook 'flymake-ruby-load)
 
 ;; Custom.
 (custom-set-variables
