@@ -64,7 +64,7 @@
   (dolist (p (reverse '(("/home/andrew/rubydev/workspace/reverbnation" "reverbnation")
                         ("/home/andrew/.rvm/gems/ree-1.8.7-2012.02@reverbnation/gems" "reverbnation gems")
                         ("/home/andrew/rubydev/workspace/manticore" "manticore")
-                        ("/home/andrew/.rvm/gems/ruby-1.9.3-p194@manticore/gems" "manticore gems")
+                        ("/home/andrew/.rvm/gems/ruby-1.9.3-p286@manticore/gems" "manticore gems")
                         ("/home/andrew/rubydev/workspace/msmstats" "msmstats")
                         ("/home/andrew/.rvm/gems/ree-1.8.7-2012.02@msmstats/gems" "msmstats gems")
                         ("/home/andrew/rubydev/workspace/rn-chef" "rn-chef")
