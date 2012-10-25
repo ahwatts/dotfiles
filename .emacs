@@ -28,7 +28,9 @@
              ac-nrepl
              ruby-tools
              ruby-end
-             flymake-ruby))
+             flymake-ruby
+             flymake-jshint
+             yaml-mode))
   (when (not (package-installed-p p))
     (package-install p)))
 
@@ -89,6 +91,22 @@
 (add-hook 'ruby-mode-hook 'ruby-tools-mode)
 (add-hook 'ruby-mode-hook 'ruby-end-mode)
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
+
+;; Javascript configuration.
+(defun ahw-turn-on-flymake-jshint ()
+  (require 'flymake-jshint)
+  (add-to-list 'flymake-allowed-file-name-masks
+               '(".+\\.json$"
+                 flymake-jshint-init
+                 flymake-simple-cleanup
+                 flymake-get-real-file-name)))
+(add-hook 'after-init-hook 'ahw-turn-on-flymake-jshint)
+
+;; YAML configuration.
+(defun ahw-turn-on-yaml-mode ()
+  (require 'yaml-mode)
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
+(add-hook 'after-init-hook 'ahw-turn-on-yaml-mode)
 
 ;; Custom.
 (custom-set-variables
