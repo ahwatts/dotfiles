@@ -111,6 +111,9 @@
 ;; DNS configuration
 (add-hook 'dns-mode-hook 'flyspell-mode-off)
 
+;; Clojure configuration
+(add-hook 'clojure-mode-hook 'eldoc-mode)
+
 ;; Custom.
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
