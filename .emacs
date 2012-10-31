@@ -108,6 +108,9 @@
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 (add-hook 'after-init-hook 'ahw-turn-on-yaml-mode)
 
+;; DNS configuration
+(add-hook 'dns-mode-hook 'flyspell-mode-off)
+
 ;; Custom.
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
