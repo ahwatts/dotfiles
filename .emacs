@@ -34,19 +34,24 @@
   (when (not (package-installed-p p))
     (package-install p)))
 
-;; Set the default font.
-(set-face-attribute 'default nil :height 110)
 (require 'cl)
-(let ((font-name (find-if (lambda (name) (x-list-fonts name))
-                          '("Consolas" "Inconsolata" "Bitstream Vera Sans Mono" "DejaVu Sans Mono"))))
-  (when font-name
-    (set-face-attribute 'default nil :family font-name)))
+(when window-system
+  (progn
+    ;; Set the font size. Maybe this should depend somehow on what
+    ;; machine we're on?
+    (set-face-attribute 'default nil :height 110)
 
-;; Activate Zenburn.
-(defun ahw-turn-on-zenburn ()
-  (require 'color-theme)
-  (require 'zenburn-theme))
-(add-hook 'after-init-hook 'ahw-turn-on-zenburn)
+    ;; Set the default font.
+    (let ((font-name (find-if (lambda (name) (x-list-fonts name))
+                              '("Consolas" "Inconsolata" "Bitstream Vera Sans Mono" "DejaVu Sans Mono"))))
+      (when font-name
+        (set-face-attribute 'default nil :family font-name)))
+
+    ;; Activate Zenburn.
+    (defun ahw-turn-on-zenburn ()
+      (require 'color-theme)
+      (require 'zenburn-theme))
+    (add-hook 'after-init-hook 'ahw-turn-on-zenburn)))
 
 ;; Turn on auto-complete-mode.
 (defun ahw-turn-on-auto-complete ()
