@@ -1,0 +1,9 @@
+[user]
+	name = Andrew Watts
+	email = ahwatts@gmail.com
+[branch]
+	autosetuprebase = always
+[push]
+	default = tracking
+[color]
+	ui = true

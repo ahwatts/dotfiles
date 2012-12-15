@@ -2,3 +2,6 @@
 !.gitattributes
 !.gitignore
 !.emacs
+!.gitconfig
+!.bashrc
+!.bash_profile
