@@ -6,6 +6,11 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+# The git completion has moved.
+if [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]; then
+    . /usr/share/git-core/contrib/completion/git-prompt.sh
+fi
+
 # User specific aliases and functions
 
 alias head_files='git show --pretty="format:" --name-only HEAD | grep "\w" | tr '\''\n'\'' '\'','\'''
