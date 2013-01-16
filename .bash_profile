@@ -20,7 +20,7 @@ export PATH=$PATH:$HOME/.local/bin:$HOME/bin
 
 # Add a local version of .bash_profile so that stuff that shouldn't be
 # checked in has a place to go.
-if [ -x ~/.bash_profile_local ]; then
+if [ -f ~/.bash_profile_local ]; then
 	. ~/.bash_profile_local
 fi
 

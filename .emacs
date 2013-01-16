@@ -83,6 +83,7 @@
 			  ("/home/andrew/.rvm/gems/ree-1.8.7-2012.02@msmstats/gems" "msmstats gems")
 			  ("/home/andrew/rubydev/workspace/rn-chef" "rn-chef")
 			  ("/home/andrew/.rvm/gems/ree-1.8.7-2012.02@chef_client/gems" "rn-chef gems")
+                          ("/home/andrew/rubydev/workspace/nagios-config" "nagios-config")
 			  ("/home/andrew/rubydev/workspace/rn-god" "rn-god")
 			  ("/home/andrew/rubydev/workspace/apache-upload-progress-module" "apache-upload-progress-module")
 			  ("/home/andrew/rubydev/workspace/scripts" "scripts")
@@ -145,7 +146,8 @@
  '(make-backup-files t)
  '(menu-bar-mode nil)
  '(nrepl-popup-stacktraces nil)
- '(ruby-deep-indent-paren (quote (t))))
+ '(ruby-deep-indent-paren (quote (t)))
+ '(safe-local-variable-values (quote ((encoding . utf-8) (whitespace-line-column . 80) (lexical-binding . t)))))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
