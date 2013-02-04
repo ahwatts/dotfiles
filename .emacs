@@ -102,10 +102,10 @@
 ;; Ruby configuration.
 (when package-available-p
   (require 'inf-ruby)
+  (add-hook 'ruby-mode-hook 'flymake-ruby-load)
   (add-hook 'ruby-mode-hook 'esk-paredit-nonlisp)
   (add-hook 'ruby-mode-hook 'ruby-tools-mode)
-  (add-hook 'ruby-mode-hook 'ruby-end-mode)
-  (add-hook 'ruby-mode-hook 'flymake-ruby-load))
+  (add-hook 'ruby-mode-hook 'ruby-end-mode))
 
 ;; Javascript configuration.
 (when package-available-p
