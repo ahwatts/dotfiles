@@ -82,7 +82,7 @@
                           ("/home/andrew/rubydev/workspace/msmstats" "msmstats")
                           ("/home/andrew/.rvm/gems/ree-1.8.7-2012.02@msmstats/gems" "msmstats gems")
                           ("/home/andrew/rubydev/workspace/rn-chef" "rn-chef")
-                          ("/home/andrew/.rvm/gems/ree-1.8.7-2012.02@chef_client/gems" "rn-chef gems")
+                          ("/home/andrew/.rvm/gems/ruby-1.9.3-p374@chef-client/gems" "rn-chef gems")
                           ("/home/andrew/rubydev/workspace/nagios-config" "nagios-config")
                           ("/home/andrew/rubydev/workspace/rn-god" "rn-god")
                           ("/home/andrew/rubydev/workspace/apache-upload-progress-module" "apache-upload-progress-module")
