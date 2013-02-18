@@ -85,6 +85,7 @@
                           ("/home/andrew/.rvm/gems/ruby-1.9.3-p374@chef-client/gems" "rn-chef gems")
                           ("/home/andrew/rubydev/workspace/nagios-config" "nagios-config")
                           ("/home/andrew/rubydev/workspace/rn-god" "rn-god")
+                          ("/home/andrew/rubydev/workspace/god-local" "god-local")
                           ("/home/andrew/rubydev/workspace/apache-upload-progress-module" "apache-upload-progress-module")
                           ("/home/andrew/rubydev/workspace/scripts" "scripts")
                           ("/home/andrew/rpmbuild" "reverb-rpms")
