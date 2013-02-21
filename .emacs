@@ -76,13 +76,13 @@
     (require 'ecb-snapshot-autoloads)
     (dolist (p (reverse '(("/home/andrew/rubydev/workspace/reverbnation" "reverbnation")
                           ("/home/andrew/.rvm/gems/ree-1.8.7-2012.02@reverbnation/gems" "reverbnation gems")
-                          ("/home/andrew/.rvm/gems/ruby-1.9.3-p374@reverbnation/gems" "reverbnation-2.3 gems")
+                          ("/home/andrew/.rvm/gems/ruby-1.9.3-p385@reverbnation/gems" "reverbnation-2.3 gems")
                           ("/home/andrew/rubydev/workspace/manticore" "manticore")
-                          ("/home/andrew/.rvm/gems/ruby-1.9.3-p374@manticore/gems" "manticore gems")
+                          ("/home/andrew/.rvm/gems/ruby-1.9.3-p385@manticore/gems" "manticore gems")
                           ("/home/andrew/rubydev/workspace/msmstats" "msmstats")
                           ("/home/andrew/.rvm/gems/ree-1.8.7-2012.02@msmstats/gems" "msmstats gems")
                           ("/home/andrew/rubydev/workspace/rn-chef" "rn-chef")
-                          ("/home/andrew/.rvm/gems/ruby-1.9.3-p374@chef-client/gems" "rn-chef gems")
+                          ("/home/andrew/.rvm/gems/ruby-1.9.3-p385@chef-client/gems" "rn-chef gems")
                           ("/home/andrew/rubydev/workspace/nagios-config" "nagios-config")
                           ("/home/andrew/rubydev/workspace/rn-god" "rn-god")
                           ("/home/andrew/rubydev/workspace/god-local" "god-local")
@@ -149,7 +149,7 @@
  '(menu-bar-mode nil)
  '(nrepl-popup-stacktraces nil)
  '(ruby-deep-indent-paren (quote (t)))
- '(safe-local-variable-values (quote ((encoding . utf-8) (whitespace-line-column . 80) (lexical-binding . t)))))
+ '(safe-local-variable-values (quote ((encoding . binary) (encoding . utf-8) (whitespace-line-column . 80) (lexical-binding . t)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
