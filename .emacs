@@ -33,7 +33,8 @@
                ruby-end
                flymake-ruby
                flymake-jshint
-               yaml-mode))
+               yaml-mode
+               markdown-mode))
     (when (not (package-installed-p p))
       (package-install p))))
 
@@ -134,6 +135,13 @@
 ;; Clojure configuration
 (when package-available-p
   (add-hook 'clojure-mode-hook 'eldoc-mode))
+
+;; Markdown configuration
+(when package-available-p
+  (defun ahw-turn-on-markdown-mode ()
+    (require 'markdown-mode)
+    (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
+  (add-hook 'after-init-hook 'ahw-turn-on-markdown-mode))
 
 ;; Custom.
 (custom-set-variables
