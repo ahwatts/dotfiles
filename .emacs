@@ -91,7 +91,8 @@
                           ("/home/andrew/rubydev/workspace/scripts" "scripts")
                           ("/home/andrew/rpmbuild" "reverb-rpms")
                           ("/home/andrew/.rvm/rubies/ruby-1.9.3-p392/lib/ruby" "ruby-1.9.3-p392")
-                          ("C:/Users/andrew/Projects/dbn" "dreamybandnames")
+                          ("C:/Users/andrew/Projects/dreamybandnames" "dreamybandnames")
+                          ("C:/Users/andrew/Projects/openhf" "openhf")
                           ("C:/Users/andrew/Documents/Projects/euler" "euler")
                           ("C:/Users/andrew/Projects/euler" "euler")
                           ("/home/andrew/Projects/euler" "euler")
@@ -149,6 +150,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(coffee-tab-width 2)
  '(ecb-layout-name "right1")
  '(ecb-options-version "2.40")
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
