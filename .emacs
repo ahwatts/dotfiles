@@ -163,7 +163,8 @@
  '(menu-bar-mode nil)
  '(nrepl-popup-stacktraces nil)
  '(ruby-deep-indent-paren (quote (t)))
- '(safe-local-variable-values (quote ((encoding . binary) (encoding . utf-8) (whitespace-line-column . 80) (lexical-binding . t)))))
+ '(safe-local-variable-values (quote ((encoding . binary) (encoding . utf-8) (whitespace-line-column . 80) (lexical-binding . t))))
+ '(scss-compile-at-save nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
