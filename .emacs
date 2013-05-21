@@ -29,6 +29,7 @@
                clojure-mode
                nrepl
                ac-nrepl
+               rinari
                ruby-tools
                ruby-end
                flymake-ruby
@@ -76,21 +77,22 @@
   (defun ahw-add-ecb-source-paths ()
     (require 'ecb-snapshot-autoloads)
     (dolist (p (reverse '(("/home/andrew/rubydev/workspace/reverbnation" "reverbnation")
-                          ("/home/andrew/.rvm/gems/ruby-1.9.3-p392@reverbnation/gems" "reverbnation gems")
+                          ("/home/andrew/.rvm/gems/ruby-1.9.3-p429@reverbnation/gems" "reverbnation gems")
                           ("/home/andrew/rubydev/workspace/manticore" "manticore")
-                          ("/home/andrew/.rvm/gems/ruby-1.9.3-p392@manticore/gems" "manticore gems")
+                          ("/home/andrew/.rvm/gems/ruby-1.9.3-p429@manticore/gems" "manticore gems")
                           ("/home/andrew/rubydev/workspace/msmstats" "msmstats")
                           ("/home/andrew/.rvm/gems/ree-1.8.7-2012.02@msmstats/gems" "msmstats gems")
                           ("/home/andrew/rubydev/workspace/rn-chef" "rn-chef")
-                          ("/home/andrew/.rvm/gems/ruby-1.9.3-p392@chef-client/gems" "rn-chef gems")
+                          ("/home/andrew/.rvm/gems/ruby-1.9.3-p429@chef-client/gems" "rn-chef gems")
                           ("/home/andrew/rubydev/workspace/nagios-config" "nagios-config")
                           ("/home/andrew/rubydev/workspace/rn-god" "rn-god")
                           ("/home/andrew/rubydev/workspace/god-local" "god-local")
-                          ("/home/andrew/.rvm/gems/ruby-1.9.3-p392@god-local/gems" "god-local gems")
+                          ("/home/andrew/.rvm/gems/ruby-2.0.0-p195@god-local/gems" "god-local gems")
                           ("/home/andrew/rubydev/workspace/apache-upload-progress-module" "apache-upload-progress-module")
                           ("/home/andrew/rubydev/workspace/scripts" "scripts")
                           ("/home/andrew/rpmbuild" "reverb-rpms")
-                          ("/home/andrew/.rvm/rubies/ruby-1.9.3-p392/lib/ruby" "ruby-1.9.3-p392")
+                          ("/home/andrew/.rvm/rubies/ruby-1.9.3-p429/lib/ruby" "ruby-1.9.3-p429")
+                          ("/home/andrew/.rvm/rubies/ruby-2.0.0-p195/lib/ruby" "ruby-2.0.0-p195")
                           ("/home/andrew/Projects/dreamybandnames" "dreamybandnames")
                           ("/home/andrew/Projects/euler" "euler")
                           ("/home/andrew/Projects/graphplay" "graphplay")
@@ -154,6 +156,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(coffee-tab-width 2)
+ '(css-indent-offset 2)
  '(ecb-layout-name "right1")
  '(ecb-options-version "2.40")
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
