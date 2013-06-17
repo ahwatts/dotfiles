@@ -3,8 +3,6 @@
 ;; Start the server.
 (server-mode)
 
-(setq package-available-p (>= emacs-major-version 24))
-
 ;; Make sure package.el is installed.
 (unless (require 'package nil t)
   (let ((package-el-path "~/.emacs.d/package"))
