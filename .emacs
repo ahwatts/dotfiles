@@ -9,7 +9,9 @@
 (when package-available-p
   (require 'package)
   (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
   (package-initialize)
+  (add-to-list 'package-archive-enable-alist '("melpa" . 'ecb))
   (when (not package-archive-contents)
     (package-refresh-contents))
   (dolist (p '(starter-kit
@@ -19,7 +21,7 @@
                starter-kit-lisp
                starter-kit-ruby
                auto-complete
-               ecb-snapshot
+               ecb
                color-theme
                zenburn-theme
                coffee-mode
@@ -75,7 +77,7 @@
 (when package-available-p
   (setq stack-trace-on-error t)
   (defun ahw-add-ecb-source-paths ()
-    (require 'ecb-snapshot-autoloads)
+    (require 'ecb-autoloads)
     (dolist (p (reverse '(("/home/andrew/rubydev/workspace/reverbnation" "reverbnation")
                           ("/home/andrew/.rvm/gems/ruby-1.9.3-p429@reverbnation/gems" "reverbnation gems")
                           ("/home/andrew/rubydev/workspace/manticore" "manticore")
@@ -102,6 +104,7 @@
                           ("C:/Users/andrew/Projects/euler" "euler")
                           ("C:/Users/andrew/Projects/graphplay" "graphplay")
                           ("C:/Users/andrew/Projects/openhf" "openhf")
+                          ("C:/Users/andrew/Projects/songviz" "songviz")
                           ("C:/Users/andrew" "homedir")
                           ("/" "/"))))
       (when (file-directory-p (car p))
