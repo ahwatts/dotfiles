@@ -125,6 +125,7 @@
                         ("/home/andrew/Projects/euler" "euler")
                         ("/home/andrew/Projects/graphplay" "graphplay")
                         ("/home/andrew/Projects/openhf" "openhf")
+                        ("/home/andrew/Projects/songviz" "songviz")
                         ("/home/andrew" "homedir")
                         ("C:/Users/andrew/Projects/dreamybandnames" "dreamybandnames")
                         ("C:/Users/andrew/Projects/euler" "euler")
