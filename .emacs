@@ -31,7 +31,20 @@
   (package-install-from-buffer (package-buffer-info) 'single))
 (add-to-list 'package-archive-enable-alist '("melpa" . 'ecb))
 
-;; Install some packages we want.
+;; Install some packages we want on Emacs 23 only.
+(when (= emacs-major-version 23)
+  (unless package-archive-contents (package-refresh-contents))
+  (dolist (p '(cl-lib
+               popup))
+    (unless ( package-installed-p p) (package-install p))))
+
+;; Install some packages we want on Emacs 24 only.
+(when (= emacs-major-version 24)
+  (unless package-archive-contents (package-refresh-contents))
+  (dolist (p '(ecb))
+    (unless ( package-installed-p p) (package-install p))))
+
+;; Install some packages we want on all Emacs versions.
 (unless package-archive-contents (package-refresh-contents))
 (dolist (p '(starter-kit
              starter-kit-bindings
@@ -40,7 +53,6 @@
              starter-kit-lisp
              starter-kit-ruby
              auto-complete
-             ecb
              color-theme
              zenburn-theme
              coffee-mode
