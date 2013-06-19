@@ -171,6 +171,9 @@
   (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
 (add-hook 'after-init-hook 'ahw-turn-on-markdown-mode)
 
+;; Initialize colors for screen / tmux
+(add-to-list 'load-path "~/.emacs.d/user-lisp")
+
 ;; Custom.
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
