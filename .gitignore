@@ -9,3 +9,4 @@
 !.emacs.d/user-lisp
 !.emacs.d/user-lisp/term
 !.emacs.d/user-lisp/term/screen-256color.el
+!.tmux.conf
