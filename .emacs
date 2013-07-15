@@ -120,6 +120,7 @@
                         ("/home/andrew/.rvm/rubies/ruby-1.9.3-p448/lib/ruby" "ruby-1.9.3-p448")
                         ("/home/andrew/.rvm/rubies/ruby-2.0.0-p247/lib/ruby" "ruby-2.0.0-p247")
                         ("/home/andrew/Projects/dreamybandnames" "dreamybandnames")
+                        ("/home/andrew/.rvm/gems/ruby-2.0.0-p247@dreamybandnames/gems" "dreamybandnames gems")
                         ("/home/andrew/Projects/euler" "euler")
                         ("/home/andrew/Projects/graphplay" "graphplay")
                         ("/home/andrew/Projects/openhf" "openhf")
