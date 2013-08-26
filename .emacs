@@ -44,12 +44,13 @@
 
 ;; Install some packages we want on all Emacs versions.
 (unless package-archive-contents (package-refresh-contents))
-(dolist (p '(starter-kit
-             starter-kit-bindings
-             starter-kit-eshell
-             starter-kit-js
-             starter-kit-lisp
-             starter-kit-ruby
+(dolist (p '(
+             ;; starter-kit
+             ;; starter-kit-bindings
+             ;; starter-kit-eshell
+             ;; starter-kit-js
+             ;; starter-kit-lisp
+             ;; starter-kit-ruby
              auto-complete
              color-theme
              zenburn-theme
@@ -70,7 +71,25 @@
              cmake-mode))
   (unless (package-installed-p p) (package-install p)))
 
+;; Some built-in packages we want available.
 (require 'cl)
+(require 'inf-ruby)
+(require 'saveplace)
+(require 'tramp)
+(require 'uniquify)
+
+;; Keybindings changes.
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "M-/") 'hippie-expand)
+
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+(global-set-key (kbd "M-%") 'query-replace-regexp)
+(global-set-key (kbd "C-M-s") 'isearch-forward)
+(global-set-key (kbd "C-M-r") 'isearch-backward)
+(global-set-key (kbd "C-M-%") 'query-replace)
+
+;; Things for non-console Emacs.
 (when window-system
   ;; Set the font size. Maybe this should depend somehow on what
   ;; machine we're on?
@@ -95,7 +114,6 @@
 (add-hook 'after-init-hook 'ahw-turn-on-auto-complete)
 
 ;; Set up Tramp proxies.
-(require 'tramp)
 (add-to-list 'tramp-default-proxies-alist
              '("\\.reverbnation\\.lan" nil "/ssh:awatts@herbie.reverbnation.com:"))
 
@@ -139,7 +157,6 @@
 (add-hook 'ecb-activate-before-layout-draw-hook 'ahw-add-ecb-source-paths)
 
 ;; Ruby configuration.
-(require 'inf-ruby)
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
 (add-hook 'ruby-mode-hook 'esk-paredit-nonlisp)
 (add-hook 'ruby-mode-hook 'ruby-tools-mode)
@@ -188,6 +205,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(apropos-do-all t)
+ '(backup-directory-alist (quote (("." . "~/.emacs.d/backups"))))
  '(coffee-tab-width 2)
  '(css-indent-offset 2)
  '(ecb-layout-name "right1")
@@ -195,12 +214,22 @@
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
  '(ecb-tip-of-the-day nil)
  '(ecb-windows-width 0.25)
- '(make-backup-files t)
+ '(ido-enable-flex-matching t)
+ '(ido-mode (quote both) nil (ido))
+ '(inhibit-startup-screen t)
  '(menu-bar-mode nil)
+ '(mouse-yank-at-point t)
  '(nrepl-popup-stacktraces nil)
  '(ruby-deep-indent-paren (quote (t)))
  '(safe-local-variable-values (quote ((encoding . binary) (encoding . utf-8) (whitespace-line-column . 80) (lexical-binding . t))))
- '(scss-compile-at-save nil))
+ '(save-interprogram-paste-before-kill t)
+ '(save-place t nil (saveplace))
+ '(save-place-file "~/.emacs.d/places")
+ '(scss-compile-at-save nil)
+ '(show-paren-mode t)
+ '(tool-bar-mode nil)
+ '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
+ '(x-select-enable-primary t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
