@@ -66,7 +66,8 @@
              flymake-ruby
              flymake-jshint
              yaml-mode
-             markdown-mode))
+             markdown-mode
+             cmake-mode))
   (unless (package-installed-p p) (package-install p)))
 
 (require 'cl)
@@ -171,6 +172,12 @@
   (require 'markdown-mode)
   (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
 (add-hook 'after-init-hook 'ahw-turn-on-markdown-mode)
+
+;; CMake configuration.
+(defun ahw-turn-on-cmake-mode ()
+  (require 'cmake-mode)
+  (add-to-list 'auto-mode-alist '("CMakeLists" . cmake-mode)))
+(add-hook 'after-init-hook 'ahw-turn-on-cmake-mode)
 
 ;; Initialize colors for screen / tmux
 (add-to-list 'load-path "~/.emacs.d/user-lisp")
