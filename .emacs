@@ -30,10 +30,19 @@
 (add-to-list 'package-archive-enable-alist '("melpa" . 'ecb))
 
 (defun ahw-package-install (package)
+  "Custom package-install function that only installs a package if it has not
+already been installed."
   (unless (package-installed-p package)
     (package-install package)))
 
+;; Create a hook that runs after installing packages that configures
+;; packages that were potentially installed in that function.
+(defvar ahw-after-installing-packages-hook nil
+  "Hook called after ahw-install-packages runs.")
+
 (defun ahw-install-packages ()
+  "Function which installs various packages that we want to use."
+
   ;; Install some packages we want on Emacs 23 only.
   (when (= emacs-major-version 23)
     (unless package-archive-contents (package-refresh-contents))
@@ -71,12 +80,13 @@
 	       yaml-mode
 	       yaml-mode
 	       zenburn-theme))
-    (ahw-package-install p)))
+    (ahw-package-install p))
+
+  (run-hooks 'ahw-after-installing-packages-hook))
 (add-hook 'after-init-hook 'ahw-install-packages)
 
 ;; Some built-in packages we want available.
 (require 'cl)
-(require 'inf-ruby)
 (require 'saveplace)
 (require 'tramp)
 (require 'uniquify)
@@ -120,22 +130,20 @@
   (defun ahw-turn-on-zenburn ()
     (require 'color-theme)
     (require 'zenburn-theme))
-  (add-hook 'after-init-hook 'ahw-turn-on-zenburn))
+  (add-hook 'ahw-after-installing-packages-hook 'ahw-turn-on-zenburn))
 
 ;; Turn on auto-complete-mode.
 (defun ahw-turn-on-auto-complete ()
   (require 'auto-complete-config)
   (ac-config-default))
-(add-hook 'after-init-hook 'ahw-turn-on-auto-complete)
+(add-hook 'ahw-after-installing-packages-hook 'ahw-turn-on-auto-complete)
 
 ;; Set up Tramp proxies.
 (add-to-list 'tramp-default-proxies-alist
              '("\\.reverbnation\\.lan" nil "/ssh:awatts@herbie.reverbnation.com:"))
 
 ;; ECB configuration.
-(setq stack-trace-on-error t)
 (defun ahw-add-ecb-source-paths ()
-  (require 'ecb-autoloads)
   (dolist (p (reverse '(("/home/andrew/rubydev/workspace/reverbnation" "reverbnation")
                         ("/home/andrew/.rvm/gems/ruby-1.9.3-p448@reverbnation/gems" "reverbnation gems")
                         ("/home/andrew/rubydev/workspace/manticore" "manticore")
@@ -169,45 +177,52 @@
                         ("/" "/"))))
     (when (file-directory-p (car p))
       (add-to-list 'ecb-source-path p))))
-(add-hook 'ecb-activate-before-layout-draw-hook 'ahw-add-ecb-source-paths)
+
+(defun ahw-configure-ecb ()
+  (require 'ecb-autoloads)
+  (add-hook 'ecb-activate-before-layout-draw-hook 'ahw-add-ecb-source-paths))
+(add-hook 'ahw-after-installing-packages-hook 'ahw-configure-ecb)
 
 ;; Elisp configuration.
-(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
-(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+(defun ahw-configure-elisp-mode ()
+  (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+  (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode))
+(add-hook 'ahw-after-installing-packages-hook 'ahw-configure-elisp-mode)
 
 ;; Ruby configuration.
-(add-hook 'ruby-mode-hook 'flymake-ruby-load)
-(add-hook 'ruby-mode-hook 'ruby-tools-mode)
-(add-hook 'ruby-mode-hook 'ruby-end-mode)
+(defun ahw-configure-ruby-mode ()
+  (add-hook 'ruby-mode-hook 'flymake-ruby-load)
+  (add-hook 'ruby-mode-hook 'ruby-tools-mode)
+  (add-hook 'ruby-mode-hook 'ruby-end-mode))
+(add-hook 'ahw-after-installing-packages-hook 'ahw-configure-ruby-mode)
 
 ;; Javascript configuration.
 (defun ahw-turn-on-flymake-jshint ()
   (require 'flymake-jshint)
   (add-to-list 'flymake-allowed-file-name-masks
-               '(".+\\.json$"
-                 flymake-jshint-init
-                 flymake-simple-cleanup
-                 flymake-get-real-file-name)))
-(add-hook 'after-init-hook 'ahw-turn-on-flymake-jshint)
+	       '(".+\\.json$"
+		 flymake-jshint-init
+		 flymake-simple-cleanup
+		 flymake-get-real-file-name)))
+(add-hook 'ahw-after-installing-packages-hook 'ahw-turn-on-flymake-jshint)
 
 ;; YAML configuration.
 (defun ahw-turn-on-yaml-mode ()
   (require 'yaml-mode)
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
-(add-hook 'after-init-hook 'ahw-turn-on-yaml-mode)
-
-;; DNS configuration
-(add-hook 'dns-mode-hook 'flyspell-mode-off)
+(add-hook 'ahw-after-installing-packages-hook 'ahw-turn-on-yaml-mode)
 
 ;; Clojure configuration
-(add-hook 'clojure-mode-hook 'paredit-mode)
-(add-hook 'clojure-mode-hook 'eldoc-mode)
+(defun ahw-configure-clojure-mode ()
+  (add-hook 'clojure-mode-hook 'paredit-mode)
+  (add-hook 'clojure-mode-hook 'eldoc-mode))
+(add-hook 'ahw-after-installing-packages-hook 'ahw-configure-clojure-mode)
 
 ;; Markdown configuration
 (defun ahw-turn-on-markdown-mode ()
   (require 'markdown-mode)
   (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
-(add-hook 'after-init-hook 'ahw-turn-on-markdown-mode)
+(add-hook 'ahw-after-installing-packages-hook 'ahw-turn-on-markdown-mode)
 
 ;; CMake configuration.
 (defun ahw-turn-on-cmake-mode ()
@@ -215,11 +230,13 @@
   (add-to-list 'auto-mode-alist '("CMakeLists" . cmake-mode)))
 (add-hook 'after-init-hook 'ahw-turn-on-cmake-mode)
 
+;; Add the paredit menu
+(defun ahw-configure-paredit-menu ()
+  (require 'paredit-menu))
+(add-hook 'ahw-after-installing-packages-hook 'ahw-configure-paredit-menu)
+
 ;; Initialize colors for screen / tmux
 (add-to-list 'load-path "~/.emacs.d/user-lisp")
-
-;; Add the paredit menu
-(require 'paredit-menu nil t)
 
 ;; Custom.
 (custom-set-variables
