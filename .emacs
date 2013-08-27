@@ -67,6 +67,7 @@
 	       ruby-end
 	       ruby-tools
 	       scss-mode
+	       smex
 	       yaml-mode
 	       yaml-mode
 	       zenburn-theme))
@@ -81,15 +82,27 @@
 (require 'uniquify)
 
 ;; Keybindings changes.
+
+;; ibuffer is nicer.
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+
+;; I'm not sure what hippie-expand is, but I'll try it for now.
 (global-set-key (kbd "M-/") 'hippie-expand)
 
+;; Swap out the regular isearches for their regexp counterparts.
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "M-%") 'query-replace-regexp)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 (global-set-key (kbd "C-M-%") 'query-replace)
+
+;; use smex.
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+
+;; This is the pre-smex M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 ;; Things for non-console Emacs.
 (when window-system
@@ -238,6 +251,7 @@
  '(save-place-file "~/.emacs.d/places")
  '(scss-compile-at-save nil)
  '(show-paren-mode t)
+ '(smex-save-file "~/.emacs.d/smex-items")
  '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
  '(x-select-enable-primary t))
