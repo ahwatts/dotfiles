@@ -76,6 +76,7 @@ already been installed."
 	       ruby-end
 	       ruby-tools
 	       scss-mode
+	       smartparens
 	       smex
 	       yaml-mode
 	       yaml-mode
@@ -268,7 +269,9 @@ already been installed."
  '(save-place-file "~/.emacs.d/places")
  '(scss-compile-at-save nil)
  '(show-paren-mode t)
+ '(smartparens-global-mode t)
  '(smex-save-file "~/.emacs.d/smex-items")
+ '(sp-ignore-modes-list (quote (minibuffer-inactive-mode emacs-lisp-mode clojure-mode lisp-interaction-mode)))
  '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
  '(x-select-enable-primary t))
