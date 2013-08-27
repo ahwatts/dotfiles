@@ -29,47 +29,49 @@
   (package-install-from-buffer (package-buffer-info) 'single))
 (add-to-list 'package-archive-enable-alist '("melpa" . 'ecb))
 
-;; Install some packages we want on Emacs 23 only.
-(when (= emacs-major-version 23)
-  (unless package-archive-contents (package-refresh-contents))
-  (dolist (p '(cl-lib
-               popup))
-    (unless ( package-installed-p p) (package-install p))))
+(defun ahw-package-install (package)
+  (unless (package-installed-p package)
+    (package-install package)))
 
-;; Install some packages we want on Emacs 24 only.
-(when (= emacs-major-version 24)
-  (unless package-archive-contents (package-refresh-contents))
-  (dolist (p '(ecb))
-    (unless ( package-installed-p p) (package-install p))))
+(defun ahw-install-packages ()
+  ;; Install some packages we want on Emacs 23 only.
+  (when (= emacs-major-version 23)
+    (unless package-archive-contents (package-refresh-contents))
+    (dolist (p '(cl-lib
+		 popup))
+      (ahw-package-install p)))
 
-;; Install some packages we want on all Emacs versions.
-(unless package-archive-contents (package-refresh-contents))
-(dolist (p '(
-             ;; starter-kit
-             ;; starter-kit-bindings
-             ;; starter-kit-eshell
-             ;; starter-kit-js
-             ;; starter-kit-lisp
-             ;; starter-kit-ruby
-             auto-complete
-             color-theme
-             zenburn-theme
-             coffee-mode
-             haml-mode
-             scss-mode
-             yaml-mode
-             clojure-mode
-             nrepl
-             ac-nrepl
-             rinari
-             ruby-tools
-             ruby-end
-             flymake-ruby
-             flymake-jshint
-             yaml-mode
-             markdown-mode
-             cmake-mode))
-  (unless (package-installed-p p) (package-install p)))
+  ;; Install some packages we want on Emacs 24 only.
+  (when (= emacs-major-version 24)
+    (unless package-archive-contents (package-refresh-contents))
+    (dolist (p '(ecb))
+      (ahw-package-install p)))
+
+  ;; Install some packages we want on all Emacs versions.
+  (unless package-archive-contents (package-refresh-contents))
+  (dolist (p '(ac-nrepl
+	       auto-complete
+	       clojure-mode
+	       cmake-mode
+	       coffee-mode
+	       color-theme
+	       flymake-jshint
+	       flymake-ruby
+	       haml-mode
+	       ido-ubiquitous
+	       markdown-mode
+	       nrepl
+	       paredit
+	       paredit-menu
+	       rinari
+	       ruby-end
+	       ruby-tools
+	       scss-mode
+	       yaml-mode
+	       yaml-mode
+	       zenburn-theme))
+    (ahw-package-install p)))
+(add-hook 'after-init-hook 'ahw-install-packages)
 
 ;; Some built-in packages we want available.
 (require 'cl)
@@ -156,9 +158,12 @@
       (add-to-list 'ecb-source-path p))))
 (add-hook 'ecb-activate-before-layout-draw-hook 'ahw-add-ecb-source-paths)
 
+;; Elisp configuration.
+(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+
 ;; Ruby configuration.
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
-(add-hook 'ruby-mode-hook 'esk-paredit-nonlisp)
 (add-hook 'ruby-mode-hook 'ruby-tools-mode)
 (add-hook 'ruby-mode-hook 'ruby-end-mode)
 
@@ -182,6 +187,7 @@
 (add-hook 'dns-mode-hook 'flyspell-mode-off)
 
 ;; Clojure configuration
+(add-hook 'clojure-mode-hook 'paredit-mode)
 (add-hook 'clojure-mode-hook 'eldoc-mode)
 
 ;; Markdown configuration
@@ -199,6 +205,9 @@
 ;; Initialize colors for screen / tmux
 (add-to-list 'load-path "~/.emacs.d/user-lisp")
 
+;; Add the paredit menu
+(require 'paredit-menu nil t)
+
 ;; Custom.
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -215,7 +224,9 @@
  '(ecb-tip-of-the-day nil)
  '(ecb-windows-width 0.25)
  '(ido-enable-flex-matching t)
+ '(ido-everywhere t)
  '(ido-mode (quote both) nil (ido))
+ '(ido-ubiquitous-mode t)
  '(inhibit-startup-screen t)
  '(menu-bar-mode nil)
  '(mouse-yank-at-point t)
