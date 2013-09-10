@@ -47,7 +47,7 @@ already been installed."
   (when (= emacs-major-version 23)
     (unless package-archive-contents (package-refresh-contents))
     (dolist (p '(cl-lib
-		 popup))
+                 popup))
       (ahw-package-install p)))
 
   ;; Install some packages we want on Emacs 24 only.
@@ -59,28 +59,28 @@ already been installed."
   ;; Install some packages we want on all Emacs versions.
   (unless package-archive-contents (package-refresh-contents))
   (dolist (p '(ac-nrepl
-	       auto-complete
-	       clojure-mode
-	       cmake-mode
-	       coffee-mode
-	       color-theme
-	       flymake-jshint
-	       flymake-ruby
-	       haml-mode
-	       ido-ubiquitous
-	       markdown-mode
-	       nrepl
-	       paredit
-	       paredit-menu
-	       rinari
-	       ruby-end
-	       ruby-tools
-	       scss-mode
-	       smartparens
-	       smex
-	       yaml-mode
-	       yaml-mode
-	       zenburn-theme))
+               auto-complete
+               clojure-mode
+               cmake-mode
+               coffee-mode
+               color-theme
+               flymake-jshint
+               flymake-ruby
+               haml-mode
+               ido-ubiquitous
+               markdown-mode
+               nrepl
+               paredit
+               paredit-menu
+               rinari
+               ruby-end
+               ruby-tools
+               scss-mode
+               smartparens
+               smex
+               yaml-mode
+               yaml-mode
+               zenburn-theme))
     (ahw-package-install p))
 
   (run-hooks 'ahw-after-installing-packages-hook))
@@ -147,6 +147,8 @@ already been installed."
 (defun ahw-add-ecb-source-paths ()
   (dolist (p (reverse '(("/home/andrew/rubydev/workspace/reverbnation" "reverbnation")
                         ("/home/andrew/.rvm/gems/ruby-1.9.3-p448@reverbnation/gems" "reverbnation gems")
+                        ("/home/andrew/rubydev/workspace/redis_sendmail" "redis_sendmail")
+                        ("/home/andrew/.rvm/gems/ruby-2.0.0-p247@redis_sendmail/gems" "redis_sendmail gems")
                         ("/home/andrew/rubydev/workspace/manticore" "manticore")
                         ("/home/andrew/.rvm/gems/ruby-1.9.3-p448@manticore/gems" "manticore gems")
                         ("/home/andrew/rubydev/workspace/msmstats" "msmstats")
@@ -201,10 +203,10 @@ already been installed."
 (defun ahw-turn-on-flymake-jshint ()
   (require 'flymake-jshint)
   (add-to-list 'flymake-allowed-file-name-masks
-	       '(".+\\.json$"
-		 flymake-jshint-init
-		 flymake-simple-cleanup
-		 flymake-get-real-file-name)))
+               '(".+\\.json$"
+                 flymake-jshint-init
+                 flymake-simple-cleanup
+                 flymake-get-real-file-name)))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-turn-on-flymake-jshint)
 
 ;; YAML configuration.
@@ -258,6 +260,7 @@ already been installed."
  '(ido-everywhere t)
  '(ido-mode (quote both) nil (ido))
  '(ido-ubiquitous-mode t)
+ '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(menu-bar-mode nil)
  '(mouse-yank-at-point t)
