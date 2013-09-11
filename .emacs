@@ -73,8 +73,10 @@ already been installed."
                paredit
                paredit-menu
                rinari
+               rspec-mode
                ruby-end
                ruby-tools
+               rvm
                scss-mode
                smartparens
                smex
@@ -242,6 +244,10 @@ already been installed."
 ;; Initialize colors for screen / tmux
 (add-to-list 'load-path "~/.emacs.d/user-lisp")
 
+;; Load some things in user-lisp.
+(load "utils.el")
+(load "rvm-ruby-version-file-advice.el")
+
 ;; Custom.
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -269,6 +275,9 @@ already been installed."
  '(menu-bar-mode t)
  '(mouse-yank-at-point t)
  '(nrepl-popup-stacktraces nil)
+ '(rspec-key-command-prefix "s")
+ '(rspec-use-opts-file-when-available nil)
+ '(rspec-use-rvm t)
  '(ruby-deep-indent-paren (quote (t)))
  '(safe-local-variable-values (quote ((encoding . binary) (encoding . utf-8) (whitespace-line-column . 80) (lexical-binding . t))))
  '(save-interprogram-paste-before-kill t)
