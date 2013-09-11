@@ -262,7 +262,7 @@ already been installed."
  '(ido-ubiquitous-mode t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
- '(menu-bar-mode nil)
+ '(menu-bar-mode t)
  '(mouse-yank-at-point t)
  '(nrepl-popup-stacktraces nil)
  '(ruby-deep-indent-paren (quote (t)))
