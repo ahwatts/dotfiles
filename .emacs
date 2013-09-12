@@ -245,10 +245,6 @@ already been installed."
 ;; Initialize colors for screen / tmux
 (add-to-list 'load-path "~/.emacs.d/user-lisp")
 
-;; Load some things in user-lisp.
-(load "utils.el")
-(load "rvm-ruby-version-file-advice.el")
-
 ;; Custom.
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
