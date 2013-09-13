@@ -174,7 +174,7 @@ already been installed."
                         ("/home/andrew/Projects/openhf" "openhf")
                         ("/home/andrew/Projects/songviz" "songviz")
                         ("/home/andrew" "homedir")
-			("C:/Users/andrew/Projects/redis_sendmail" "redis_sendmail")
+                        ("C:/Users/andrew/Projects/redis_sendmail" "redis_sendmail")
                         ("C:/Users/andrew/Projects/dreamybandnames" "dreamybandnames")
                         ("C:/Users/andrew/Projects/euler" "euler")
                         ("C:/Users/andrew/Projects/graphplay" "graphplay")
@@ -186,7 +186,7 @@ already been installed."
       (add-to-list 'ecb-source-path p))))
 
 (defun ahw-configure-ecb ()
-  (require 'ecb-autoloads)
+  (require 'ecb)
   (add-hook 'ecb-activate-before-layout-draw-hook 'ahw-add-ecb-source-paths))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-ecb)
 
