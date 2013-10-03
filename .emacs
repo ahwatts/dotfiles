@@ -276,6 +276,7 @@ already been installed."
  '(rspec-use-opts-file-when-available nil)
  '(rspec-use-rvm t)
  '(ruby-deep-indent-paren (quote (t)))
+ '(rvm-configuration-file-name "/home/andrew/.rvmrc")
  '(safe-local-variable-values (quote ((encoding . binary) (encoding . utf-8) (whitespace-line-column . 80) (lexical-binding . t))))
  '(save-interprogram-paste-before-kill t)
  '(save-place t nil (saveplace))
