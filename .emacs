@@ -235,7 +235,7 @@ already been installed."
 (defun ahw-turn-on-cmake-mode ()
   (require 'cmake-mode)
   (add-to-list 'auto-mode-alist '("CMakeLists" . cmake-mode)))
-(add-hook 'after-init-hook 'ahw-turn-on-cmake-mode)
+(add-hook 'after-installing-packages-hook 'ahw-turn-on-cmake-mode)
 
 ;; Add the paredit menu
 (defun ahw-configure-paredit-menu ()
@@ -269,7 +269,7 @@ already been installed."
  '(imenu-auto-rescan t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
- '(menu-bar-mode t)
+ '(menu-bar-mode (window-system))
  '(mouse-yank-at-point t)
  '(nrepl-popup-stacktraces nil)
  '(rspec-key-command-prefix "s")
