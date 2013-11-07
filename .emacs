@@ -198,6 +198,7 @@ already been installed."
 
 ;; Ruby configuration.
 (defun ahw-configure-ruby-mode ()
+  (add-hook 'ruby-mode-hook 'rvm-activate-corresponding-ruby)
   (add-hook 'ruby-mode-hook 'flymake-ruby-load)
   (add-hook 'ruby-mode-hook 'ruby-tools-mode)
   (add-hook 'ruby-mode-hook 'ruby-end-mode))
