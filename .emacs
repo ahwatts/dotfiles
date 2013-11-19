@@ -222,6 +222,7 @@ already been installed."
 
 ;; Clojure configuration
 (defun ahw-configure-clojure-mode ()
+  (require 'clojure-mode)
   (add-hook 'clojure-mode-hook 'paredit-mode)
   (add-hook 'clojure-mode-hook 'eldoc-mode))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-clojure-mode)
