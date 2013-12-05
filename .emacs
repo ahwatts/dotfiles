@@ -122,7 +122,7 @@ already been installed."
 (when window-system
   ;; Set the font size. Maybe this should depend somehow on what
   ;; machine we're on?
-  (set-face-attribute 'default nil :height 110)
+  (set-face-attribute 'default nil :height 100)
 
   ;; Set the default font.
   (let ((font-name (find-if (lambda (name) (x-list-fonts name))
@@ -149,26 +149,26 @@ already been installed."
 ;; ECB configuration.
 (defun ahw-add-ecb-source-paths ()
   (dolist (p (reverse '(("/home/andrew/rubydev/workspace/reverbnation" "reverbnation")
-                        ("/home/andrew/.rvm/gems/ruby-1.9.3-p448@reverbnation/gems" "reverbnation gems")
+                        ("/home/andrew/.rvm/gems/ruby-1.9.3-p484@reverbnation/gems" "reverbnation gems")
                         ("/home/andrew/rubydev/workspace/redis_sendmail" "redis_sendmail")
-                        ("/home/andrew/.rvm/gems/ruby-2.0.0-p247@redis_sendmail/gems" "redis_sendmail gems")
+                        ("/home/andrew/.rvm/gems/ruby-2.0.0-p353@redis_sendmail/gems" "redis_sendmail gems")
                         ("/home/andrew/rubydev/workspace/manticore" "manticore")
-                        ("/home/andrew/.rvm/gems/ruby-1.9.3-p448@manticore/gems" "manticore gems")
+                        ("/home/andrew/.rvm/gems/ruby-1.9.3-p484@manticore/gems" "manticore gems")
                         ("/home/andrew/rubydev/workspace/msmstats" "msmstats")
                         ("/home/andrew/.rvm/gems/ree-1.8.7-2012.02@msmstats/gems" "msmstats gems")
                         ("/home/andrew/rubydev/workspace/rn-chef" "rn-chef")
-                        ("/home/andrew/.rvm/gems/ruby-1.9.3-p448@chef-client/gems" "rn-chef gems")
+                        ("/home/andrew/.rvm/gems/ruby-1.9.3-p484@chef-client/gems" "rn-chef gems")
                         ("/home/andrew/rubydev/workspace/nagios-config" "nagios-config")
                         ("/home/andrew/rubydev/workspace/rn-god" "rn-god")
                         ("/home/andrew/rubydev/workspace/god-local" "god-local")
-                        ("/home/andrew/.rvm/gems/ruby-2.0.0-p247@god-local/gems" "god-local gems")
+                        ("/home/andrew/.rvm/gems/ruby-2.0.0-p353@god-local/gems" "god-local gems")
                         ("/home/andrew/rubydev/workspace/apache-upload-progress-module" "apache-upload-progress-module")
                         ("/home/andrew/rubydev/workspace/scripts" "scripts")
                         ("/home/andrew/rpmbuild" "reverb-rpms")
-                        ("/home/andrew/.rvm/rubies/ruby-1.9.3-p448/lib/ruby" "ruby-1.9.3-p448")
-                        ("/home/andrew/.rvm/rubies/ruby-2.0.0-p247/lib/ruby" "ruby-2.0.0-p247")
+                        ("/home/andrew/.rvm/rubies/ruby-1.9.3-p484/lib/ruby" "ruby-1.9.3-p484")
+                        ("/home/andrew/.rvm/rubies/ruby-2.0.0-p353/lib/ruby" "ruby-2.0.0-p353")
                         ("/home/andrew/Projects/dreamybandnames" "dreamybandnames")
-                        ("/home/andrew/.rvm/gems/ruby-2.0.0-p247@dreamybandnames/gems" "dreamybandnames gems")
+                        ("/home/andrew/.rvm/gems/ruby-2.0.0-p353@dreamybandnames/gems" "dreamybandnames gems")
                         ("/home/andrew/Projects/euler" "euler")
                         ("/home/andrew/Projects/graphplay" "graphplay")
                         ("/home/andrew/Projects/openhf" "openhf")
@@ -246,6 +246,26 @@ already been installed."
 
 ;; Initialize colors for screen / tmux
 (add-to-list 'load-path "~/.emacs.d/user-lisp")
+
+;; Bind the F11 key to fullscreenize Emacs.
+(defvar ahw-prev-fullscreen
+  (frame-parameter nil 'fullscreen)
+  "Stores the value of the fullscreen frame parameter before going to fullscreen.")
+
+(defun ahw-toggle-fullscreen ()
+  "Toggle full screen on X11"
+  (interactive)
+  (when (eq window-system 'x)
+    (let ((fscr (frame-parameter nil 'fullscreen)))
+      (if (eq fscr 'fullboth)
+          (progn
+            (set-frame-parameter nil 'fullscreen ahw-prev-fullscreen)
+            (menu-bar-mode))
+        (setq ahw-prev-fullscreen fscr)
+        (set-frame-parameter nil 'fullscreen 'fullboth)
+        (menu-bar-mode -1)))))
+
+(global-set-key [f11] 'ahw-toggle-fullscreen)
 
 ;; Custom.
 (custom-set-variables
