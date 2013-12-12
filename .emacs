@@ -54,7 +54,8 @@ already been installed."
   ;; Install some packages we want on Emacs 24 only.
   (when (= emacs-major-version 24)
     (unless package-archive-contents (package-refresh-contents))
-    (dolist (p '(ecb))
+    (dolist (p '(ecb
+                 ido-ubiquitous))
       (ahw-package-install p)))
 
   ;; Install some packages we want on all Emacs versions.
@@ -68,7 +69,6 @@ already been installed."
                flymake-jshint
                flymake-ruby
                haml-mode
-               ido-ubiquitous
                markdown-mode
                nrepl
                paredit
@@ -132,8 +132,9 @@ already been installed."
 
   ;; Activate Zenburn.
   (defun ahw-turn-on-zenburn ()
-    (require 'color-theme)
-    (require 'zenburn-theme))
+    (when window-system
+      (require 'color-theme)
+      (require 'zenburn-theme)))
   (add-hook 'ahw-after-installing-packages-hook 'ahw-turn-on-zenburn))
 
 ;; Turn on auto-complete-mode.
@@ -186,8 +187,9 @@ already been installed."
       (add-to-list 'ecb-source-path p))))
 
 (defun ahw-configure-ecb ()
-  (require 'ecb)
-  (add-hook 'ecb-activate-before-layout-draw-hook 'ahw-add-ecb-source-paths))
+  (when (package-installed-p 'ecb)
+    (require 'ecb)
+    (add-hook 'ecb-activate-before-layout-draw-hook 'ahw-add-ecb-source-paths)))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-ecb)
 
 ;; Elisp configuration.
@@ -306,7 +308,7 @@ already been installed."
  '(scss-compile-at-save nil)
  '(semantic-mode t)
  '(show-paren-mode t)
- '(smartparens-global-mode t)
+ '(smartparens-global-mode (= emacs-major-version 24))
  '(smex-save-file "~/.emacs.d/smex-items")
  '(sp-ignore-modes-list (quote (minibuffer-inactive-mode emacs-lisp-mode clojure-mode lisp-interaction-mode)))
  '(tool-bar-mode nil)
