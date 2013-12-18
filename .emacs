@@ -200,6 +200,9 @@ already been installed."
 
 ;; Ruby configuration.
 (defun ahw-configure-ruby-mode ()
+  (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\`Rakefile\\'" . ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\`Gemfile\\'" . ruby-mode))
   (add-hook 'ruby-mode-hook 'rvm-activate-corresponding-ruby)
   (add-hook 'ruby-mode-hook 'flymake-ruby-load)
   (add-hook 'ruby-mode-hook 'ruby-tools-mode)
@@ -232,7 +235,8 @@ already been installed."
 ;; Markdown configuration
 (defun ahw-turn-on-markdown-mode ()
   (require 'markdown-mode)
-  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
+  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+  (add-hook 'markdown-mode-hook 'visual-line-mode))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-turn-on-markdown-mode)
 
 ;; CMake configuration.
