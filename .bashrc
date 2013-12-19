@@ -42,4 +42,3 @@ function __ahw_git_ps1 {
 }
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-echo -ne "\033k${USER}@${HOSTNAME}:${PWD}\033\\"
