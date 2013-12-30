@@ -27,8 +27,7 @@
    (url-retrieve-synchronously
     "https://raw.github.com/milkypostman/melpa/master/melpa.el"))
   (package-install-from-buffer (package-buffer-info) 'single))
-(add-to-list 'package-archive-enable-alist '("melpa" . 'ecb))
-(add-to-list 'package-archive-enable-alist '("melpa" . 'rvm))
+(add-to-list 'package-archive-enable-alist '("melpa" ecb rvm))
 
 (defun ahw-package-install (package)
   "Custom package-install function that only installs a package if it has not
