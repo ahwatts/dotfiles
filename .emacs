@@ -295,6 +295,7 @@ already been installed."
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
  '(ecb-tip-of-the-day nil)
  '(ecb-windows-width 0.25)
+ '(gdb-many-windows t)
  '(ido-enable-flex-matching t)
  '(ido-everywhere t)
  '(ido-mode (quote both) nil (ido))
