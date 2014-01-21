@@ -296,6 +296,7 @@ already been installed."
  '(imenu-auto-rescan t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
+ '(js-indent-level 2)
  '(menu-bar-mode (window-system))
  '(mouse-yank-at-point t)
  '(nrepl-popup-stacktraces nil)
