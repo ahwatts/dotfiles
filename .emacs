@@ -20,20 +20,25 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
-;; Install the melpa-el package, so we can control what comes from
-;; MELPA.
-(unless (package-installed-p 'melpa)
-  (switch-to-buffer
-   (url-retrieve-synchronously
-    "https://raw.github.com/milkypostman/melpa/master/melpa.el"))
-  (package-install-from-buffer (package-buffer-info) 'single))
-(add-to-list 'package-archive-enable-alist '("melpa" ecb rvm))
-
 (defun ahw-package-install (package)
   "Custom package-install function that only installs a package if it has not
 already been installed."
   (unless (package-installed-p package)
     (package-install package)))
+
+;; The melpa.el file is no more; we need to install the package-filter
+;; package instead (at least until Emacs 24.4...)
+
+;; ;; Install the melpa-el package, so we can control what comes from
+;; ;; MELPA.
+;; (unless (package-installed-p 'melpa)
+;;   (switch-to-buffer
+;;    (url-retrieve-synchronously
+;;     "https://raw.github.com/milkypostman/melpa/master/melpa.el"))
+;;   (package-install-from-buffer (package-buffer-info) 'single))
+
+(ahw-package-install 'package-filter)
+(add-to-list 'package-archive-enable-alist '("melpa" ecb rvm))
 
 ;; Create a hook that runs after installing packages that configures
 ;; packages that were potentially installed in that function.
@@ -202,6 +207,7 @@ already been installed."
   (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\`Rakefile\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\`Gemfile\\'" . ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.builder\\'" . ruby-mode))
   (add-hook 'ruby-mode-hook 'rvm-activate-corresponding-ruby)
   (add-hook 'ruby-mode-hook 'flymake-ruby-load)
   (add-hook 'ruby-mode-hook 'ruby-tools-mode)
@@ -289,6 +295,7 @@ already been installed."
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
  '(ecb-tip-of-the-day nil)
  '(ecb-windows-width 0.25)
+ '(gdb-many-windows t)
  '(ido-enable-flex-matching t)
  '(ido-everywhere t)
  '(ido-mode (quote both) nil (ido))
