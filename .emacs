@@ -132,14 +132,15 @@ already been installed."
   (let ((font-name (find-if (lambda (name) (x-list-fonts name))
                             '("Consolas" "Inconsolata" "Bitstream Vera Sans Mono" "DejaVu Sans Mono"))))
     (when font-name
-      (set-face-attribute 'default nil :family font-name)))
+      (set-face-attribute 'default nil :family font-name))))
 
-  ;; Activate Zenburn.
-  (defun ahw-turn-on-zenburn ()
-    (when window-system
-      (require 'color-theme)
-      (require 'zenburn-theme)))
-  (add-hook 'ahw-after-installing-packages-hook 'ahw-turn-on-zenburn))
+;; Activate Zenburn if we're in a windowing system or a 256-color terminal.
+(defun ahw-turn-on-zenburn ()
+  (when (or window-system
+            (> (length (tty-color-alist)) 8))
+    (require 'color-theme)
+    (require 'zenburn-theme)))
+(add-hook 'ahw-after-installing-packages-hook 'ahw-turn-on-zenburn)
 
 ;; Turn on auto-complete-mode.
 (defun ahw-turn-on-auto-complete ()
