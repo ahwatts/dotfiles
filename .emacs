@@ -286,7 +286,7 @@ already been installed."
  ;; If there is more than one, they won't work right.
  '(apropos-do-all t)
  '(backup-directory-alist (quote (("." . "~/.emacs.d/backups"))))
- '(c-offsets-alist (quote ((template-args-cont . +))))
+ '(c-offsets-alist (quote ((arglist-intro . +) (arglist-cont-nonempty . +) (arglist-close . 0) (template-args-cont . +))))
  '(coffee-tab-width 2)
  '(column-number-mode t)
  '(css-indent-offset 2)
