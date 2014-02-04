@@ -59,7 +59,8 @@ already been installed."
   (when (= emacs-major-version 24)
     (unless package-archive-contents (package-refresh-contents))
     (dolist (p '(ecb
-                 ido-ubiquitous))
+                 ido-ubiquitous
+                 smex))
       (ahw-package-install p)))
 
   ;; Install some packages we want on all Emacs versions.
@@ -84,7 +85,6 @@ already been installed."
                rvm
                scss-mode
                smartparens
-               smex
                yaml-mode
                yaml-mode
                zenburn-theme))
@@ -116,11 +116,13 @@ already been installed."
 (global-set-key (kbd "C-M-%") 'query-replace)
 
 ;; use smex.
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+(when (package-installed-p 'smex)
+  (global-set-key (kbd "M-x") 'smex)
+  (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 
-;; This is the pre-smex M-x.
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+  ;; This is the pre-smex M-x.
+  (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command))
+
 
 ;; Things for non-console Emacs.
 (when window-system
