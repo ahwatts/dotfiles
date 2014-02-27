@@ -123,7 +123,6 @@ already been installed."
   ;; This is the pre-smex M-x.
   (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command))
 
-
 ;; Things for non-console Emacs.
 (when window-system
   ;; Set the font size. Maybe this should depend somehow on what
@@ -160,6 +159,8 @@ already been installed."
                         ("/home/andrew/.rvm/gems/ruby-1.9.3-p484@reverbnation/gems" "reverbnation gems")
                         ("/home/andrew/rubydev/workspace/redis_sendmail" "redis_sendmail")
                         ("/home/andrew/.rvm/gems/ruby-2.0.0-p353@redis_sendmail/gems" "redis_sendmail gems")
+                        ("/home/andrew/rubydev/workspace/scaffold" "rn_scaffold")
+                        ("/home/andrew/.rvm/gems/ruby-1.9.3-p484@scaffold/gems" "rn_scaffold gems")
                         ("/home/andrew/rubydev/workspace/manticore" "manticore")
                         ("/home/andrew/.rvm/gems/ruby-1.9.3-p484@manticore/gems" "manticore gems")
                         ("/home/andrew/rubydev/workspace/msmstats" "msmstats")

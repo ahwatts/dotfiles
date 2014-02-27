@@ -20,6 +20,7 @@ alias head_commit_push_reaper='git add -A && git commit -m "tidy" && head_push &
 
 alias au_files='git ls-files -v | grep '\''^[a-z]'\'' | awk '\''{ print $2; }'\'''
 alias mod_files='git status -s | grep '\''^ *M'\'' | awk '\''{ print $2; }'\'''
+alias mod_files_comma='echo `mod_files` | tr '\'' '\'' '\'','\'''
 alias stash_au_files='git update-index --no-assume-unchanged `au_files` && git stash'
 alias unstash_au_files='git stash pop && git update-index --assume-unchanged `mod_files`'
 
