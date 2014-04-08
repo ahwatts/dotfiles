@@ -38,7 +38,7 @@ already been installed."
 ;;   (package-install-from-buffer (package-buffer-info) 'single))
 
 (ahw-package-install 'package-filter)
-(add-to-list 'package-archive-enable-alist '("melpa" ecb rvm))
+(add-to-list 'package-archive-enable-alist '("melpa" ecb rvm es-mode))
 
 ;; Create a hook that runs after installing packages that configures
 ;; packages that were potentially installed in that function.
@@ -71,9 +71,11 @@ already been installed."
                cmake-mode
                coffee-mode
                color-theme
+               es-mode
                flymake-jshint
                flymake-ruby
                haml-mode
+               hideshowvis
                markdown-mode
                nrepl
                paredit
@@ -114,6 +116,12 @@ already been installed."
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 (global-set-key (kbd "C-M-%") 'query-replace)
+
+;; Org-mode shortcuts
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c b") 'org-iswitchb)
 
 ;; use smex.
 (when (package-installed-p 'smex)
@@ -177,7 +185,7 @@ already been installed."
                         ("/home/andrew/.rvm/rubies/ruby-1.9.3-p484/lib/ruby" "ruby-1.9.3-p484")
                         ("/home/andrew/.rvm/rubies/ruby-2.0.0-p353/lib/ruby" "ruby-2.0.0-p353")
                         ("/home/andrew/Projects/dreamybandnames" "dreamybandnames")
-                        ("/home/andrew/.rvm/gems/ruby-2.0.0-p353@dreamybandnames/gems" "dreamybandnames gems")
+                        ("/home/andrew/.rvm/gems/ruby-2.1.1@dreamybandnames/gems" "dreamybandnames gems")
                         ("/home/andrew/Projects/euler" "euler")
                         ("/home/andrew/Projects/graphplay" "graphplay")
                         ("/home/andrew/Projects/openhf" "openhf")
@@ -204,7 +212,7 @@ already been installed."
                         ("/home/awatts/.rvm/rubies/ruby-2.0.0-p451/lib/ruby" "ruby-2.0.0-p451")
                         ("/home/awatts/.rvm/rubies/ruby-2.1.1/lib/ruby" "ruby-2.1.1")
                         ("/home/awatts/Projects/dreamybandnames" "dreamybandnames")
-                        ("/home/awatts/.rvm/gems/ruby-2.0.0-p451@dreamybandnames/gems" "dreamybandnames gems")
+                        ("/home/awatts/.rvm/gems/ruby-2.1.1@dreamybandnames/gems" "dreamybandnames gems")
                         ("/home/awatts/Projects/euler" "euler")
                         ("/home/awatts/Projects/graphplay" "graphplay")
                         ("/home/awatts/Projects/openhf" "openhf")
@@ -309,6 +317,25 @@ already been installed."
         (menu-bar-mode -1)))))
 
 (global-set-key [f11] 'ahw-toggle-fullscreen)
+
+;; Enable hide-show mode for es-mode and es-result-mode.
+(add-to-list 'hs-special-modes-alist '(es-mode "{" "}" "/[*/]" nil))
+(add-to-list 'hs-special-modes-alist '(es-result-mode "{" "}" "/[*/]" nil))
+
+(add-hook 'es-mode-hook 'hideshowvis-minor-mode)
+(add-hook 'es-mode-hook 'hs-minor-mode)
+
+;; hs-minor-mode requires that comment-start and comment-end be
+;; defined, and es-result-mode (derived from text-mode) doesn't define
+;; them.
+(defun ahw-configure-es-result-mode ()
+  ;; Comment dwim
+  (setq-local comment-start "// ")
+  (setq-local comment-end ""))
+
+(add-hook 'es-result-mode-hook 'hideshowvis-minor-mode)
+(add-hook 'es-result-mode-hook 'hs-minor-mode)
+(add-hook 'es-result-mode-hook 'ahw-configure-es-result-mode)
 
 ;; Custom.
 (custom-set-variables
