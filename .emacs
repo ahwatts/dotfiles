@@ -38,7 +38,7 @@ already been installed."
 ;;   (package-install-from-buffer (package-buffer-info) 'single))
 
 (ahw-package-install 'package-filter)
-(add-to-list 'package-archive-enable-alist '("melpa" ecb rvm es-mode))
+(add-to-list 'package-archive-enable-alist '("melpa" ecb rvm))
 
 ;; Create a hook that runs after installing packages that configures
 ;; packages that were potentially installed in that function.
@@ -71,7 +71,6 @@ already been installed."
                cmake-mode
                coffee-mode
                color-theme
-               es-mode
                flymake-jshint
                flymake-ruby
                haml-mode
@@ -318,24 +317,8 @@ already been installed."
 
 (global-set-key [f11] 'ahw-toggle-fullscreen)
 
-;; Enable hide-show mode for es-mode and es-result-mode.
-(add-to-list 'hs-special-modes-alist '(es-mode "{" "}" "/[*/]" nil))
-(add-to-list 'hs-special-modes-alist '(es-result-mode "{" "}" "/[*/]" nil))
-
-(add-hook 'es-mode-hook 'hideshowvis-minor-mode)
-(add-hook 'es-mode-hook 'hs-minor-mode)
-
-;; hs-minor-mode requires that comment-start and comment-end be
-;; defined, and es-result-mode (derived from text-mode) doesn't define
-;; them.
-(defun ahw-configure-es-result-mode ()
-  ;; Comment dwim
-  (setq-local comment-start "// ")
-  (setq-local comment-end ""))
-
-(add-hook 'es-result-mode-hook 'hideshowvis-minor-mode)
-(add-hook 'es-result-mode-hook 'hs-minor-mode)
-(add-hook 'es-result-mode-hook 'ahw-configure-es-result-mode)
+;; Load any .el files in user-lisp.
+(dolist (f (directory-files "~/.emacs.d/user-lisp" t "\\.el\\'")) (load f))
 
 ;; Custom.
 (custom-set-variables
