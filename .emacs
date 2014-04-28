@@ -38,7 +38,7 @@ already been installed."
 ;;   (package-install-from-buffer (package-buffer-info) 'single))
 
 (ahw-package-install 'package-filter)
-(add-to-list 'package-archive-enable-alist '("melpa" ecb rvm))
+(add-to-list 'package-archive-enable-alist '("melpa" ecb rvm es-mode))
 
 ;; Create a hook that runs after installing packages that configures
 ;; packages that were potentially installed in that function.
@@ -71,6 +71,7 @@ already been installed."
                cmake-mode
                coffee-mode
                color-theme
+               es-mode
                flymake-jshint
                flymake-ruby
                haml-mode
@@ -95,7 +96,7 @@ already been installed."
 (add-hook 'after-init-hook 'ahw-install-packages)
 
 ;; Some built-in packages we want available.
-(require 'cl)
+(require 'cl-lib)
 (require 'saveplace)
 (require 'tramp)
 (require 'uniquify)
@@ -137,7 +138,7 @@ already been installed."
   (set-face-attribute 'default nil :height 100)
 
   ;; Set the default font.
-  (let ((font-name (find-if (lambda (name) (x-list-fonts name))
+  (let ((font-name (cl-find-if (lambda (name) (x-list-fonts name))
                             '("Consolas" "Inconsolata" "Bitstream Vera Sans Mono" "DejaVu Sans Mono"))))
     (when font-name
       (set-face-attribute 'default nil :family font-name))))
@@ -300,6 +301,40 @@ already been installed."
 
 ;; Initialize colors for screen / tmux
 (add-to-list 'load-path "~/.emacs.d/user-lisp")
+
+;; Customize es-mode.
+(defun ahw-es-response-reformat-json (status content-type body-buffer)
+  (when (and (= 200 status) (string-lessp "application/json" content-type))
+    (with-current-buffer body-buffer
+      (save-excursion
+        (goto-char (point-min))
+        (search-forward "\n\n")
+        (json-reformat-region (point) (point-max))))))
+
+(defun ahw-es-response-enable-hs-minor-mode (status content-type body-buffer)
+  (with-current-buffer body-buffer
+    (setq-local comment-start "// ")
+    (setq-local comment-end "")
+    (hs-minor-mode)
+    (hideshowvis-minor-mode)
+    (hideshowvis-symbols)))
+
+(defun ahw-configure-es-mode ()
+  (require 'es-mode)
+  (require 'hideshow)
+  (require 'hideshowvis)
+
+  ;; Enable hide-show mode for es-mode.
+  (add-to-list 'hs-special-modes-alist '(es-mode "{" "}" "/[*/]" nil))
+  (add-to-list 'hs-special-modes-alist '(es-result-mode "{" "}" "/[*/]" nil))
+
+  (add-hook 'es-mode-hook 'hideshowvis-symbols)
+  (add-hook 'es-mode-hook 'hideshowvis-minor-mode)
+  (add-hook 'es-mode-hook 'hs-minor-mode)
+
+  (add-hook 'es-response-success-functions 'ahw-es-response-enable-hs-minor-mode)
+  (add-hook 'es-response-success-functions 'ahw-es-response-reformat-json))
+(add-hook 'ahw-after-installing-packages-hook 'ahw-configure-es-mode)
 
 ;; Bind the F11 key to fullscreenize Emacs.
 (defvar ahw-prev-fullscreen
