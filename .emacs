@@ -385,6 +385,7 @@ already been installed."
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(js-indent-level 2)
+ '(json-reformat:indent-width 2)
  '(menu-bar-mode (window-system))
  '(mouse-yank-at-point t)
  '(nrepl-popup-stacktraces nil)
