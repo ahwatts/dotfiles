@@ -65,8 +65,8 @@ already been installed."
 
   ;; Install some packages we want on all Emacs versions.
   (unless package-archive-contents (package-refresh-contents))
-  (dolist (p '(ac-nrepl
-               auto-complete
+  (dolist (p '(auto-complete
+               cider
                clojure-mode
                cmake-mode
                coffee-mode
@@ -77,7 +77,6 @@ already been installed."
                haml-mode
                hideshowvis
                markdown-mode
-               nrepl
                paredit
                paredit-menu
                rinari
@@ -281,6 +280,14 @@ already been installed."
   (add-hook 'clojure-mode-hook 'eldoc-mode))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-clojure-mode)
 
+;; CIDER configuration
+(defun ahw-configure-cider ()
+  (require 'cider)
+  (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+  (add-hook 'cider-repl-mode-hook 'paredit-mode)
+  (add-hook 'cider-repl-mode-hook 'turn-off-smartparens-mode))
+(add-hook 'ahw-after-installing-packages-hook 'ahw-configure-cider)
+
 ;; Markdown configuration
 (defun ahw-turn-on-markdown-mode ()
   (require 'markdown-mode)
@@ -388,7 +395,6 @@ already been installed."
  '(json-reformat:indent-width 2)
  '(menu-bar-mode (window-system))
  '(mouse-yank-at-point t)
- '(nrepl-popup-stacktraces nil)
  '(rspec-key-command-prefix "s")
  '(rspec-use-opts-file-when-available nil)
  '(rspec-use-rvm t)
