@@ -66,7 +66,8 @@ already been installed."
 
   ;; Install some packages we want on all Emacs versions.
   (unless package-archive-contents (package-refresh-contents))
-  (dolist (p '(auto-complete
+  (dolist (p '(ack-and-a-half
+               auto-complete
                cider
                clojure-mode
                cmake-mode
@@ -145,6 +146,15 @@ already been installed."
                                '("Consolas" "Inconsolata" "Bitstream Vera Sans Mono" "DejaVu Sans Mono"))))
     (when font-name
       (set-face-attribute 'default nil :family font-name))))
+
+;; Ack and a half config.
+(defun ahw-configure-ack-and-a-half ()
+  (require 'ack-and-a-half)
+  (defalias 'ack 'ack-and-a-half)
+  (defalias 'ack-same 'ack-and-a-half-same)
+  (defalias 'ack-find-file 'ack-and-a-half-find-file)
+  (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same))
+(add-hook 'ahw-after-installing-packages-hook 'ahw-configure-ack-and-a-half)
 
 ;; Activate Zenburn if we're in a windowing system or a 256-color terminal.
 (defun ahw-turn-on-zenburn ()
