@@ -39,7 +39,7 @@ already been installed."
 ;;   (package-install-from-buffer (package-buffer-info) 'single))
 
 (ahw-package-install 'package-filter)
-(add-to-list 'package-archive-enable-alist '("melpa" ecb rvm es-mode))
+(add-to-list 'package-archive-enable-alist '("melpa" ecb es-mode rhtml-mode rvm))
 
 ;; Create a hook that runs after installing packages that configures
 ;; packages that were potentially installed in that function.
@@ -80,6 +80,7 @@ already been installed."
                markdown-mode
                paredit
                paredit-menu
+               rhtml-mode
                rinari
                rspec-mode
                ruby-end
