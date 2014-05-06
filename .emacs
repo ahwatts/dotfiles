@@ -73,6 +73,7 @@ already been installed."
                coffee-mode
                color-theme
                es-mode
+               flx-ido
                flymake-jshint
                flymake-ruby
                haml-mode
@@ -80,6 +81,7 @@ already been installed."
                markdown-mode
                paredit
                paredit-menu
+               projectile
                rhtml-mode
                rinari
                rspec-mode
@@ -140,7 +142,7 @@ already been installed."
 
   ;; Set the default font.
   (let ((font-name (cl-find-if (lambda (name) (x-list-fonts name))
-                            '("Consolas" "Inconsolata" "Bitstream Vera Sans Mono" "DejaVu Sans Mono"))))
+                               '("Consolas" "Inconsolata" "Bitstream Vera Sans Mono" "DejaVu Sans Mono"))))
     (when font-name
       (set-face-attribute 'default nil :family font-name))))
 
@@ -385,11 +387,13 @@ already been installed."
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
  '(ecb-tip-of-the-day nil)
  '(ecb-windows-width 0.25)
+ '(flx-ido-mode t)
  '(gdb-many-windows t)
  '(ido-enable-flex-matching t)
  '(ido-everywhere t)
  '(ido-mode (quote both) nil (ido))
  '(ido-ubiquitous-mode t)
+ '(ido-use-faces nil)
  '(imenu-auto-rescan t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
@@ -397,6 +401,7 @@ already been installed."
  '(json-reformat:indent-width 2)
  '(menu-bar-mode (window-system))
  '(mouse-yank-at-point t)
+ '(projectile-global-mode t)
  '(rspec-key-command-prefix "s")
  '(rspec-use-opts-file-when-available nil)
  '(rspec-use-rvm t)
