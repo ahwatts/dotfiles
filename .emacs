@@ -354,7 +354,9 @@ already been installed."
   (add-hook 'es-mode-hook 'hs-minor-mode)
 
   (add-hook 'es-response-success-functions 'ahw-es-response-enable-hs-minor-mode)
-  (add-hook 'es-response-success-functions 'ahw-es-response-reformat-json))
+  (add-hook 'es-response-success-functions 'ahw-es-response-reformat-json)
+
+  (org-babel-do-load-languages 'org-babel-load-languages '((elasticsearch . t))))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-es-mode)
 
 ;; Bind the F11 key to fullscreenize Emacs.
@@ -411,6 +413,7 @@ already been installed."
  '(json-reformat:indent-width 2)
  '(menu-bar-mode (window-system))
  '(mouse-yank-at-point t)
+ '(org-src-fontify-natively t)
  '(proced-auto-update-flag t)
  '(proced-filter (quote all))
  '(proced-tree-flag t)
