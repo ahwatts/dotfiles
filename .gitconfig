@@ -7,3 +7,5 @@
 	default = tracking
 [color]
 	ui = true
+[core]
+	excludesfile = ~/.gitignore_global

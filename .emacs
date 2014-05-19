@@ -79,6 +79,7 @@ already been installed."
                flymake-ruby
                haml-mode
                hideshowvis
+               magit
                markdown-mode
                paredit
                paredit-menu
@@ -127,6 +128,9 @@ already been installed."
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c b") 'org-iswitchb)
 
+;; Something I do way too often.
+(global-set-key (kbd "C-c /") 'comment-or-uncomment-region)
+
 ;; use smex.
 (when (package-installed-p 'smex)
   (global-set-key (kbd "M-x") 'smex)
@@ -134,6 +138,9 @@ already been installed."
 
   ;; This is the pre-smex M-x.
   (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command))
+
+(when (package-installed-p 'magit)
+  (global-set-key (kbd "C-c m g") 'magit-status))
 
 ;; Things for non-console Emacs.
 (when window-system
@@ -268,7 +275,8 @@ already been installed."
   (add-hook 'ruby-mode-hook 'rvm-activate-corresponding-ruby)
   (add-hook 'ruby-mode-hook 'flymake-ruby-load)
   (add-hook 'ruby-mode-hook 'ruby-tools-mode)
-  (add-hook 'ruby-mode-hook 'ruby-end-mode))
+  (add-hook 'ruby-mode-hook 'ruby-end-mode)
+  (add-hook 'ruby-mode-hook 'smartparens-mode))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-ruby-mode)
 
 ;; Javascript configuration.
@@ -399,7 +407,7 @@ already been installed."
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
  '(ecb-tip-of-the-day nil)
  '(ecb-windows-width 0.25)
- '(flx-ido-mode nil)
+ '(flx-ido-mode t)
  '(gdb-many-windows t)
  '(ido-enable-flex-matching t)
  '(ido-everywhere t)
@@ -418,6 +426,7 @@ already been installed."
  '(proced-filter (quote all))
  '(proced-tree-flag t)
  '(projectile-global-mode t)
+ '(projectile-tags-command "regen_tags")
  '(rspec-key-command-prefix "s")
  '(rspec-use-opts-file-when-available nil)
  '(rspec-use-rvm t)
@@ -429,7 +438,7 @@ already been installed."
  '(scss-compile-at-save nil)
  '(semantic-mode t)
  '(show-paren-mode t)
- '(smartparens-global-mode (= emacs-major-version 24))
+ '(smartparens-global-mode nil)
  '(smex-save-file "~/.emacs.d/smex-items")
  '(sp-ignore-modes-list (quote (minibuffer-inactive-mode emacs-lisp-mode clojure-mode lisp-interaction-mode)))
  '(tool-bar-mode nil)
