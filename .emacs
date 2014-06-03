@@ -16,8 +16,8 @@
 ;; package.el configuration.
 (when (< emacs-major-version 24)
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives '("melpa-stable" . "http://hiddencameras.milkbox.net/packages/"))
+;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+;; (add-to-list 'package-archives '("melpa-stable" . "http://hiddencameras.milkbox.net/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
@@ -38,8 +38,8 @@ already been installed."
 ;;     "https://raw.github.com/milkypostman/melpa/master/melpa.el"))
 ;;   (package-install-from-buffer (package-buffer-info) 'single))
 
-(ahw-package-install 'package-filter)
-(add-to-list 'package-archive-enable-alist '("melpa" ecb es-mode rhtml-mode rvm))
+;; (ahw-package-install 'package-filter)
+;; (add-to-list 'package-archive-enable-alist '("melpa" ecb es-mode rhtml-mode rvm))
 
 ;; Create a hook that runs after installing packages that configures
 ;; packages that were potentially installed in that function.
@@ -78,7 +78,6 @@ already been installed."
                flymake-jshint
                flymake-ruby
                haml-mode
-               hideshowvis
                magit
                markdown-mode
                paredit
@@ -345,20 +344,21 @@ already been installed."
     (setq-local comment-start "// ")
     (setq-local comment-end "")
     (hs-minor-mode)
-    (hideshowvis-minor-mode)
-    (hideshowvis-symbols)))
+    ;; (hideshowvis-minor-mode)
+    ;; (hideshowvis-symbols)
+    ))
 
 (defun ahw-configure-es-mode ()
   (require 'es-mode)
   (require 'hideshow)
-  (require 'hideshowvis)
+  ;; (require 'hideshowvis)
 
   ;; Enable hide-show mode for es-mode.
   (add-to-list 'hs-special-modes-alist '(es-mode "{" "}" "/[*/]" nil))
   (add-to-list 'hs-special-modes-alist '(es-result-mode "{" "}" "/[*/]" nil))
 
-  (add-hook 'es-mode-hook 'hideshowvis-symbols)
-  (add-hook 'es-mode-hook 'hideshowvis-minor-mode)
+  ;; (add-hook 'es-mode-hook 'hideshowvis-symbols)
+  ;; (add-hook 'es-mode-hook 'hideshowvis-minor-mode)
   (add-hook 'es-mode-hook 'hs-minor-mode)
 
   (add-hook 'es-response-success-functions 'ahw-es-response-enable-hs-minor-mode)
