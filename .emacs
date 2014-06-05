@@ -83,8 +83,10 @@ already been installed."
                paredit
                paredit-menu
                projectile
+               projectile-rails
                rhtml-mode
                rinari
+               robe
                rspec-mode
                ruby-end
                ruby-tools
@@ -129,6 +131,9 @@ already been installed."
 
 ;; Something I do way too often.
 (global-set-key (kbd "C-c /") 'comment-or-uncomment-region)
+
+;; Random Ruby stuff
+(global-set-key (kbd "C-c r a") 'rvm-activate-corresponding-ruby)
 
 ;; use smex.
 (when (package-installed-p 'smex)
@@ -271,6 +276,7 @@ already been installed."
   (add-to-list 'auto-mode-alist '("\\`Rakefile\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\`Gemfile\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.builder\\'" . ruby-mode))
+  (add-hook 'ruby-mode-hook 'robe-mode)
   (add-hook 'ruby-mode-hook 'rvm-activate-corresponding-ruby)
   (add-hook 'ruby-mode-hook 'flymake-ruby-load)
   (add-hook 'ruby-mode-hook 'ruby-tools-mode)
@@ -366,6 +372,16 @@ already been installed."
 
   (org-babel-do-load-languages 'org-babel-load-languages '((elasticsearch . t))))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-es-mode)
+
+(defun ahw-configure-projectile ()
+  (require 'projectile)
+  (add-hook 'projectile-mode-hook 'projectile-rails-on))
+(add-hook 'ahw-after-installing-packages-hook 'ahw-configure-projectile)
+
+(defun ahw-configure-robe ()
+  (require 'robe)
+  (add-hook 'robe-mode-hook 'ac-robe-setup))
+(add-hook 'ahw-after-installing-packages-hook 'ahw-configure-robe)
 
 ;; Bind the F11 key to fullscreenize Emacs.
 (defvar ahw-prev-fullscreen
