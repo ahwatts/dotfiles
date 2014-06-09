@@ -67,12 +67,13 @@ already been installed."
   ;; Install some packages we want on all Emacs versions.
   (unless package-archive-contents (package-refresh-contents))
   (dolist (p '(ack-and-a-half
-               auto-complete
+               ;; auto-complete
                cider
                clojure-mode
                cmake-mode
                coffee-mode
                color-theme
+               company
                es-mode
                flx-ido
                flymake-jshint
@@ -135,6 +136,10 @@ already been installed."
 ;; Random Ruby stuff
 (global-set-key (kbd "C-c r a") 'rvm-activate-corresponding-ruby)
 
+;; Magit key bindings
+(global-set-key (kbd "C-c g s") 'magit-status)
+(global-set-key (kbd "C-c g b") 'magit-blame-mode)
+
 ;; use smex.
 (when (package-installed-p 'smex)
   (global-set-key (kbd "M-x") 'smex)
@@ -142,9 +147,6 @@ already been installed."
 
   ;; This is the pre-smex M-x.
   (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command))
-
-(when (package-installed-p 'magit)
-  (global-set-key (kbd "C-c m g") 'magit-status))
 
 ;; Things for non-console Emacs.
 (when window-system
@@ -175,11 +177,11 @@ already been installed."
     (require 'zenburn-theme)))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-turn-on-zenburn)
 
-;; Turn on auto-complete-mode.
-(defun ahw-turn-on-auto-complete ()
-  (require 'auto-complete-config)
-  (ac-config-default))
-(add-hook 'ahw-after-installing-packages-hook 'ahw-turn-on-auto-complete)
+;; ;; Turn on auto-complete-mode.
+;; (defun ahw-turn-on-auto-complete ()
+;;   (require 'auto-complete-config)
+;;   (ac-config-default))
+;; (add-hook 'ahw-after-installing-packages-hook 'ahw-turn-on-auto-complete)
 
 ;; Set up Tramp proxies.
 (add-to-list 'tramp-default-proxies-alist
@@ -276,6 +278,7 @@ already been installed."
   (add-to-list 'auto-mode-alist '("\\`Rakefile\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\`Gemfile\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.builder\\'" . ruby-mode))
+  (add-hook 'ruby-mode-hook 'company-mode)
   (add-hook 'ruby-mode-hook 'robe-mode)
   (add-hook 'ruby-mode-hook 'rvm-activate-corresponding-ruby)
   (add-hook 'ruby-mode-hook 'flymake-ruby-load)
@@ -366,6 +369,7 @@ already been installed."
   ;; (add-hook 'es-mode-hook 'hideshowvis-symbols)
   ;; (add-hook 'es-mode-hook 'hideshowvis-minor-mode)
   (add-hook 'es-mode-hook 'hs-minor-mode)
+  (add-hook 'es-mode-hook 'smartparens-mode)
 
   (add-hook 'es-response-success-functions 'ahw-es-response-enable-hs-minor-mode)
   (add-hook 'es-response-success-functions 'ahw-es-response-reformat-json)
@@ -380,7 +384,8 @@ already been installed."
 
 (defun ahw-configure-robe ()
   (require 'robe)
-  (add-hook 'robe-mode-hook 'ac-robe-setup))
+  ;; (add-hook 'robe-mode-hook 'ac-robe-setup)
+  )
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-robe)
 
 ;; Bind the F11 key to fullscreenize Emacs.
