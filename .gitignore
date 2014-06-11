@@ -12,3 +12,5 @@
 !.emacs.d/user-lisp/rvm-ruby-version-file-advice.el
 !.emacs.d/user-lisp/utils.el
 !.tmux.conf
+!.lein
+!.lein/profiles.clj
