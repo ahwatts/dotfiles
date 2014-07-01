@@ -18,9 +18,6 @@ export LC_COLLATE=C
 
 export PATH=$HOME/.local/bin:$HOME/bin:$PATH
 
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 # Add a local version of .bash_profile so that stuff that shouldn't be
 # checked in has a place to go.
 if [ -f ~/.bash_profile_local ]; then

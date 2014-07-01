@@ -15,7 +15,7 @@ fi
 
 alias head_files='git show --pretty="format:" --name-only HEAD | grep "\w" | tr '\''\n'\'' '\'','\'''
 alias head_diff='cap production diff_file FILE=`head_files`'
-alias head_push='cap production push_file FILE=`head_files` DETAILS="`git log --pretty=oneline -1`"'
+alias head_push='cap production push_file FILE=`head_files` DETAILS="`git log --abbrev-commit --pretty=oneline -1`"'
 alias head_commit_push_reaper='git add -A && git commit -m "tidy" && head_push && cap production reaper SLICE=all'
 
 alias au_files='git ls-files -v | grep '\''^[a-z]'\'' | awk '\''{ print $2; }'\'''
@@ -47,6 +47,9 @@ if [ -x /usr/bin/tput ] && tput setaf 1 >& /dev/null; then
 else
     export PS1='\u@\h \W $(rvm-prompt "[" i v p g "] " 2> /dev/null)$(__ahw_git_ps1 "[%s] ")\$ '
 fi
+
+# Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 if [[ ! $PATH =~ "$HOME/.rvm/bin" ]]; then
     PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
