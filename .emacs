@@ -388,6 +388,14 @@ already been installed."
   )
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-robe)
 
+(defun ahw-turn-off-auto-fill-mode ()
+  (auto-fill-mode -1))
+
+(defun ahw-configure-git-commit-mode ()
+  (add-hook 'git-commit-mode-hook 'ahw-turn-off-auto-fill-mode)
+  (add-hook 'git-commit-mode-hook 'visual-line-mode))
+(add-hook 'ahw-after-installing-packages-hook 'ahw-configure-git-commit-mode)
+
 ;; Bind the F11 key to fullscreenize Emacs.
 (defvar ahw-prev-fullscreen
   (frame-parameter nil 'fullscreen)
