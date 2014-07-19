@@ -78,6 +78,7 @@ already been installed."
                flx-ido
                flymake-jshint
                flymake-ruby
+               glsl-mode
                haml-mode
                magit
                markdown-mode
