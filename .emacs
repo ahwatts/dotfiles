@@ -161,6 +161,21 @@ already been installed."
     (when font-name
       (set-face-attribute 'default nil :family font-name))))
 
+(defun ahw-increase-font-height ()
+  (interactive)
+  (let* ((face-attrs (face-all-attributes 'default))
+         (size (cdr (assoc :height face-attrs))))
+    (set-face-attribute 'default nil :height (+ size 10))))
+
+(defun ahw-decrease-font-height ()
+  (interactive)
+  (let* ((face-attrs (face-all-attributes 'default))
+         (size (cdr (assoc :height face-attrs))))
+    (set-face-attribute 'default nil :height (- size 10))))
+
+(global-set-key (kbd "M-]") 'ahw-increase-font-height)
+(global-set-key (kbd "M-[") 'ahw-decrease-font-height)
+
 ;; Ack and a half config.
 (defun ahw-configure-ack-and-a-half ()
   (require 'ack-and-a-half)
