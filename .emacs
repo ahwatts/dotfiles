@@ -190,7 +190,10 @@ already been installed."
   (when (or window-system
             (> (length (tty-color-alist)) 8))
     (require 'color-theme)
-    (require 'zenburn-theme)))
+    (require 'zenburn-theme)
+    ;; Apparently this doesn't get reset when we switch to zenburn.
+    (when (package-installed-p 'cider)
+      (setq cider-stacktrace-frames-background-color (cider-scale-background-color)))))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-turn-on-zenburn)
 
 ;; ;; Turn on auto-complete-mode.
@@ -236,6 +239,7 @@ already been installed."
                         ("/home/andrew/.rvm/gems/ruby-2.1.1@songviz/gems" "songviz gems")
                         ("/home/andrew/Projects/euler" "euler")
                         ("/home/andrew/Projects/graphplay" "graphplay")
+                        ("/home/andrew/Projects/hub-pics" "hub-pics")
                         ("/home/andrew" "homedir")
                         ("/home/awatts/rubydev/workspace/reverbnation" "reverbnation")
                         ("/home/awatts/.rvm/gems/ruby-1.9.3-p484@reverbnation/gems" "reverbnation gems")
@@ -323,7 +327,16 @@ already been installed."
 (defun ahw-configure-clojure-mode ()
   (require 'clojure-mode)
   (add-hook 'clojure-mode-hook 'paredit-mode)
-  (add-hook 'clojure-mode-hook 'eldoc-mode))
+  (add-hook 'clojure-mode-hook 'eldoc-mode)
+  (define-clojure-indent
+    (defroutes 'defun)
+    (GET 2)
+    (POST 2)
+    (PUT 2)
+    (DELETE 2)
+    (HEAD 2)
+    (ANY 2)
+    (context 2)))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-clojure-mode)
 
 ;; CIDER configuration
