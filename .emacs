@@ -267,6 +267,7 @@ already been installed."
                         ("/home/awatts/Projects/graphplay" "graphplay")
                         ("/home/awatts/Projects/openhf" "openhf")
                         ("/home/awatts/Projects/songviz" "songviz")
+                        ("/home/awatts/Projects/hub-pics" "hub-pics")
                         ("/home/awatts/.rvm/gems/ruby-2.1.1@songviz/gems" "songviz gems")
                         ("/home/awatts" "homedir")
                         ("C:/Users/andrew/Projects/redis_sendmail" "redis_sendmail")
