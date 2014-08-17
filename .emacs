@@ -276,6 +276,7 @@ already been installed."
                         ("C:/Users/andrew/Projects/graphplay" "graphplay")
                         ("C:/Users/andrew/Projects/openhf" "openhf")
                         ("C:/Users/andrew/Projects/songviz" "songviz")
+                        ("C:/Users/andrew/Projects/hub-pics" "hub-pics")
                         ("C:/Users/andrew" "homedir")
                         ("/" "/"))))
     (when (file-directory-p (car p))
