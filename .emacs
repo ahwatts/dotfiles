@@ -491,7 +491,7 @@ already been installed."
  '(rspec-use-opts-file-when-available nil)
  '(rspec-use-rvm t)
  '(ruby-deep-indent-paren (quote (t)))
- '(safe-local-variable-values (quote ((encoding . binary) (encoding . utf-8) (whitespace-line-column . 80) (lexical-binding . t))))
+ '(safe-local-variable-values (quote ((c-basic-indent . 4) (encoding . binary) (encoding . utf-8) (whitespace-line-column . 80) (lexical-binding . t))))
  '(save-interprogram-paste-before-kill t)
  '(save-place t nil (saveplace))
  '(save-place-file "~/.emacs.d/places")
