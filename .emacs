@@ -330,6 +330,7 @@ already been installed."
   (require 'clojure-mode)
   (add-hook 'clojure-mode-hook 'paredit-mode)
   (add-hook 'clojure-mode-hook 'eldoc-mode)
+  (add-hook 'clojure-mode-hook 'company-mode)
   (define-clojure-indent
     (defroutes 'defun)
     (GET 2)
