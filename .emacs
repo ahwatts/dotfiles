@@ -335,8 +335,10 @@ already been installed."
 (defun ahw-configure-cider ()
   (require 'cider)
   (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+  (add-hook 'cider-mode-hook 'company-mode)
   (add-hook 'cider-repl-mode-hook 'paredit-mode)
-  (add-hook 'cider-repl-mode-hook 'turn-off-smartparens-mode))
+  (add-hook 'cider-repl-mode-hook 'turn-off-smartparens-mode)
+  (add-hook 'cider-repl-mode-hook 'company-mode))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-cider)
 
 ;; Markdown configuration
