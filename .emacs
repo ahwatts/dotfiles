@@ -239,6 +239,7 @@ already been installed."
                         ("/home/awatts/.rvm/rubies/ruby-1.9.3-p547/lib/ruby" "ruby-1.9.3-p547")
                         ("/home/awatts/.rvm/rubies/ruby-2.0.0-p576/lib/ruby" "ruby-2.0.0-p547")
                         ("/home/awatts/.rvm/rubies/ruby-2.1.3/lib/ruby" "ruby-2.1.3")
+                        ("/home/awatts/.rvm/rubies/rbx-2.2.10" "rbx-2.2.10")
                         ("/home/awatts/rubydev/workspace/MogileFS-Server" "MogileFS-Server")
                         ("/home/awatts/rubydev/workspace/MogileFS-Network" "MogileFS-Network")
                         ("/home/awatts/rubydev/workspace/MogileFS-Utils" "MogileFS-Utils")
