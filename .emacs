@@ -209,8 +209,8 @@ already been installed."
 ;; ECB configuration.
 (defun ahw-add-ecb-source-paths ()
   (dolist (p (reverse '(("/home/andrew/.rvm/rubies/ruby-1.9.3-p547/lib/ruby" "ruby-1.9.3-p547")
-                        ("/home/andrew/.rvm/rubies/ruby-2.0.0-p481/lib/ruby" "ruby-2.0.0-p481")
-                        ("/home/andrew/.rvm/rubies/ruby-2.1.2/lib/ruby" "ruby-2.1.2")
+                        ("/home/andrew/.rvm/rubies/ruby-2.0.0-p576/lib/ruby" "ruby-2.0.0-p576")
+                        ("/home/andrew/.rvm/rubies/ruby-2.1.3/lib/ruby" "ruby-2.1.3")
                         ("/home/andrew/Projects/dreamybandnames" "dreamybandnames")
                         ("/home/andrew/.rvm/gems/ruby-2.1.2@dreamybandnames/gems" "dreamybandnames gems")
                         ("/home/andrew/Projects/openhf" "openhf")
