@@ -227,6 +227,7 @@ already been installed."
 
                         ("/home/awatts/rubydev/workspace/reverbnation" "reverbnation")
                         ("/home/awatts/.rvm/gems/ruby-1.9.3-p550@reverbnation/gems" "reverbnation gems")
+                        ("/home/awatts/.rvm/gems/ruby-2.1.5@reverbnation/gems" "reverbnation gems (2.1)")
                         ("/home/awatts/rubydev/workspace/redis_sendmail" "redis_sendmail")
                         ("/home/awatts/.rvm/gems/ruby-2.0.0-p598@redis_sendmail/gems" "redis_sendmail gems")
                         ("/home/awatts/rubydev/workspace/rn_image_server" "rn_image_server")
