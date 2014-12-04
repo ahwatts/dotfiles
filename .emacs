@@ -78,6 +78,7 @@ already been installed."
                flx-ido
                flymake-jshint
                flymake-ruby
+               flymake-rust
                glsl-mode
                haml-mode
                magit
@@ -92,6 +93,7 @@ already been installed."
                rspec-mode
                ruby-end
                ruby-tools
+               rust-mode
                rvm
                scss-mode
                smartparens
@@ -263,6 +265,7 @@ already been installed."
                         ("/home/awatts/.rvm/gems/ruby-2.1.5@openhf/gems" "openhf gems")
                         ("/home/awatts/Projects/euler" "euler")
                         ("/home/awatts/Projects/graphplay" "graphplay")
+                        ("/home/awatts/Projects/graphplay-rs" "graphplay-rs")
                         ("/home/awatts/Projects/hub-pics" "hub-pics")
                         ("/home/awatts" "homedir")
 
@@ -430,6 +433,13 @@ already been installed."
   (add-hook 'git-commit-mode-hook 'ahw-turn-off-auto-fill-mode)
   (add-hook 'git-commit-mode-hook 'visual-line-mode))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-git-commit-mode)
+
+(defun ahw-configure-rust-mode ()
+  ;; (require 'flymake-rust)
+  (add-hook 'rust-mode-hook 'smartparens-mode)
+  ;; (add-hook 'rust-mode-hook 'flymake-rust-load)
+  )
+(add-hook 'ahw-after-installing-packages-hook 'ahw-configure-rust-mode)
 
 ;; Bind the F11 key to fullscreenize Emacs.
 (defvar ahw-prev-fullscreen
