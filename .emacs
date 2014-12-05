@@ -224,6 +224,7 @@ already been installed."
                         ("/home/andrew/.rvm/rubies/ruby-2.1.5/lib/ruby" "ruby-2.1.5 (stdlib)")
                         ("/home/andrew/Projects/euler" "euler")
                         ("/home/andrew/Projects/graphplay" "graphplay")
+                        ("/home/andrew/Projects/graphplay-rs" "graphplay-rs")
                         ("/home/andrew/Projects/hub-pics" "hub-pics")
                         ("/home/andrew" "homedir")
 
