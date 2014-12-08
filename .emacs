@@ -46,6 +46,14 @@ already been installed."
 (defvar ahw-after-installing-packages-hook nil
   "Hook called after ahw-install-packages runs.")
 
+;; ;; Maximize on Windows. Do this last, after all the other things in
+;; ;; the after-installing-packages-hook happens (therefore, add it to
+;; ;; the hook first. Obviously.)
+;; (defun ahw-maximize-window ()
+;;   (when (string= "w32" window-system)
+;;     (w32-send-sys-command 61488)))
+;; (add-hook 'ahw-after-installing-packages-hook 'ahw-maximize-window)
+
 (defun ahw-install-packages ()
   "Function which installs various packages that we want to use."
 
@@ -529,7 +537,3 @@ already been installed."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-;; Maximize on Windows.
-(when (string= "w32" window-system)
-  (w32-send-sys-command 61488))
