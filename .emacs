@@ -82,6 +82,7 @@ already been installed."
                coffee-mode
                color-theme
                company
+               dockerfile-mode
                es-mode
                flx-ido
                flymake-jshint
@@ -105,6 +106,7 @@ already been installed."
                rvm
                scss-mode
                smartparens
+               toml-mode
                yaml-mode
                yaml-mode
                zenburn-theme))
@@ -278,6 +280,12 @@ already been installed."
                         ("/home/awatts/Projects/hub-pics" "hub-pics")
                         ("/home/awatts" "homedir")
 
+                        ("/Users/awatts/rubydev/workspace/reverbnation" "reverbnation")
+                        ("/Users/awatts/Projects/graphplay" "graphplay")
+                        ("/Users/awatts/Projects/graphplay-rs" "graphplay-rs")
+                        ("/Users/awatts/Projects/hub-pics" "hub-pics")
+                        ("/Users/awatts" "homedir")
+
                         ("C:/Users/andrew/Projects/redis_sendmail" "redis_sendmail")
                         ("C:/Users/andrew/Projects/dreamybandnames" "dreamybandnames")
                         ("C:/Users/andrew/Projects/euler" "euler")
@@ -449,6 +457,11 @@ already been installed."
   ;; (add-hook 'rust-mode-hook 'flymake-rust-load)
   )
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-rust-mode)
+
+(defun ahw-configure-dockerfile-mode ()
+  (require 'dockerfile-mode)
+  (add-to-list 'auto-mode-alist '("\\`Dockerfile" . dockerfile-mode)))
+(add-hook 'ahw-after-installing-packages-hook 'ahw-configure-dockerfile-mode)
 
 ;; Bind the F11 key to fullscreenize Emacs.
 (defvar ahw-prev-fullscreen
