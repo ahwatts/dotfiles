@@ -1,9 +1,8 @@
-# .bashrc
-# -*- mode: bash; indent-tabs-mode: t -*-
+# -*- mode: sh; -*-
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+    . /etc/bashrc
 fi
 
 # The git completion has moved.
@@ -24,22 +23,22 @@ alias mod_files_comma='echo `mod_files` | tr '\'' '\'' '\'','\'''
 alias stash_au_files='git update-index --no-assume-unchanged `au_files` && git stash'
 alias unstash_au_files='git stash pop && git update-index --assume-unchanged `mod_files`'
 
-shopt -s globstar
+if [[ "${BASH_VERSION}" > "3.9999" ]]; then
+    shopt -s globstar
+fi
 
 function __ahw_git_ps1 {
-	gitdir="$(__gitdir 2> /dev/null)"
+    gitdir="$(__gitdir 2> /dev/null)"
 
-	if [[ ! -z "$gitdir" ]]; then
-		realpath_cmd="$(which realpath 2> /dev/null)"
-		real_gitdir="$gitdir"
-		if [[ ! -z "$realpath_cmd" ]]; then
-			real_gitdir="$($realpath_cmd $gitdir)"
-		fi
+    if [[ ! -z "$gitdir" ]]; then
+        if [[ "$gitdir" == ".git" ]]; then
+            gitdir="${PWD}/${gitdir}"
+        fi
 
-		if [[ "$real_gitdir" != "${HOME}/.git" ]]; then
-			printf "%s" "$(__git_ps1 $@) "
-		fi
-	fi
+        if [[ "$gitdir" != "${HOME}/.git" ]]; then
+            printf "%s" "$(__git_ps1 $@) "
+        fi
+    fi
 }
 
 if [ -x /usr/bin/tput ] && tput setaf 1 >& /dev/null; then
