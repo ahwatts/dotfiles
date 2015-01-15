@@ -303,7 +303,7 @@ already been installed."
                         ("/Users/awatts/.rvm/rubies/ruby-2.0.0-p598/lib/ruby" "ruby-2.0.0-p598 (stdlib)")
                         ("/Users/awatts/.rvm/src/ruby-2.1.5" "ruby-2.1.5")
                         ("/Users/awatts/.rvm/rubies/ruby-2.1.5/lib/ruby" "ruby-2.1.5 (stdlib)")
-                        ("/Users/awatts/.rvm/rubies/rbx-2.2.10" "rbx-2.2.10")
+                        ("/Users/awatts/.rvm/rubies/rbx-2.4.1" "rbx-2.4.1")
                         ("/Users/awatts/Projects/graphplay" "graphplay")
                         ("/Users/awatts/Projects/graphplay-rs" "graphplay-rs")
                         ("/Users/awatts/Projects/hub-pics" "hub-pics")
@@ -517,7 +517,12 @@ already been installed."
  ;; If there is more than one, they won't work right.
  '(apropos-do-all t)
  '(backup-directory-alist (quote (("." . "~/.emacs.d/backups"))))
- '(c-offsets-alist (quote ((arglist-intro . +) (arglist-cont-nonempty . +) (arglist-close . 0) (template-args-cont . +))))
+ '(c-offsets-alist
+   (quote
+    ((arglist-intro . +)
+     (arglist-cont-nonempty . +)
+     (arglist-close . 0)
+     (template-args-cont . +))))
  '(coffee-tab-width 2)
  '(column-number-mode t)
  '(css-indent-offset 2)
@@ -553,7 +558,14 @@ already been installed."
  '(rspec-use-rvm t)
  '(ruby-deep-indent-paren (quote (t)))
  '(rust-indent-offset 2)
- '(safe-local-variable-values (quote ((c-basic-indent . 4) (encoding . binary) (encoding . utf-8) (whitespace-line-column . 80) (lexical-binding . t))))
+ '(safe-local-variable-values
+   (quote
+    ((rust-indent-offset . 4)
+     (c-basic-indent . 4)
+     (encoding . binary)
+     (encoding . utf-8)
+     (whitespace-line-column . 80)
+     (lexical-binding . t))))
  '(save-interprogram-paste-before-kill t)
  '(save-place t nil (saveplace))
  '(save-place-file "~/.emacs.d/places")
@@ -562,7 +574,9 @@ already been installed."
  '(show-paren-mode t)
  '(smartparens-global-mode nil)
  '(smex-save-file "~/.emacs.d/smex-items")
- '(sp-ignore-modes-list (quote (minibuffer-inactive-mode emacs-lisp-mode clojure-mode lisp-interaction-mode)))
+ '(sp-ignore-modes-list
+   (quote
+    (minibuffer-inactive-mode emacs-lisp-mode clojure-mode lisp-interaction-mode)))
  '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
  '(visible-bell t)

@@ -16,7 +16,7 @@ export EDITOR=emacsclient
 
 export LC_COLLATE=C
 
-export PATH=$HOME/.local/bin:$HOME/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/sbin:$PATH
 
 # Add a local version of .bash_profile so that stuff that shouldn't be
 # checked in has a place to go.
