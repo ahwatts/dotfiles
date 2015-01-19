@@ -506,6 +506,10 @@ already been installed."
 
 (global-set-key [f11] 'ahw-toggle-fullscreen)
 
+;; This works to maximize the window on OSX.
+(when (eq window-system 'ns)
+  (global-set-key (kbd "s-M") 'toggle-frame-maximized))
+
 ;; Load any .el files in user-lisp.
 (dolist (f (directory-files "~/.emacs.d/user-lisp" t "\\.el\\'")) (load f))
 
