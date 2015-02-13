@@ -90,6 +90,8 @@ already been installed."
                flymake-rust
                glsl-mode
                haml-mode
+               hideshowvis
+               json-reformat
                magit
                markdown-mode
                paredit
@@ -423,7 +425,7 @@ already been installed."
     (with-current-buffer body-buffer
       (save-excursion
         (goto-char (point-min))
-        (search-forward "\n\n")
+        ;; (search-forward "\n\n")
         (json-reformat-region (point) (point-max))))))
 
 (defun ahw-es-response-enable-hs-minor-mode (status content-type body-buffer)
@@ -431,21 +433,20 @@ already been installed."
     (setq-local comment-start "// ")
     (setq-local comment-end "")
     (hs-minor-mode)
-    ;; (hideshowvis-minor-mode)
-    ;; (hideshowvis-symbols)
-    ))
+    (hideshowvis-minor-mode)
+    (hideshowvis-symbols)))
 
 (defun ahw-configure-es-mode ()
   (require 'es-mode)
   (require 'hideshow)
-  ;; (require 'hideshowvis)
+  (require 'hideshowvis)
 
   ;; Enable hide-show mode for es-mode.
   (add-to-list 'hs-special-modes-alist '(es-mode "{" "}" "/[*/]" nil))
   (add-to-list 'hs-special-modes-alist '(es-result-mode "{" "}" "/[*/]" nil))
 
-  ;; (add-hook 'es-mode-hook 'hideshowvis-symbols)
-  ;; (add-hook 'es-mode-hook 'hideshowvis-minor-mode)
+  (add-hook 'es-mode-hook 'hideshowvis-symbols)
+  (add-hook 'es-mode-hook 'hideshowvis-minor-mode)
   (add-hook 'es-mode-hook 'hs-minor-mode)
   (add-hook 'es-mode-hook 'smartparens-mode)
 
@@ -485,6 +486,11 @@ already been installed."
   (require 'dockerfile-mode)
   (add-to-list 'auto-mode-alist '("\\`Dockerfile" . dockerfile-mode)))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-dockerfile-mode)
+
+(defun ahw-configure-c++-mode ()
+  (add-hook 'c++-mode-hook 'company-mode)
+  (add-hook 'c++-mode-hook 'smartparens-mode))
+(add-hook 'ahw-after-installing-packages-hook 'ahw-configure-c++-mode)
 
 ;; Bind the F11 key to fullscreenize Emacs.
 (defvar ahw-prev-fullscreen
@@ -561,7 +567,6 @@ already been installed."
  '(rspec-use-opts-file-when-available nil)
  '(rspec-use-rvm t)
  '(ruby-deep-indent-paren (quote (t)))
- '(rust-indent-offset 2)
  '(safe-local-variable-values
    (quote
     ((rust-indent-offset . 4)
