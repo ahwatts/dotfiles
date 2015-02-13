@@ -23,6 +23,10 @@ alias mod_files_comma='echo `mod_files` | tr '\'' '\'' '\'','\'''
 alias stash_au_files='git update-index --no-assume-unchanged `au_files` && git stash'
 alias unstash_au_files='git stash pop && git update-index --assume-unchanged `mod_files`'
 
+function es_indices {
+    curl -s "${@}/_cat/indices?v" | (read h; printf "%s\n" "$h"; sort -bk 2)
+}
+
 if [[ "${BASH_VERSION}" > "3.9999" ]]; then
     shopt -s globstar
 fi
