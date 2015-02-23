@@ -315,6 +315,7 @@ already been installed."
                         ("C:/Users/andrew/Projects/dreamybandnames" "dreamybandnames")
                         ("C:/Users/andrew/Projects/euler" "euler")
                         ("C:/Users/andrew/Projects/graphplay" "graphplay")
+                        ("C:/Users/andrew/Projects/graphplay-rs" "graphplay-rs")
                         ("C:/Users/andrew/Projects/openhf" "openhf")
                         ("C:/Users/andrew/Projects/songviz" "songviz")
                         ("C:/Users/andrew/Projects/hub-pics" "hub-pics")
