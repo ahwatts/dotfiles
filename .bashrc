@@ -27,6 +27,10 @@ function es_indices {
     curl -s "${@}/_cat/indices?v" | (read h; printf "%s\n" "$h"; sort -bk 2)
 }
 
+function es_aliases {
+    curl -s "${@}/_cat/aliases?v" | (read h; printf "%s\n" "$h"; sort -bk 2)
+}
+
 if [[ "${BASH_VERSION}" > "3.9999" ]]; then
     shopt -s globstar
 fi
