@@ -89,7 +89,9 @@ already been installed."
                glsl-mode
                haml-mode
                hideshowvis
+               js2-mode
                json-reformat
+               json-mode
                magit
                markdown-mode
                paredit
@@ -349,10 +351,12 @@ already been installed."
   (add-hook 'ruby-mode-hook 'smartparens-mode))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-ruby-mode)
 
-(defun ahw-configure-javascript-mode ()
-  (add-hook 'js-mode-hook 'flycheck-mode)
-  (add-hook 'js-mode-hook 'smartparens-mode))
-(add-hook 'ahw-after-installing-packages-hook 'ahw-configure-javascript-mode)
+;; Javascript / JSON configuration.
+(defun ahw-configure-javascript ()
+  (add-hook 'js2-mode-hook 'smartparens-mode)
+  (add-hook 'json-mode-hook 'smartparens-mode)
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
+(add-hook 'ahw-after-installing-packages-hook 'ahw-configure-javascript)
 
 ;; YAML configuration.
 (defun ahw-turn-on-yaml-mode ()
@@ -538,7 +542,7 @@ already been installed."
  '(imenu-auto-rescan t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
- '(js-indent-level 2)
+ '(js2-basic-offset 2)
  '(json-reformat:indent-width 2)
  '(menu-bar-mode (window-system))
  '(mouse-yank-at-point t)
