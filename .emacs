@@ -85,9 +85,7 @@ already been installed."
                dockerfile-mode
                es-mode
                flx-ido
-               flymake-jshint
-               flymake-ruby
-               flymake-rust
+               flycheck
                glsl-mode
                haml-mode
                hideshowvis
@@ -342,27 +340,17 @@ already been installed."
   (add-to-list 'auto-mode-alist '("\\`Rakefile\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\`Gemfile\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.builder\\'" . ruby-mode))
+  (add-hook 'ruby-mode-hook 'flycheck-mode)
   (add-hook 'ruby-mode-hook 'company-mode)
   (add-hook 'ruby-mode-hook 'robe-mode)
   (add-hook 'ruby-mode-hook 'rvm-activate-corresponding-ruby)
-  (add-hook 'ruby-mode-hook 'flymake-ruby-load)
   (add-hook 'ruby-mode-hook 'ruby-tools-mode)
   (add-hook 'ruby-mode-hook 'ruby-end-mode)
   (add-hook 'ruby-mode-hook 'smartparens-mode))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-ruby-mode)
 
-;; Javascript configuration.
-(defun ahw-turn-on-flymake-jshint ()
-  (require 'flymake-jshint)
-  (add-to-list 'flymake-allowed-file-name-masks
-               '(".+\\.json$"
-                 flymake-jshint-init
-                 flymake-simple-cleanup
-                 flymake-get-real-file-name)))
-(add-hook 'ahw-after-installing-packages-hook 'ahw-turn-on-flymake-jshint)
-
 (defun ahw-configure-javascript-mode ()
-  (add-hook 'js-mode-hook 'flymake-jshint-load)
+  (add-hook 'js-mode-hook 'flycheck-mode)
   (add-hook 'js-mode-hook 'smartparens-mode))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-javascript-mode)
 
@@ -477,10 +465,7 @@ already been installed."
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-git-commit-mode)
 
 (defun ahw-configure-rust-mode ()
-  ;; (require 'flymake-rust)
-  (add-hook 'rust-mode-hook 'smartparens-mode)
-  ;; (add-hook 'rust-mode-hook 'flymake-rust-load)
-  )
+  (add-hook 'rust-mode-hook 'smartparens-mode))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-rust-mode)
 
 (defun ahw-configure-dockerfile-mode ()
