@@ -559,7 +559,8 @@ already been installed."
  '(ruby-deep-indent-paren (quote (t)))
  '(safe-local-variable-values
    (quote
-    ((rust-indent-offset . 4)
+    ((c-indent-offset . 4)
+     (rust-indent-offset . 4)
      (c-basic-indent . 4)
      (encoding . binary)
      (encoding . utf-8)
