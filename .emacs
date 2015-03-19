@@ -309,6 +309,8 @@ already been installed."
                         ("/Users/awatts/Projects/graphplay" "graphplay")
                         ("/Users/awatts/Projects/graphplay-rs" "graphplay-rs")
                         ("/Users/awatts/Projects/hub-pics" "hub-pics")
+                        ("/Users/awatts/Projects/murker" "murker")
+                        ("/Users/awatts/Projects/organic-snout" "organic-snout")
                         ("/Users/awatts" "homedir")
 
                         ("C:/Users/andrew/Projects/redis_sendmail" "redis_sendmail")
