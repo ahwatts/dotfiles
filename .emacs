@@ -238,6 +238,8 @@ already been installed."
                         ("/home/andrew/Projects/graphplay" "graphplay")
                         ("/home/andrew/Projects/graphplay-rs" "graphplay-rs")
                         ("/home/andrew/Projects/hub-pics" "hub-pics")
+                        ("/home/andrew/Projects/murker" "murker")
+                        ("/home/andrew/Projects/organic-snout" "organic-snout")
                         ("/home/andrew" "homedir")
 
                         ("/home/awatts/rubydev/workspace/reverbnation" "reverbnation")
