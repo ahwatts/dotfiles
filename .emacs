@@ -546,6 +546,7 @@ already been installed."
  '(imenu-auto-rescan t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
+ '(js-indent-level 2)
  '(js2-basic-offset 2)
  '(json-reformat:indent-width 2)
  '(menu-bar-mode (window-system))
