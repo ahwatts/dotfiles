@@ -208,7 +208,7 @@ already been installed."
     ;; Apparently this doesn't get reset when we switch to zenburn.
     (when (package-installed-p 'cider)
       (setq cider-stacktrace-frames-background-color (cider-scale-background-color)))))
-(add-hook 'ahw-after-installing-packages-hook 'ahw-turn-on-zenburn)
+;; (add-hook 'ahw-after-installing-packages-hook 'ahw-turn-on-zenburn)
 
 ;; ;; Turn on auto-complete-mode.
 ;; (defun ahw-turn-on-auto-complete ()
@@ -358,7 +358,9 @@ already been installed."
 ;; Javascript / JSON configuration.
 (defun ahw-configure-javascript ()
   (add-hook 'js2-mode-hook 'smartparens-mode)
+  (add-hook 'js2-mode-hook 'flycheck-mode)
   (add-hook 'json-mode-hook 'smartparens-mode)
+  (add-hook 'json-mode-hook 'flycheck-mode)
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-javascript)
 
@@ -530,6 +532,9 @@ already been installed."
  '(coffee-tab-width 2)
  '(column-number-mode t)
  '(css-indent-offset 2)
+ '(custom-safe-themes
+   (quote
+    ("5a0eee1070a4fc64268f008a4c7abfda32d912118e080e18c3c865ef864d1bea" "e80932ca56b0f109f8545576531d3fc79487ca35a9a9693b62bf30d6d08c9aaf" "c3e6b52caa77cb09c049d3c973798bc64b5c43cc437d449eacf35b3e776bf85c" default)))
  '(debug-on-error nil)
  '(ecb-layout-name "right1")
  '(ecb-options-version "2.40")
@@ -564,7 +569,13 @@ already been installed."
  '(ruby-deep-indent-paren (quote (t)))
  '(safe-local-variable-values
    (quote
-    ((c-indent-offset . 4)
+    ((eval when
+           (require
+            (quote rainbow-mode)
+            nil t)
+           (rainbow-mode 1))
+     (js2-mode-show-strict-warnings)
+     (c-indent-offset . 4)
      (rust-indent-offset . 4)
      (c-basic-indent . 4)
      (encoding . binary)
