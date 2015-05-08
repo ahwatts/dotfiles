@@ -109,6 +109,7 @@ already been installed."
                scss-mode
                smartparens
                toml-mode
+               unicode-fonts
                yaml-mode
                yaml-mode
                zenburn-theme))
@@ -529,6 +530,7 @@ already been installed."
      (arglist-cont-nonempty . +)
      (arglist-close . 0)
      (template-args-cont . +))))
+ '(cgs-step-search-path "/**/features/**/*_steps.rb")
  '(coffee-tab-width 2)
  '(column-number-mode t)
  '(css-indent-offset 2)
@@ -541,6 +543,8 @@ already been installed."
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
  '(ecb-tip-of-the-day nil)
  '(ecb-windows-width 0.25)
+ '(feature-cucumber-command "rake CUCUMBER_OPTS=\"{options}\" FEATURE=\"{feature}\"")
+ '(feature-use-rvm t)
  '(flx-ido-mode t)
  '(gdb-many-windows t)
  '(ido-enable-flex-matching t)
@@ -554,6 +558,7 @@ already been installed."
  '(js-indent-level 2)
  '(js2-basic-offset 2)
  '(json-reformat:indent-width 2)
+ '(mac-option-modifier (quote (:function alt :mouse alt :ordinary meta)))
  '(menu-bar-mode (window-system))
  '(mouse-yank-at-point t)
  '(nrepl-log-messages t)
