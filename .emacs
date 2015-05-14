@@ -316,14 +316,16 @@ already been installed."
                         ("/Users/awatts/Projects/organic-snout" "organic-snout")
                         ("/Users/awatts" "homedir")
 
-                        ("C:/Users/andrew/Projects/redis_sendmail" "redis_sendmail")
                         ("C:/Users/andrew/Projects/dreamybandnames" "dreamybandnames")
                         ("C:/Users/andrew/Projects/euler" "euler")
                         ("C:/Users/andrew/Projects/graphplay" "graphplay")
                         ("C:/Users/andrew/Projects/graphplay-rs" "graphplay-rs")
-                        ("C:/Users/andrew/Projects/openhf" "openhf")
-                        ("C:/Users/andrew/Projects/songviz" "songviz")
                         ("C:/Users/andrew/Projects/hub-pics" "hub-pics")
+                        ("C:/Users/andrew/Projects/murker" "murker")
+                        ("C:/Users/andrew/Projects/openhf" "openhf")
+                        ("C:/Users/andrew/Projects/organic-snout" "organic-snout")
+                        ("C:/Users/andrew/Projects/songviz" "songviz")
+
                         ("C:/Users/andrew" "homedir")
                         ("/" "/"))))
     (when (file-directory-p (car p))
@@ -488,6 +490,10 @@ already been installed."
   (add-hook 'c++-mode-hook 'company-mode)
   (add-hook 'c++-mode-hook 'smartparens-mode))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-c++-mode)
+
+(defun ahw-configure-magit ()
+  (setq magit-last-seen-setup-instructions "1.4.0"))
+(add-hook 'ahw-after-installing-packages-hook 'ahw-configure-magit)
 
 ;; Bind the F11 key to fullscreenize Emacs.
 (defvar ahw-prev-fullscreen
