@@ -103,8 +103,7 @@ already been installed."
 ;; (global-set-key (kbd "C-c r a") 'rvm-activate-corresponding-ruby)
 
 ;; Magit key bindings
-(global-set-key (kbd "C-c g s") 'magit-status)
-(global-set-key (kbd "C-c g b") 'magit-blame)
+(global-set-key (kbd "C-x g") 'magit-status)
 
 ;; "Zoom".
 (defun ahw-increase-font-height ()
@@ -212,6 +211,11 @@ already been installed."
   (org-babel-do-load-languages 'org-babel-load-languages '((elasticsearch . t))))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-es-mode)
 
+;; Flycheck configuration.
+(defun ahw-configure-flycheck ()
+  (add-hook 'flycheck-mode-hook 'flycheck-rust-setup))
+(add-hook 'ahw-after-installing-packages-hook 'ahw-configure-flycheck)
+
 ;; Git-commit configuration.
 (defun ahw-turn-off-auto-fill-mode ()
   (auto-fill-mode -1))
@@ -271,10 +275,9 @@ already been installed."
 ;; Rust configuration.
 (defun ahw-configure-rust-mode ()
   (require 'rust-mode)
-  (add-hook 'rust-mode-hook 'smartparens-mode)
   (add-hook 'rust-mode-hook 'racer-activate)
+  (add-hook 'rust-mode-hook 'smartparens-mode)
   (add-hook 'rust-mode-hook 'flycheck-mode)
-  (add-hook 'rust-mode-hook 'flycheck-rust-setup)
   (define-key rust-mode-map (kbd "TAB") 'racer-complete-or-indent)
   (define-key rust-mode-map (kbd "M-.") 'racer-find-definition))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-rust-mode)
@@ -324,7 +327,7 @@ already been installed."
  '(css-indent-offset 2)
  '(custom-safe-themes
    (quote
-    ("5a0eee1070a4fc64268f008a4c7abfda32d912118e080e18c3c865ef864d1bea" default)))
+    ("c3e6b52caa77cb09c049d3c973798bc64b5c43cc437d449eacf35b3e776bf85c" "5a0eee1070a4fc64268f008a4c7abfda32d912118e080e18c3c865ef864d1bea" default)))
  '(debug-on-error nil)
  '(ecb-layout-name "right1")
  '(ecb-options-version "2.40")
@@ -346,6 +349,8 @@ already been installed."
  '(js2-basic-offset 2)
  '(json-reformat:indent-width 2)
  '(mac-option-modifier (quote (:function alt :mouse alt :ordinary meta)))
+ '(magit-diff-arguments nil)
+ '(magit-revert-buffers t)
  '(menu-bar-mode (window-system))
  '(mouse-yank-at-point t)
  '(nrepl-log-messages t)
