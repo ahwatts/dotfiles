@@ -171,7 +171,8 @@ already been installed."
 ;; Elisp configuration.
 (defun ahw-configure-elisp-mode ()
   (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
-  (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode))
+  (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
+  (add-hook 'emacs-lisp-mode-hook 'company-mode))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-elisp-mode)
 
 ;; Customize es-mode.
@@ -224,6 +225,13 @@ already been installed."
   (add-hook 'git-commit-setup-hook 'ahw-turn-off-auto-fill-mode)
   (add-hook 'git-commit-setup-hook 'visual-line-mode))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-git-commit-setup)
+
+;; ielm configuration
+(defun ahw-configure-ielm ()
+  (add-hook 'ielm-mode-hook 'paredit-mode)
+  (add-hook 'ielm-mode-hook 'eldoc-mode)
+  (add-hook 'ielm-mode-hook 'company-mode))
+(add-hook 'ahw-after-installing-packages-hook 'ahw-configure-ielm)
 
 ;; Javascript / JSON configuration.
 (defun ahw-configure-javascript ()
