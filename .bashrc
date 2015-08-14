@@ -22,6 +22,7 @@ alias mod_files='git status -s | grep '\''^ *M'\'' | awk '\''{ print $2; }'\'''
 alias mod_files_comma='echo `mod_files` | tr '\'' '\'' '\'','\'''
 alias stash_au_files='git update-index --no-assume-unchanged `au_files` && git stash'
 alias unstash_au_files='git stash pop && git update-index --assume-unchanged `mod_files`'
+alias dockviz='docker run --rm -e DOCKER_HOST nate/dockviz'
 
 function es_indices {
     curl -s "${@}/_cat/indices?v" | (read h; printf "%s\n" "$h"; sort -bk 2)
