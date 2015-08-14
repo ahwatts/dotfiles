@@ -335,7 +335,7 @@ already been installed."
  '(css-indent-offset 2)
  '(custom-safe-themes
    (quote
-    ("c3e6b52caa77cb09c049d3c973798bc64b5c43cc437d449eacf35b3e776bf85c" "5a0eee1070a4fc64268f008a4c7abfda32d912118e080e18c3c865ef864d1bea" default)))
+    ("5a0eee1070a4fc64268f008a4c7abfda32d912118e080e18c3c865ef864d1bea" default)))
  '(debug-on-error nil)
  '(ecb-layout-name "right1")
  '(ecb-options-version "2.40")
@@ -357,7 +357,7 @@ already been installed."
  '(js2-basic-offset 2)
  '(json-reformat:indent-width 2)
  '(mac-option-modifier (quote (:function alt :mouse alt :ordinary meta)))
- '(magit-diff-arguments nil)
+ '(magit-push-always-verify nil)
  '(magit-revert-buffers t)
  '(menu-bar-mode (window-system))
  '(mouse-yank-at-point t)
