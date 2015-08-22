@@ -297,6 +297,11 @@ already been installed."
   (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-smex)
 
+;; Toml configuration.
+(defun ahw-configure-toml-mode ()
+  (add-to-list 'auto-mode-alist '("Cargo\\.lock\\'" . toml-mode)))
+(add-hook 'ahw-after-installing-packages-hook 'ahw-configure-toml-mode)
+
 ;; YAML configuration.
 (defun ahw-turn-on-yaml-mode ()
   (require 'yaml-mode)
