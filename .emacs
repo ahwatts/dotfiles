@@ -282,12 +282,11 @@ already been installed."
 
 ;; Rust configuration.
 (defun ahw-configure-rust-mode ()
-  (require 'rust-mode)
-  (add-hook 'rust-mode-hook 'racer-activate)
+  (add-hook 'rust-mode-hook 'company-mode)
+  (add-hook 'rust-mode-hook 'racer-mode)
   (add-hook 'rust-mode-hook 'smartparens-mode)
   (add-hook 'rust-mode-hook 'flycheck-mode)
-  (define-key rust-mode-map (kbd "TAB") 'racer-complete-or-indent)
-  (define-key rust-mode-map (kbd "M-.") 'racer-find-definition))
+  (add-hook 'racer-mode-hook 'eldoc-mode))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-rust-mode)
 
 ;; Smex configuration.
@@ -337,6 +336,7 @@ already been installed."
      (template-args-cont . +))))
  '(coffee-tab-width 2)
  '(column-number-mode t)
+ '(company-tooltip-align-annotations t)
  '(css-indent-offset 2)
  '(custom-safe-themes
    (quote
