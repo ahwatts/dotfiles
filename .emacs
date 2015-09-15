@@ -156,6 +156,11 @@ already been installed."
     (context 2)))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-clojure-mode)
 
+;; Company configuration
+(defun ahw-configure-company ()
+  (eval-after-load 'company '(push 'company-robe company-backends)))
+(add-hook 'ahw-after-installing-packages-hook 'ahw-configure-company)
+
 ;; CMake configuration.
 (defun ahw-turn-on-cmake-mode ()
   (require 'cmake-mode)
