@@ -9,4 +9,3 @@
 	ui = true
 [core]
 	excludesfile = ~/.gitignore_global
-	autocrlf = true
