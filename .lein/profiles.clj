@@ -6,7 +6,8 @@
                  [org.clojure/tools.nrepl "0.2.10"]]
 
   :plugins [[lein-ancient "0.6.7" :exclusions [org.clojure/clojure org.clojure/data.xml]]
-            [cider/cider-nrepl "0.10.0-SNAPSHOT"]]
+            [cider/cider-nrepl "0.10.0-SNAPSHOT"]
+            [lein-pprint "1.1.1"]]
 
   :jvm-opts
   #=(eval (vec (filter (complement nil?)
