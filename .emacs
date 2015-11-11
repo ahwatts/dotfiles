@@ -54,6 +54,7 @@ already been installed."
                racer
                rhtml-mode
                rinari
+               robe
                rspec-mode
                ruby-end
                ruby-tools
