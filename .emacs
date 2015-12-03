@@ -385,7 +385,8 @@ already been installed."
  '(ruby-deep-indent-paren (quote (t)))
  '(safe-local-variable-values
    (quote
-    ((cider-boot-parameters . "dev")
+    ((cider-boot-parameters . "cider-repl")
+     (cider-boot-parameters . "dev")
      (eval when
            (require
             (quote rainbow-mode)
