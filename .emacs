@@ -37,7 +37,6 @@ already been installed."
                es-mode
                flx-ido
                flycheck
-               flycheck-rust
                glsl-mode
                haml-mode
                hideshowvis
@@ -218,10 +217,10 @@ already been installed."
   (org-babel-do-load-languages 'org-babel-load-languages '((elasticsearch . t))))
 (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-es-mode)
 
-;; Flycheck configuration.
-(defun ahw-configure-flycheck ()
-  (add-hook 'flycheck-mode-hook 'flycheck-rust-setup))
-(add-hook 'ahw-after-installing-packages-hook 'ahw-configure-flycheck)
+;; ;; Flycheck configuration.
+;; (defun ahw-configure-flycheck ()
+;;   (add-hook 'flycheck-mode-hook 'flycheck-rust-setup))
+;; (add-hook 'ahw-after-installing-packages-hook 'ahw-configure-flycheck)
 
 ;; Git-commit configuration.
 (defun ahw-turn-off-auto-fill-mode ()
@@ -277,7 +276,7 @@ already been installed."
   (add-to-list 'auto-mode-alist '("\\`Rakefile\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\`Gemfile\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.builder\\'" . ruby-mode))
-  (add-hook 'ruby-mode-hook 'flycheck-mode)
+  ;; (add-hook 'ruby-mode-hook 'flycheck-mode)
   (add-hook 'ruby-mode-hook 'company-mode)
   (add-hook 'ruby-mode-hook 'robe-mode)
   (add-hook 'ruby-mode-hook 'rvm-activate-corresponding-ruby)
