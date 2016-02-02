@@ -7,10 +7,9 @@
 !.bash_profile
 !.emacs.d
 !.emacs.d/user-lisp
+.emacs.d/user-lisp/*.el
 !.emacs.d/user-lisp/term
 !.emacs.d/user-lisp/term/screen-256color.el
-!.emacs.d/user-lisp/rvm-ruby-version-file-advice.el
-!.emacs.d/user-lisp/utils.el
 !.tmux.conf
 !.lein
 !.lein/profiles.clj
