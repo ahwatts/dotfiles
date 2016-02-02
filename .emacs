@@ -26,7 +26,8 @@ already been installed."
 (defun ahw-install-packages ()
   "Function which installs various packages that we want to use."
   (unless package-archive-contents (package-refresh-contents))
-  (dolist (p '(cider
+  (dolist (p '(ag
+               cider
                clojure-mode
                cmake-mode
                coffee-mode
@@ -51,19 +52,17 @@ already been installed."
                projectile
                projectile-rails
                racer
-               rhtml-mode
-               rinari
                robe
                rspec-mode
                ruby-end
                ruby-tools
                rust-mode
-               rvm
                scss-mode
                smartparens
                smex
                toml-mode
                unicode-fonts
+               web-mode
                yaml-mode
                zenburn-theme))
     (ahw-package-install p))
@@ -98,9 +97,6 @@ already been installed."
 
 ;; Something I do way too often.
 (global-set-key (kbd "C-c /") 'comment-or-uncomment-region)
-
-;; ;; Random Ruby stuff
-;; (global-set-key (kbd "C-c r a") 'rvm-activate-corresponding-ruby)
 
 ;; Magit key bindings
 (global-set-key (kbd "C-x g") 'magit-status)
@@ -276,10 +272,10 @@ already been installed."
   (add-to-list 'auto-mode-alist '("\\`Rakefile\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\`Gemfile\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.builder\\'" . ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . web-mode))
   ;; (add-hook 'ruby-mode-hook 'flycheck-mode)
   (add-hook 'ruby-mode-hook 'company-mode)
   (add-hook 'ruby-mode-hook 'robe-mode)
-  (add-hook 'ruby-mode-hook 'rvm-activate-corresponding-ruby)
   (add-hook 'ruby-mode-hook 'ruby-tools-mode)
   (add-hook 'ruby-mode-hook 'ruby-end-mode)
   (add-hook 'ruby-mode-hook 'smartparens-mode))
@@ -368,7 +364,7 @@ already been installed."
  '(json-reformat:indent-width 2)
  '(mac-option-modifier (quote (:function alt :mouse alt :ordinary meta)))
  '(magit-push-always-verify nil)
- '(magit-revert-buffers t)
+ '(magit-revert-buffers t t)
  '(menu-bar-mode (window-system))
  '(mouse-yank-at-point t)
  '(nrepl-log-messages t)
@@ -382,23 +378,6 @@ already been installed."
  '(rspec-use-opts-file-when-available nil)
  '(rspec-use-rvm t)
  '(ruby-deep-indent-paren (quote (t)))
- '(safe-local-variable-values
-   (quote
-    ((cider-boot-parameters . "cider-repl")
-     (cider-boot-parameters . "dev")
-     (eval when
-           (require
-            (quote rainbow-mode)
-            nil t)
-           (rainbow-mode 1))
-     (js2-mode-show-strict-warnings)
-     (c-indent-offset . 4)
-     (rust-indent-offset . 4)
-     (c-basic-indent . 4)
-     (encoding . binary)
-     (encoding . utf-8)
-     (whitespace-line-column . 80)
-     (lexical-binding . t))))
  '(save-interprogram-paste-before-kill t)
  '(save-place t nil (saveplace))
  '(save-place-file "~/.emacs.d/places")
