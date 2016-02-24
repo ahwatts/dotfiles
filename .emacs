@@ -378,7 +378,10 @@ already been installed."
  '(rspec-use-opts-file-when-available nil)
  '(rspec-use-rvm t)
  '(ruby-deep-indent-paren (quote (t)))
- '(safe-local-variable-values (quote ((encoding . utf-8))))
+ '(safe-local-variable-values
+   (quote
+    ((js2-mode-show-strict-warnings)
+     (encoding . utf-8))))
  '(save-interprogram-paste-before-kill t)
  '(save-place t nil (saveplace))
  '(save-place-file "~/.emacs.d/places")
