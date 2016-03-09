@@ -1,9 +1,10 @@
 ;; -*- mode: emacs-lisp -*-
 
 ;; External packages this file supports (but doesn't automatically install):
+;; company
 ;; paredit
 ;; rainbow-delimiters
-;; company
+;; smex
 
 ;; built-in packages we want available.
 (require 'uniquify)
@@ -32,6 +33,14 @@
   (when (package-installed-p 'company)
     (add-hook 'emacs-lisp-mode-hook 'company-mode)))
 (add-hook 'after-init-hook 'ahw-configure-elisp-mode)
+
+;; Smex configuration.
+(defun ahw-configure-smex ()
+  (when (package-installed-p 'smex)
+    (global-set-key (kbd "M-x") 'smex)
+    (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+    (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)))
+(add-hook 'after-init-hook 'ahw-configure-smex)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
