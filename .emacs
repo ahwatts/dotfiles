@@ -23,16 +23,23 @@
 ;; Something I do way too often.
 (global-set-key (kbd "C-c /") 'comment-or-uncomment-region)
 
-;; Elisp configuration.
-(defun ahw-configure-elisp-mode ()
-  (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
+;; Elisp (and ielm) configuration.
+(defun ahw-configure-elisp-like-mode (mode-hook)
+  (add-hook mode-hook 'eldoc-mode)
   (when (package-installed-p 'paredit)
-    (add-hook 'emacs-lisp-mode-hook 'paredit-mode))
+    (add-hook mode-hook 'paredit-mode))
   (when (package-installed-p 'rainbow-delimiters)
-    (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode))
+    (add-hook mode-hook 'rainbow-delimiters-mode))
   (when (package-installed-p 'company)
-    (add-hook 'emacs-lisp-mode-hook 'company-mode)))
+    (add-hook mode-hook 'company-mode)))
+
+(defun ahw-configure-elisp-mode ()
+  (ahw-configure-elisp-like-mode 'emacs-lisp-mode-hook))
 (add-hook 'after-init-hook 'ahw-configure-elisp-mode)
+
+(defun ahw-configure-ielm-mode ()
+  (ahw-configure-elisp-like-mode 'ielm-mode-hook))
+(add-hook 'after-init-hook 'ahw-configure-ielm-mode)
 
 ;; Smex configuration.
 (defun ahw-configure-smex ()
@@ -41,6 +48,11 @@
     (global-set-key (kbd "M-X") 'smex-major-mode-commands)
     (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)))
 (add-hook 'after-init-hook 'ahw-configure-smex)
+
+;; Set up our local user-lisp path, and force anything in there to get
+;; loaded now.
+(add-to-list 'load-path "~/.emacs.d/user-lisp")
+(dolist (f (directory-files "~/.emacs.d/user-lisp" t "\\.el\\'")) (load f))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

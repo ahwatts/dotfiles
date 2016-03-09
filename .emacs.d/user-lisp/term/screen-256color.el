@@ -1,5 +1,5 @@
 (defun terminal-init-screen ()
   (load "term/xterm")
   (xterm-register-default-colors)
-  (let ((frame-background-mode 'dark))
+  (let ((frame-background-mode 'light))
     (frame-set-background-mode nil)))
