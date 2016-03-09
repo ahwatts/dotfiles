@@ -1,5 +1,4 @@
 *
-!.gitattributes
 !.gitignore
 !.emacs
 !.gitconfig
@@ -11,5 +10,3 @@
 !.emacs.d/user-lisp/term
 !.emacs.d/user-lisp/term/screen-256color.el
 !.tmux.conf
-!.lein
-!.lein/profiles.clj

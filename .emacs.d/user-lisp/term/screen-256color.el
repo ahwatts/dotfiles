@@ -1,5 +1,5 @@
 (defun terminal-init-screen ()
   (load "term/xterm")
   (xterm-register-default-colors)
-  (tty-set-up-initial-frame-faces)
-  (ahw-turn-on-zenburn))
+  (let ((frame-background-mode 'dark))
+    (frame-set-background-mode nil)))
