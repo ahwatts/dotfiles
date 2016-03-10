@@ -380,7 +380,8 @@ already been installed."
  '(ruby-deep-indent-paren (quote (t)))
  '(safe-local-variable-values
    (quote
-    ((js2-mode-show-strict-warnings)
+    ((encoding . binary)
+     (js2-mode-show-strict-warnings)
      (encoding . utf-8))))
  '(save-interprogram-paste-before-kill t)
  '(save-place t nil (saveplace))
