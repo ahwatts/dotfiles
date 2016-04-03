@@ -381,6 +381,7 @@ already been installed."
  '(safe-local-variable-values
    (quote
     ((encoding . binary)
+     (flycheck-rust-crate-type . "bin")
      (js2-mode-show-strict-warnings)
      (encoding . utf-8))))
  '(save-interprogram-paste-before-kill t)
