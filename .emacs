@@ -380,8 +380,8 @@ already been installed."
  '(ruby-deep-indent-paren (quote (t)))
  '(safe-local-variable-values
    (quote
-    ((encoding . binary)
-     (flycheck-rust-crate-type . "bin")
+    ((flycheck-rust-crate-type . "bin")
+     (encoding . binary)
      (js2-mode-show-strict-warnings)
      (encoding . utf-8))))
  '(save-interprogram-paste-before-kill t)
