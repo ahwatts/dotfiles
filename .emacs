@@ -23,14 +23,18 @@
 ;; Something I do way too often.
 (global-set-key (kbd "C-c /") 'comment-or-uncomment-region)
 
+(defun ahw-package-installed-p (pkg)
+  (and (fboundp 'package-installed-p)
+       (package-installed-p pkg)))
+
 ;; Elisp (and ielm) configuration.
 (defun ahw-configure-elisp-like-mode (mode-hook)
   (add-hook mode-hook 'eldoc-mode)
-  (when (package-installed-p 'paredit)
+  (when (ahw-package-installed-p 'paredit)
     (add-hook mode-hook 'paredit-mode))
-  (when (package-installed-p 'rainbow-delimiters)
+  (when (ahw-package-installed-p 'rainbow-delimiters)
     (add-hook mode-hook 'rainbow-delimiters-mode))
-  (when (package-installed-p 'company)
+  (when (ahw-package-installed-p 'company)
     (add-hook mode-hook 'company-mode)))
 
 (defun ahw-configure-elisp-mode ()
@@ -43,7 +47,7 @@
 
 ;; Smex configuration.
 (defun ahw-configure-smex ()
-  (when (package-installed-p 'smex)
+  (when (ahw-package-installed-p 'smex)
     (global-set-key (kbd "M-x") 'smex)
     (global-set-key (kbd "M-X") 'smex-major-mode-commands)
     (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)))
