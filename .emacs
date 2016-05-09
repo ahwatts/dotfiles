@@ -48,7 +48,7 @@
 
 ;; Ruby-mode configuration.
 (defun ahw-configure-ruby-mode ()
-  (when (package-installed-p 'smartparens)
+  (when (ahw-package-installed-p 'smartparens)
     (add-hook 'ruby-mode-hook 'smartparens-mode)))
 (add-hook 'after-init-hook 'ahw-configure-ruby-mode)
 
