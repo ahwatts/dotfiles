@@ -4,6 +4,7 @@
 ;; company
 ;; paredit
 ;; rainbow-delimiters
+;; smartparens
 ;; smex
 
 ;; built-in packages we want available.
@@ -44,6 +45,12 @@
 (defun ahw-configure-ielm-mode ()
   (ahw-configure-elisp-like-mode 'ielm-mode-hook))
 (add-hook 'after-init-hook 'ahw-configure-ielm-mode)
+
+;; Ruby-mode configuration.
+(defun ahw-configure-ruby-mode ()
+  (when (package-installed-p 'smartparens)
+    (add-hook 'ruby-mode-hook 'smartparens-mode)))
+(add-hook 'after-init-hook 'ahw-configure-ruby-mode)
 
 ;; Smex configuration.
 (defun ahw-configure-smex ()
