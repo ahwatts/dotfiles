@@ -13,3 +13,5 @@
 !.tmux.conf
 !.lein
 !.lein/profiles.clj
+!.boot
+!.boot/profile.boot

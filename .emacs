@@ -128,8 +128,9 @@ already been installed."
 ;; CIDER configuration.
 (defun ahw-configure-cider ()
   (require 'cider)
-  (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+  (add-hook 'cider-mode-hook 'eldoc-mode)
   (add-hook 'cider-mode-hook 'company-mode)
+  (add-hook 'cider-repl-mode-hook 'eldoc-mode)
   (add-hook 'cider-repl-mode-hook 'paredit-mode)
   (add-hook 'cider-repl-mode-hook 'turn-off-smartparens-mode)
   (add-hook 'cider-repl-mode-hook 'company-mode))
@@ -380,7 +381,8 @@ already been installed."
  '(ruby-deep-indent-paren (quote (t)))
  '(safe-local-variable-values
    (quote
-    ((flycheck-rust-crate-type . "bin")
+    ((cider-boot-parameters . "cider dev repl -n user -s wait")
+     (flycheck-rust-crate-type . "bin")
      (encoding . binary)
      (js2-mode-show-strict-warnings)
      (encoding . utf-8))))
