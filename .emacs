@@ -381,7 +381,7 @@ already been installed."
  '(ruby-deep-indent-paren (quote (t)))
  '(safe-local-variable-values
    (quote
-    ((cider-boot-parameters . "cider dev repl -n user -s wait")
+    ((cider-boot-parameters . "cider dev repl -s wait")
      (flycheck-rust-crate-type . "bin")
      (encoding . binary)
      (js2-mode-show-strict-warnings)
