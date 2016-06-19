@@ -101,21 +101,21 @@ already been installed."
 ;; Magit key bindings
 (global-set-key (kbd "C-x g") 'magit-status)
 
-;; "Zoom".
-(defun ahw-increase-font-height ()
-  (interactive)
-  (let* ((face-attrs (face-all-attributes 'default))
-         (size (cdr (assoc :height face-attrs))))
-    (set-face-attribute 'default nil :height (+ size 10))))
+;; ;; "Zoom".
+;; (defun ahw-increase-font-height ()
+;;   (interactive)
+;;   (let* ((face-attrs (face-all-attributes 'default))
+;;          (size (cdr (assoc :height face-attrs))))
+;;     (set-face-attribute 'default nil :height (+ size 10))))
 
-(defun ahw-decrease-font-height ()
-  (interactive)
-  (let* ((face-attrs (face-all-attributes 'default))
-         (size (cdr (assoc :height face-attrs))))
-    (set-face-attribute 'default nil :height (- size 10))))
+;; (defun ahw-decrease-font-height ()
+;;   (interactive)
+;;   (let* ((face-attrs (face-all-attributes 'default))
+;;          (size (cdr (assoc :height face-attrs))))
+;;     (set-face-attribute 'default nil :height (- size 10))))
 
-(global-set-key (kbd "M-]") 'ahw-increase-font-height)
-(global-set-key (kbd "M-[") 'ahw-decrease-font-height)
+;; (global-set-key (kbd "M-]") 'ahw-increase-font-height)
+;; (global-set-key (kbd "M-[") 'ahw-decrease-font-height)
 
 ;; PART 3 -- Package-specific configuration.
 
