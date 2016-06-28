@@ -362,6 +362,8 @@ already been installed."
  '(inhibit-startup-screen t)
  '(js-indent-level 2)
  '(js2-basic-offset 2)
+ '(js2-mode-show-parse-errors nil)
+ '(js2-mode-show-strict-warnings nil)
  '(json-reformat:indent-width 2)
  '(mac-option-modifier (quote (:function alt :mouse alt :ordinary meta)))
  '(magit-push-always-verify nil)
