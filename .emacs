@@ -8,6 +8,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
+ '(company-tooltip-align-annotations t)
  '(custom-safe-themes
    (quote
     ("5a0eee1070a4fc64268f008a4c7abfda32d912118e080e18c3c865ef864d1bea" default)))
@@ -21,6 +22,7 @@
  '(ido-mode (quote both) nil (ido))
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
+ '(mac-option-modifier (quote (:ordinary meta :function alt :mouse alt)))
  '(make-backup-files nil)
  '(menu-bar-mode t)
  '(package-archive-priorities (quote (("gnu" . 2) ("melpa-stable" . 1))))
@@ -32,6 +34,7 @@
  '(package-selected-packages
    (quote
     (ecb dockerfile-mode apropospriate-theme zenburn-theme yaml-mode web-mode toml-mode smex smartparens ruby-tools ruby-end racer projectile paredit-menu markdown-mode magit js2-mode ido-ubiquitous hideshowvis haml-mode glsl-mode flycheck es-mode cmake-mode elisp--witness--lisp company cider ag paredit use-package)))
+ '(projectile-global-mode t)
  '(safe-local-variable-values
    (quote
     ((cider-boot-parameters . "cider dev repl -s wait")
@@ -58,9 +61,62 @@
 
 ;; Package configurations.
 
+;; Common packages that other stuff is going to want to have present.
+
+(use-package smartparens
+  :init
+  (add-hook 'c++-mode-hook 'smartparens-mode)
+  (add-hook 'ruby-mode-hook 'smartparens-mode))
+
+(use-package company
+  :config
+  (add-hook 'c++-mode-hook 'company-mode)
+  (add-hook 'emacs-lisp-mode-hook 'company-mode)
+  (add-hook 'ielm-mode-hook 'company-mode))
+
+(use-package flycheck-rust)
+
+(use-package flycheck
+  :config
+  (add-hook 'flycheck-mode-hook 'flycheck-rust-setup))
+
+(use-package paredit
+  :init
+  (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+  (add-hook 'ielm-mode-hook 'paredit-mode))
+
+(use-package hideshowvis)
+
+;; Global functionality.
+
 (use-package ag)
 
 (use-package apropospriate-theme)
+
+(use-package ecb
+  :commands ecb-activate
+  :ensure nil
+  :pin melpa)
+
+(use-package ido-ubiquitous)
+
+(use-package magit
+  :commands magit-status
+  :bind (("C-x g" . magit-status))
+  :config
+  (add-hook 'git-commit-setup-hook (lambda () (auto-fill-mode -1)))
+  (add-hook 'git-commit-setup-hook 'visual-line-mode))
+
+(use-package paredit-menu)
+
+(use-package projectile)
+
+(use-package smex
+  :bind (("M-x" . smex)
+         ("M-X" . smex-major-mode-commands)
+         ("C-c C-c M-x" . execute-extended-command)))
+
+;; Individual modes / languages.
 
 (use-package cider
   :config
@@ -88,61 +144,24 @@
 (use-package cmake-mode
   :mode "CMakeLists")
 
-(use-package company
-  :config
-  (add-hook 'c++-mode-hook 'company-mode)
-  (add-hook 'emacs-lisp-mode-hook 'company-mode)
-  (add-hook 'ielm-mode-hook 'company-mode))
-
 (use-package dockerfile-mode
   :mode "\\`Dockerfile")
 
-(use-package ecb
-  :commands ecb-activate
-  :ensure nil
-  :pin melpa)
-
 (use-package es-mode)
-
-(use-package flycheck)
 
 (use-package glsl-mode)
 
 (use-package haml-mode)
-
-(use-package hideshowvis)
-
-(use-package ido-ubiquitous)
 
 (use-package js2-mode
   :config
   (add-hook 'js2-mode-hook 'smartparens-mode)
   (add-hook 'js2-mode-hook 'flycheck-mode))
 
-(use-package magit
-  :commands magit-status
-  :bind (("C-x g" . magit-status))
-  :config
-  (add-hook 'git-commit-setup-hook (lambda () (auto-fill-mode -1)))
-  (add-hook 'git-commit-setup-hook 'visual-line-mode))
-
 (use-package markdown-mode
   :mode "\\.md\\'"
   :config
   (add-hook 'markdown-mode-hook 'visual-line-mode))
-
-(use-package paredit
-  :init
-  (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
-  (add-hook 'ielm-mode-hook 'paredit-mode))
-
-(use-package paredit-menu)
-
-(use-package projectile
-  :config
-  (projectile-global-mode 1))
-
-(use-package racer)
 
 (use-package ruby-end
   :diminish ruby-end-mode)
@@ -150,19 +169,18 @@
 (use-package ruby-tools
   :diminish ruby-tools-mode)
 
-(use-package rust-mode
+(use-package racer
   :config
+  (add-hook 'racer-mode-hook 'eldoc-mode)
+  (add-hook 'racer-mode-hook 'company-mode))
+
+(use-package rust-mode
+  :bind (:map rust-mode-map ("[TAB]" . company-indent-or-complete-common))
+  :config
+  (add-hook 'rust-mode-hook 'racer-mode)
   (add-hook 'rust-mode-hook 'flycheck-mode)
-  (add-hook 'rust-mode-hook 'company-mode))
-
-(use-package smartparens
-  :init
-  (add-hook 'c++-mode-hook 'smartparens-mode))
-
-(use-package smex
-  :bind (("M-x" . smex)
-         ("M-X" . smex-major-mode-commands)
-         ("C-c C-c M-x" . execute-extended-command)))
+  (add-hook 'rust-mode-hook 'company-mode)
+  (add-hook 'rust-mode-hook 'smartparens-mode))
 
 (use-package toml-mode
   :mode "Cargo\\.lock\\'")
