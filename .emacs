@@ -72,7 +72,8 @@
   :config
   (add-hook 'c++-mode-hook 'company-mode)
   (add-hook 'emacs-lisp-mode-hook 'company-mode)
-  (add-hook 'ielm-mode-hook 'company-mode))
+  (add-hook 'ielm-mode-hook 'company-mode)
+  (add-hook 'ruby-mode-hook 'company-mode))
 
 (use-package flycheck-rust)
 
