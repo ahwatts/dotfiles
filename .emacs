@@ -7,6 +7,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ag-reuse-window t)
  '(column-number-mode t)
  '(company-tooltip-align-annotations t)
  '(custom-safe-themes
@@ -37,7 +38,8 @@
  '(projectile-global-mode t)
  '(safe-local-variable-values
    (quote
-    ((cider-boot-parameters . "cider dev repl -s wait")
+    ((cider-boot-parameters . "cider environ dev repl -s wait")
+     (cider-boot-parameters . "cider dev repl -s wait")
      (encoding . utf-8))))
  '(server-mode t)
  '(show-paren-mode t)
@@ -176,7 +178,7 @@
   (add-hook 'racer-mode-hook 'company-mode))
 
 (use-package rust-mode
-  :bind (:map rust-mode-map ("[TAB]" . company-indent-or-complete-common))
+  :bind (:map rust-mode-map ("TAB" . company-indent-or-complete-common))
   :config
   (add-hook 'rust-mode-hook 'racer-mode)
   (add-hook 'rust-mode-hook 'flycheck-mode)
