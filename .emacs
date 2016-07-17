@@ -24,6 +24,7 @@
  '(ido-ubiquitous-mode t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
+ '(js-indent-level 2)
  '(make-backup-files nil)
  '(menu-bar-mode t)
  '(package-archive-priorities (quote (("gnu" . 2) ("melpa-stable" . 1))))
@@ -38,7 +39,8 @@
  '(projectile-global-mode t)
  '(safe-local-variable-values
    (quote
-    ((cider-boot-parameters . "cider environ dev repl -s wait")
+    ((js2-mode-show-strict-warnings)
+     (cider-boot-parameters . "cider environ dev repl -s wait")
      (cider-boot-parameters . "cider dev repl -s wait")
      (encoding . utf-8))))
  '(server-mode t)
