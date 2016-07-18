@@ -27,6 +27,7 @@
  '(js-indent-level 2)
  '(make-backup-files nil)
  '(menu-bar-mode t)
+ '(ns-command-modifier (quote meta))
  '(package-archive-priorities (quote (("gnu" . 2) ("melpa-stable" . 1))))
  '(package-archives
    (quote
@@ -37,6 +38,7 @@
    (quote
     (ecb dockerfile-mode apropospriate-theme zenburn-theme yaml-mode web-mode toml-mode smex smartparens ruby-tools ruby-end racer projectile paredit-menu markdown-mode magit js2-mode ido-ubiquitous hideshowvis haml-mode glsl-mode flycheck es-mode cmake-mode elisp--witness--lisp company cider ag paredit use-package)))
  '(projectile-global-mode t)
+ '(ring-bell-function (quote ignore))
  '(safe-local-variable-values
    (quote
     ((js2-mode-show-strict-warnings)
@@ -48,7 +50,7 @@
  '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
  '(use-package-always-ensure t)
- '(visible-bell t))
+ '(visible-bell nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
