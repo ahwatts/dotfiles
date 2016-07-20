@@ -36,7 +36,7 @@
      ("melpa" . "https://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (ecb dockerfile-mode apropospriate-theme zenburn-theme yaml-mode web-mode toml-mode smex smartparens ruby-tools ruby-end racer projectile paredit-menu markdown-mode magit js2-mode ido-ubiquitous hideshowvis haml-mode glsl-mode flycheck es-mode cmake-mode elisp--witness--lisp company cider ag paredit use-package)))
+    (json-reformat ecb dockerfile-mode apropospriate-theme zenburn-theme yaml-mode web-mode toml-mode smex smartparens ruby-tools ruby-end racer projectile paredit-menu markdown-mode magit js2-mode ido-ubiquitous hideshowvis haml-mode glsl-mode flycheck es-mode cmake-mode elisp--witness--lisp company cider ag paredit use-package)))
  '(projectile-global-mode t)
  '(ring-bell-function (quote ignore))
  '(safe-local-variable-values
@@ -87,6 +87,8 @@
 (use-package flycheck
   :config
   (add-hook 'flycheck-mode-hook 'flycheck-rust-setup))
+
+(use-package json-reformat)
 
 (use-package paredit
   :init
@@ -155,8 +157,6 @@
 (use-package dockerfile-mode
   :mode "\\`Dockerfile")
 
-(use-package es-mode)
-
 (use-package glsl-mode)
 
 (use-package haml-mode)
@@ -165,6 +165,11 @@
   :config
   (add-hook 'js2-mode-hook 'smartparens-mode)
   (add-hook 'js2-mode-hook 'flycheck-mode))
+
+(use-package json-mode
+  :config
+  (add-hook 'json-mode-hook 'smartparens-mode)
+  (add-hook 'json-mode-hook 'flycheck-mode))
 
 (use-package markdown-mode
   :mode "\\.md\\'"
@@ -197,6 +202,36 @@
 
 (use-package yaml-mode
   :mode "\\.yml\\'")
+
+;; Customize es-mode.
+(defun ahw-es-response-reformat-json (status content-type body-buffer)
+  (when (and (= 200 status) (string-lessp "application/json" content-type))
+    (with-current-buffer body-buffer
+      (save-excursion
+        (goto-char (point-min))
+        ;; (search-forward "\n\n")
+        (json-reformat-region (point) (point-max))))))
+
+(defun ahw-es-response-enable-hs-minor-mode (status content-type body-buffer)
+  (with-current-buffer body-buffer
+    (setq-local comment-start "// ")
+    (setq-local comment-end "")
+    (hs-minor-mode)
+    (hideshowvis-minor-mode)
+    (hideshowvis-symbols)))
+
+(use-package es-mode
+  :config
+  (add-to-list 'hs-special-modes-alist '(es-mode "{" "}" "/[*/]" nil))
+  (add-to-list 'hs-special-modes-alist '(es-result-mode "{" "}" "/[*/]" nil))
+
+  (add-hook 'es-mode-hook 'hideshowvis-symbols)
+  (add-hook 'es-mode-hook 'hideshowvis-minor-mode)
+  (add-hook 'es-mode-hook 'hs-minor-mode)
+  (add-hook 'es-mode-hook 'smartparens-mode)
+
+  (add-hook 'es-response-success-functions 'ahw-es-response-enable-hs-minor-mode)
+  (add-hook 'es-response-success-functions 'ahw-es-response-reformat-json))
 
 ;; Hooks for built-in things to built-in things.
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
