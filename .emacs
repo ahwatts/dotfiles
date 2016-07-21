@@ -241,6 +241,8 @@
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 (add-hook 'ielm-mode-hook 'eldoc-mode)
 
+(setq ruby-use-smie nil)
+
 ;; ibuffer is nicer.
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
