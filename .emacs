@@ -25,6 +25,8 @@
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(js-indent-level 2)
+ '(js2-mode-show-parse-errors nil)
+ '(js2-mode-show-strict-warnings nil)
  '(make-backup-files nil)
  '(menu-bar-mode t)
  '(ns-command-modifier (quote meta))
@@ -162,6 +164,7 @@
 (use-package haml-mode)
 
 (use-package js2-mode
+  :mode "\\.js\\'"
   :config
   (add-hook 'js2-mode-hook 'smartparens-mode)
   (add-hook 'js2-mode-hook 'flycheck-mode))
@@ -198,7 +201,8 @@
 (use-package toml-mode
   :mode "Cargo\\.lock\\'")
 
-(use-package web-mode)
+(use-package web-mode
+  :mode "\\.html\\'")
 
 (use-package yaml-mode
   :mode "\\.yml\\'")
