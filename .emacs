@@ -41,6 +41,7 @@
     (json-reformat ecb dockerfile-mode apropospriate-theme zenburn-theme yaml-mode web-mode toml-mode smex smartparens ruby-tools ruby-end racer projectile paredit-menu markdown-mode magit js2-mode ido-ubiquitous hideshowvis haml-mode glsl-mode flycheck es-mode cmake-mode elisp--witness--lisp company cider ag paredit use-package flycheck-rust json-mode)))
  '(projectile-global-mode t)
  '(ring-bell-function (quote ignore))
+ '(ruby-deep-indent-paren (quote (t)))
  '(safe-local-variable-values
    (quote
     ((js2-mode-show-strict-warnings)
