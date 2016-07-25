@@ -203,7 +203,8 @@
   :mode "Cargo\\.lock\\'")
 
 (use-package web-mode
-  :mode "\\.html\\'")
+  :mode (("\\.html\\'" . web-mode)
+         ("\\.html\.erb\\'" . web-mode)))
 
 (use-package yaml-mode
   :mode "\\.yml\\'")
