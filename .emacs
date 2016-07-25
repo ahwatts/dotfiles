@@ -117,7 +117,7 @@
   :commands magit-status
   :bind (("C-x g" . magit-status))
   :config
-  (add-hook 'git-commit-setup-hook (lambda () (auto-fill-mode -1)))
+  (remove-hook 'git-commit-setup-hook 'git-commit-turn-on-auto-fill)
   (add-hook 'git-commit-setup-hook 'visual-line-mode))
 
 (use-package paredit-menu)
