@@ -162,6 +162,10 @@
 
 (use-package glsl-mode)
 
+(use-package go-mode
+  :config
+  (add-hook 'go-mode-hook 'smartparens-mode))
+
 (use-package haml-mode)
 
 (use-package js2-mode
