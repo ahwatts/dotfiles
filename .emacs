@@ -170,7 +170,8 @@
 (use-package haml-mode)
 
 (use-package js2-mode
-  :mode "\\.js\\'"
+  :mode (("\\.js\\'" . js2-mode)
+         ("\\.jsx\\'" . js2-jsx-mode))
   :config
   (add-hook 'js2-mode-hook 'smartparens-mode)
   (add-hook 'js2-mode-hook 'flycheck-mode))
