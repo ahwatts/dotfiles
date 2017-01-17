@@ -39,7 +39,7 @@
      ("melpa" . "https://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (ruby-hash-syntax ripgrep json-reformat ecb dockerfile-mode apropospriate-theme zenburn-theme yaml-mode web-mode toml-mode smex smartparens ruby-tools ruby-end racer projectile paredit-menu markdown-mode magit js2-mode ido-ubiquitous hideshowvis haml-mode glsl-mode flycheck es-mode cmake-mode elisp--witness--lisp company cider ag paredit use-package flycheck-rust json-mode go-mode)))
+    (groovy-mode rpm-spec-mode ruby-hash-syntax ripgrep json-reformat ecb dockerfile-mode apropospriate-theme zenburn-theme yaml-mode web-mode toml-mode smex smartparens ruby-tools ruby-end racer projectile paredit-menu markdown-mode magit js2-mode ido-ubiquitous hideshowvis haml-mode glsl-mode flycheck es-mode cmake-mode elisp--witness--lisp company cider ag paredit use-package flycheck-rust json-mode go-mode)))
  '(projectile-global-mode t)
  '(ring-bell-function (quote ignore))
  '(ruby-deep-indent-paren (quote (t)))
@@ -91,6 +91,8 @@
 (use-package flycheck
   :config
   (add-hook 'flycheck-mode-hook 'flycheck-rust-setup))
+
+(use-package groovy-mode)
 
 (use-package json-reformat)
 
@@ -185,6 +187,8 @@
   :mode "\\.md\\'"
   :config
   (add-hook 'markdown-mode-hook 'visual-line-mode))
+
+(use-package rpm-spec-mode)
 
 (use-package ruby-end
   :diminish ruby-end-mode)
