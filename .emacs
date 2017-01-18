@@ -39,16 +39,10 @@
      ("melpa" . "https://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (groovy-mode rpm-spec-mode ruby-hash-syntax ripgrep json-reformat ecb dockerfile-mode apropospriate-theme zenburn-theme yaml-mode web-mode toml-mode smex smartparens ruby-tools ruby-end racer projectile paredit-menu markdown-mode magit js2-mode ido-ubiquitous hideshowvis haml-mode glsl-mode flycheck es-mode cmake-mode elisp--witness--lisp company cider ag paredit use-package flycheck-rust json-mode go-mode)))
+    (flycheck-flow groovy-mode rpm-spec-mode ruby-hash-syntax ripgrep json-reformat ecb dockerfile-mode apropospriate-theme zenburn-theme yaml-mode web-mode toml-mode smex smartparens ruby-tools ruby-end racer projectile paredit-menu markdown-mode magit js2-mode ido-ubiquitous hideshowvis haml-mode glsl-mode flycheck es-mode cmake-mode elisp--witness--lisp company cider ag paredit use-package flycheck-rust json-mode go-mode)))
  '(projectile-global-mode t)
  '(ring-bell-function (quote ignore))
  '(ruby-deep-indent-paren (quote (t)))
- '(safe-local-variable-values
-   (quote
-    ((js2-mode-show-strict-warnings)
-     (cider-boot-parameters . "cider environ dev repl -s wait")
-     (cider-boot-parameters . "cider dev repl -s wait")
-     (encoding . utf-8))))
  '(server-mode t)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
@@ -162,6 +156,8 @@
 
 (use-package dockerfile-mode
   :mode "\\`Dockerfile")
+
+(use-package flycheck-flow)
 
 (use-package glsl-mode)
 
