@@ -172,7 +172,8 @@
          ("\\.jsx\\'" . js2-jsx-mode))
   :config
   (add-hook 'js2-mode-hook 'smartparens-mode)
-  (add-hook 'js2-mode-hook 'flycheck-mode))
+  (add-hook 'js2-mode-hook 'flycheck-mode)
+  (add-hook 'js2-mode-hook 'company-mode))
 
 (use-package json-mode
   :config
