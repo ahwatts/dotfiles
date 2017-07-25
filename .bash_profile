@@ -1,4 +1,4 @@
-# -*- encoding: utf-8; mode: sh; --*-
+# -*- encoding: utf-8; mode: sh; -*-
 
 # Get the aliases and functions
 if [ -f ~/.bashrc ]; then
