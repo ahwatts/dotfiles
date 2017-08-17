@@ -18,6 +18,7 @@
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
  '(ecb-tip-of-the-day nil)
  '(ecb-windows-width 0.25)
+ '(flycheck-javascript-flow-args nil)
  '(ido-create-new-buffer (quote always))
  '(ido-everywhere t)
  '(ido-mode (quote both) nil (ido))
@@ -39,7 +40,7 @@
      ("melpa" . "https://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (flycheck-flow groovy-mode rpm-spec-mode ruby-hash-syntax ripgrep json-reformat ecb dockerfile-mode apropospriate-theme zenburn-theme yaml-mode web-mode toml-mode smex smartparens ruby-tools ruby-end racer projectile paredit-menu markdown-mode magit js2-mode ido-ubiquitous hideshowvis haml-mode glsl-mode flycheck es-mode cmake-mode elisp--witness--lisp company cider ag paredit use-package flycheck-rust json-mode go-mode)))
+    (flycheck-flow groovy-mode rpm-spec-mode ruby-hash-syntax ripgrep json-reformat ecb dockerfile-mode apropospriate-theme zenburn-theme yaml-mode web-mode toml-mode smex smartparens ruby-tools ruby-end racer projectile paredit-menu markdown-mode magit js2-mode hideshowvis haml-mode glsl-mode flycheck es-mode cmake-mode elisp--witness--lisp company cider ag paredit use-package flycheck-rust json-mode go-mode)))
  '(projectile-global-mode t)
  '(ring-bell-function (quote ignore))
  '(ruby-deep-indent-paren (quote (t)))
@@ -108,7 +109,7 @@
   :ensure nil
   :pin melpa)
 
-(use-package ido-ubiquitous)
+(use-package ido-completing-read+)
 
 (use-package magit
   :commands magit-status
