@@ -85,7 +85,8 @@
 
 (use-package flycheck
   :config
-  (add-hook 'flycheck-mode-hook 'flycheck-rust-setup))
+  (add-hook 'flycheck-mode-hook 'flycheck-rust-setup)
+  :pin melpa)
 
 (use-package groovy-mode)
 
