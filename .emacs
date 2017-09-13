@@ -40,7 +40,45 @@
      ("melpa" . "https://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (flycheck-flow groovy-mode rpm-spec-mode ruby-hash-syntax ripgrep json-reformat ecb dockerfile-mode apropospriate-theme zenburn-theme yaml-mode web-mode toml-mode smex smartparens ruby-tools ruby-end racer projectile paredit-menu markdown-mode magit js2-mode hideshowvis haml-mode glsl-mode flycheck es-mode cmake-mode elisp--witness--lisp company cider ag paredit use-package flycheck-rust json-mode go-mode)))
+    (ag
+     apropospriate-theme
+     cider
+     cmake-mode
+     company
+     dockerfile-mode
+     ecb
+     elisp--witness--lisp
+     es-mode
+     flycheck
+     flycheck-flow
+     flycheck-rust
+     glsl-mode
+     go-mode
+     groovy-mode
+     haml-mode
+     hideshowvis
+     ido-completing-read+
+     js2-mode
+     json-mode
+     json-reformat
+     magit
+     markdown-mode
+     paredit
+     paredit-menu
+     projectile
+     racer
+     ripgrep
+     rpm-spec-mode
+     ruby-end
+     ruby-hash-syntax
+     ruby-tools
+     smartparens
+     smex
+     toml-mode
+     use-package
+     web-mode
+     yaml-mode
+     zenburn-theme)))
  '(projectile-global-mode t)
  '(ring-bell-function (quote ignore))
  '(ruby-deep-indent-paren (quote (t)))
