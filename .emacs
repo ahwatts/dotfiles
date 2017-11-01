@@ -218,7 +218,8 @@
 (use-package json-mode
   :config
   (add-hook 'json-mode-hook 'smartparens-mode)
-  (add-hook 'json-mode-hook 'flycheck-mode))
+  (add-hook 'json-mode-hook 'flycheck-mode)
+  :pin melpa)
 
 (use-package markdown-mode
   :mode "\\.md\\'"
