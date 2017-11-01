@@ -9,3 +9,5 @@
 	ui = true
 [core]
 	excludesfile = ~/.gitignore_global
+[magit]
+	hideCampaign = true

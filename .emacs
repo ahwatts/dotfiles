@@ -40,7 +40,8 @@
      ("melpa" . "https://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (ag
+    (company-go
+     ag
      apropospriate-theme
      cider
      cmake-mode
@@ -119,8 +120,6 @@
   (add-hook 'ielm-mode-hook 'company-mode)
   (add-hook 'ruby-mode-hook 'company-mode))
 
-(use-package flycheck-rust)
-
 (use-package flycheck
   :config
   (add-hook 'flycheck-mode-hook 'flycheck-rust-setup)
@@ -197,13 +196,21 @@
 (use-package dockerfile-mode
   :mode "\\`Dockerfile")
 
+(use-package flycheck-rust)
+
 (use-package flycheck-flow)
 
 (use-package glsl-mode)
 
 (use-package go-mode
   :config
-  (add-hook 'go-mode-hook 'smartparens-mode))
+  (add-hook 'go-mode-hook 'smartparens-mode)
+  (add-hook 'go-mode-hook 'flycheck-mode)
+  (add-hook 'go-mode-hook 'company-mode))
+
+(use-package flycheck-gometalinter
+  :config
+  (flycheck-gometalinter-setup))
 
 (use-package haml-mode)
 
