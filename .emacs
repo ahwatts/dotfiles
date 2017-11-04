@@ -40,12 +40,12 @@
      ("melpa" . "https://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (company-go
-     ag
+    (ag
      apropospriate-theme
      cider
      cmake-mode
      company
+     company-go
      dockerfile-mode
      ecb
      elisp--witness--lisp
@@ -80,7 +80,7 @@
      web-mode
      yaml-mode
      zenburn-theme)))
- '(projectile-global-mode t)
+'(projectile-global-mode t)
  '(ring-bell-function (quote ignore))
  '(ruby-deep-indent-paren (quote (t)))
  '(server-mode t)
