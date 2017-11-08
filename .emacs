@@ -52,6 +52,7 @@
      es-mode
      flycheck
      flycheck-flow
+     flycheck-gometalinter
      flycheck-rust
      glsl-mode
      go-mode
