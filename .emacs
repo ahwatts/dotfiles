@@ -81,8 +81,9 @@
      web-mode
      yaml-mode
      zenburn-theme)))
-'(projectile-global-mode t)
+ '(projectile-global-mode t)
  '(ring-bell-function (quote ignore))
+ '(ripgrep-arguments (quote ("--sort-files")))
  '(ruby-deep-indent-paren (quote (t)))
  '(server-mode t)
  '(show-paren-mode t)
@@ -165,6 +166,8 @@
   :bind (("M-x" . smex)
          ("M-X" . smex-major-mode-commands)
          ("C-c C-c M-x" . execute-extended-command)))
+
+(use-package ripgrep)
 
 ;; Individual modes / languages.
 
