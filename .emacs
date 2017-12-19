@@ -193,7 +193,16 @@
     (DELETE 2)
     (HEAD 2)
     (ANY 2)
-    (context 2)))
+    (context 2)
+    (defui '(1 nil nil (1)))
+    (dom/div 1)
+    (dom/span 1)
+    (dom/table 1)
+    (dom/thead 1)
+    (dom/tbody 1)
+    (dom/tr 1)
+    (dom/th 1)
+    (dom/td 1)))
 
 (use-package cmake-mode
   :mode "CMakeLists")
