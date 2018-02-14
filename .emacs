@@ -58,7 +58,6 @@
      go-mode
      groovy-mode
      haml-mode
-     hideshowvis
      ido-completing-read+
      js2-mode
      json-mode
@@ -137,7 +136,7 @@
   (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
   (add-hook 'ielm-mode-hook 'paredit-mode))
 
-(use-package hideshowvis)
+;; (use-package hideshowvis)
 
 ;; Global functionality.
 
