@@ -67,6 +67,7 @@
      paredit
      paredit-menu
      projectile
+     protobuf-mode
      racer
      ripgrep
      rpm-spec-mode
@@ -245,6 +246,8 @@
   :mode "\\.md\\'"
   :config
   (add-hook 'markdown-mode-hook 'visual-line-mode))
+
+(use-package protobuf-mode)
 
 (use-package rpm-spec-mode)
 
