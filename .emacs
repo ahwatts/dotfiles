@@ -85,6 +85,7 @@
  '(ring-bell-function (quote ignore))
  '(ripgrep-arguments (quote ("--sort-files")))
  '(ruby-deep-indent-paren (quote (t)))
+ '(safe-local-variable-values (quote ((encoding . utf-8))))
  '(server-mode t)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
