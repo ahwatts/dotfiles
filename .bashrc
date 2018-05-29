@@ -21,15 +21,19 @@ if [[ "${BASH_VERSION}" > "3.9999" ]]; then
 fi
 
 function __ahw_git_ps1 {
-    gitdir="$(__gitdir 2> /dev/null)"
+    has_gitdir="$(type __gitdir 2> /dev/null)"
 
-    if [[ ! -z "$gitdir" ]]; then
-        if [[ "$gitdir" == ".git" ]]; then
-            gitdir="${PWD}/${gitdir}"
-        fi
+    if [[ ! -z "$has_gitdir" ]]; then
+        gitdir="$(__gitdir 2> /dev/null)"
 
-        if [[ "$gitdir" != "${HOME}/.git" ]]; then
-            printf "%s" "$(__git_ps1 $@) "
+        if [[ ! -z "$gitdir" ]]; then
+            if [[ "$gitdir" == ".git" ]]; then
+                gitdir="${PWD}/${gitdir}"
+            fi
+
+            if [[ "$gitdir" != "${HOME}/.git" ]]; then
+                printf "%s" "$(__git_ps1 $@) "
+            fi
         fi
     fi
 }
