@@ -162,7 +162,11 @@
 
 (use-package paredit-menu)
 
-(use-package projectile)
+(use-package projectile
+  :config
+  (projectile-mode +1)
+  :bind-keymap
+  ("C-c p" . projectile-command-map))
 
 (use-package smex
   :bind (("M-x" . smex)
