@@ -92,7 +92,8 @@
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
  '(use-package-always-ensure t)
  '(visible-bell nil)
- '(web-mode-enable-auto-indentation nil))
+ '(web-mode-enable-auto-indentation nil)
+ '(web-mode-markup-indent-offset 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
