@@ -1,4 +1,11 @@
-;; -*- mode: emacs-lisp; encoding: utf-8; -*-
+;;; dotemacs --- My emacs customizations.
+;;; -*- mode: emacs-lisp; encoding: utf-8; -*-
+
+;;; Commentary:
+;;;
+;;; What is the deal with airplane peanuts?
+
+;;; Code:
 
 ;; Run custom first, so that the rest of the initialization process
 ;; can use what it sets.
@@ -40,47 +47,7 @@
      ("melpa" . "https://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (ag
-     apropospriate-theme
-     cider
-     cmake-mode
-     company
-     company-go
-     dockerfile-mode
-     ecb
-     elisp--witness--lisp
-     es-mode
-     flycheck
-     flycheck-flow
-     flycheck-gometalinter
-     flycheck-rust
-     glsl-mode
-     go-mode
-     groovy-mode
-     haml-mode
-     ido-completing-read+
-     js2-mode
-     json-mode
-     json-reformat
-     magit
-     markdown-mode
-     paredit
-     paredit-menu
-     projectile
-     protobuf-mode
-     racer
-     ripgrep
-     rpm-spec-mode
-     ruby-end
-     ruby-hash-syntax
-     ruby-tools
-     smartparens
-     smex
-     toml-mode
-     use-package
-     web-mode
-     yaml-mode
-     zenburn-theme)))
+    (ag apropospriate-theme cider cmake-mode company company-go dockerfile-mode ecb elisp--witness--lisp es-mode flycheck flycheck-flow flycheck-gometalinter flycheck-rust glsl-mode go-mode groovy-mode haml-mode ido-completing-read+ js2-mode json-mode json-reformat magit markdown-mode paredit paredit-menu projectile protobuf-mode racer ripgrep rpm-spec-mode ruby-end ruby-hash-syntax ruby-tools smartparens smex toml-mode use-package web-mode yaml-mode zenburn-theme)))
  '(projectile-global-mode t)
  '(ring-bell-function (quote ignore))
  '(ripgrep-arguments (quote ("--sort-files")))
@@ -109,65 +76,140 @@
   (package-install 'use-package))
 (require 'use-package)
 
+;; Customize es-mode.
+(defun ahw-es-response-reformat-json (status content-type body-buffer)
+  "(STATUS CONTENT-TYPE BODY-BUFFER) Pretty-print ES JSON responses."
+  (when (and (= 200 status) (string-lessp "application/json" content-type))
+    (with-current-buffer body-buffer
+      (save-excursion
+        (goto-char (point-min))
+        ;; (search-forward "\n\n")
+        (json-reformat-region (point) (point-max))))))
+
+(defun ahw-es-response-enable-hs-minor-mode (status content-type body-buffer)
+  "(STATUS CONTENT-TYPE BODY-BUFFER) Enables hideshow / hideshowvis on ES response buffers."
+  (with-current-buffer body-buffer
+    (setq-local comment-start "// ")
+    (setq-local comment-end "")
+    (hs-minor-mode)
+    ;; (hideshowvis-minor-mode)
+    ;; (hideshowvis-symbols)
+    ))
+
 ;; Package configurations.
-
-;; Common packages that other stuff is going to want to have present.
-
-(use-package smartparens
-  :init
-  (add-hook 'c++-mode-hook 'smartparens-mode)
-  (add-hook 'ruby-mode-hook 'smartparens-mode))
-
-(use-package company
-  :config
-  (add-hook 'c++-mode-hook 'company-mode)
-  (add-hook 'emacs-lisp-mode-hook 'company-mode)
-  (add-hook 'ielm-mode-hook 'company-mode)
-  (add-hook 'ruby-mode-hook 'company-mode))
-
-(use-package flycheck
-  :config
-  (add-hook 'flycheck-mode-hook 'flycheck-rust-setup)
-  :pin melpa)
-
-(use-package groovy-mode)
-
-(use-package json-reformat)
-
-(use-package paredit
-  :init
-  (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
-  (add-hook 'ielm-mode-hook 'paredit-mode))
-
-;; (use-package hideshowvis)
-
-;; Global functionality.
 
 (use-package ag)
 
 (use-package apropospriate-theme)
+
+(use-package cider
+  :hook ((cider-mode . eldoc-mode)
+         (cider-repl-mode . eldoc-mode)
+         (cider-repl-mode . paredit-mode))
+  :after (paredit))
+
+(use-package clojure-mode
+  :hook ((clojure-mode . paredit-mode)
+         (clojure-mode . eldoc-mode))
+  :after (paredit))
+
+(use-package cmake-mode
+  :mode "CMakeLists")
+
+(use-package company
+  :hook (prog-mode . company-mode))
+
+(use-package company-lsp
+  :init (push 'company-lsp company-backends)
+  :after (company lsp-mode))
+
+(use-package dockerfile-mode
+  :mode "\\`Dockerfile")
 
 (use-package ecb
   :commands ecb-activate
   :ensure nil
   :pin melpa)
 
+(use-package es-mode
+  :hook ((es-mode . hideshowvis-symbols)
+         (es-mode . hideshowvis-minor-mode)
+         (es-mode . hs-minor-mode)
+         (es-mode . smartparens-mode)
+         (es-response-success-functions . ahw-es-response-enable-hs-minor-mode)
+         (es-response-success-functions . ahw-es-response-reformat-json))
+  :config
+  (add-to-list 'hs-special-modes-alist '(es-mode "{" "}" "/[*/]" nil))
+  (add-to-list 'hs-special-modes-alist '(es-result-mode "{" "}" "/[*/]" nil)))
+
+(use-package flycheck
+  :hook (prog-mode . flycheck-mode)
+  :pin melpa)
+
+(use-package flycheck-flow
+  :after (flycheck))
+
+(use-package flycheck-rust
+  :init (with-eval-after-load 'rust-mode
+          (add-hook 'flycheck-mode-hook 'flycheck-rust-setup))
+  :after (rust flycheck))
+
+(use-package flycheck-gometalinter
+  :config (flycheck-gometalinter-setup))
+
+(use-package glsl-mode)
+
+(use-package go-mode)
+
+(use-package groovy-mode)
+
+(use-package haml-mode)
+
 (use-package ido-completing-read+)
+
+(use-package js2-mode
+  :mode (("\\.js\\'" . js2-mode)
+         ("\\.jsx\\'" . js2-jsx-mode)))
+
+(use-package json-mode
+  :pin melpa)
+
+(use-package json-reformat)
+
+(use-package lsp-mode)
+
+(use-package lsp-rust
+  :hook (rust-mode . lsp-rust-enable)
+  :after (lsp-mode rust-mode))
+
+(use-package lsp-ui
+  :hook (lsp-mode . lsp-ui-mode)
+  :after (lsp-mode))
 
 (use-package magit
   :commands magit-status
-  :bind (("C-x g" . magit-status))
-  :config
-  (remove-hook 'git-commit-setup-hook 'git-commit-turn-on-auto-fill)
-  (add-hook 'git-commit-setup-hook 'visual-line-mode))
+  :bind     ("C-x g" . magit-status)
+  :hook     (git-commit-setup . visual-line-mode)
+  :config   (remove-hook 'git-commit-setup-hook 'git-commit-turn-on-auto-fill))
+
+(use-package markdown-mode
+  :mode "\\.md\\'"
+  :hook (markdown-mode . visual-line-mode))
+
+(use-package paredit
+  :hook ((emacs-lisp-mode . paredit-mode)
+         (ielm-mode . paredit-mode)))
+
+(use-package protobuf-mode)
 
 (use-package paredit-menu)
 
 (use-package projectile
-  :config
-  (projectile-mode +1)
-  :bind-keymap
-  ("C-c p" . projectile-command-map))
+  :config      (projectile-mode +1)
+  :bind-keymap ("C-c p" . projectile-command-map))
+
+(use-package smartparens
+  :hook (prog-mode . smartparens-mode))
 
 (use-package smex
   :bind (("M-x" . smex)
@@ -175,85 +217,6 @@
          ("C-c C-c M-x" . execute-extended-command)))
 
 (use-package ripgrep)
-
-;; Individual modes / languages.
-
-(use-package cider
-  :config
-  (add-hook 'cider-mode-hook 'eldoc-mode)
-  (add-hook 'cider-mode-hook 'company-mode)
-  (add-hook 'cider-repl-mode-hook 'eldoc-mode)
-  (add-hook 'cider-repl-mode-hook 'paredit-mode)
-  (add-hook 'cider-repl-mode-hook 'company-mode))
-
-(use-package clojure-mode
-  :config
-  (add-hook 'clojure-mode-hook 'paredit-mode)
-  (add-hook 'clojure-mode-hook 'eldoc-mode)
-  (add-hook 'clojure-mode-hook 'company-mode)
-  (define-clojure-indent
-    (defroutes 'defun)
-    (GET 2)
-    (POST 2)
-    (PUT 2)
-    (DELETE 2)
-    (HEAD 2)
-    (ANY 2)
-    (context 2)
-    (defui '(1 nil nil (1)))
-    (dom/div 1)
-    (dom/span 1)
-    (dom/table 1)
-    (dom/thead 1)
-    (dom/tbody 1)
-    (dom/tr 1)
-    (dom/th 1)
-    (dom/td 1)))
-
-(use-package cmake-mode
-  :mode "CMakeLists")
-
-(use-package dockerfile-mode
-  :mode "\\`Dockerfile")
-
-(use-package flycheck-rust)
-
-(use-package flycheck-flow)
-
-(use-package glsl-mode)
-
-(use-package go-mode
-  :config
-  (add-hook 'go-mode-hook 'smartparens-mode)
-  (add-hook 'go-mode-hook 'flycheck-mode)
-  (add-hook 'go-mode-hook 'company-mode))
-
-(use-package flycheck-gometalinter
-  :config
-  (flycheck-gometalinter-setup))
-
-(use-package haml-mode)
-
-(use-package js2-mode
-  :mode (("\\.js\\'" . js2-mode)
-         ("\\.jsx\\'" . js2-jsx-mode))
-  :config
-  (add-hook 'js2-mode-hook 'smartparens-mode)
-  (add-hook 'js2-mode-hook 'flycheck-mode)
-  (add-hook 'js2-mode-hook 'company-mode))
-
-(use-package json-mode
-  :config
-  (add-hook 'json-mode-hook 'smartparens-mode)
-  (add-hook 'json-mode-hook 'flycheck-mode)
-  :pin melpa)
-
-(use-package markdown-mode
-  :mode "\\.md\\'"
-  :config
-  (add-hook 'markdown-mode-hook 'visual-line-mode))
-
-(use-package protobuf-mode)
 
 (use-package rpm-spec-mode)
 
@@ -263,18 +226,7 @@
 (use-package ruby-tools
   :diminish ruby-tools-mode)
 
-(use-package racer
-  :config
-  (add-hook 'racer-mode-hook 'eldoc-mode)
-  (add-hook 'racer-mode-hook 'company-mode))
-
-(use-package rust-mode
-  :bind (:map rust-mode-map ("TAB" . company-indent-or-complete-common))
-  :config
-  (add-hook 'rust-mode-hook 'racer-mode)
-  (add-hook 'rust-mode-hook 'flycheck-mode)
-  (add-hook 'rust-mode-hook 'company-mode)
-  (add-hook 'rust-mode-hook 'smartparens-mode))
+(use-package rust-mode)
 
 (use-package toml-mode
   :mode "Cargo\\.lock\\'")
@@ -286,41 +238,10 @@
 (use-package yaml-mode
   :mode "\\.yml\\'")
 
-;; Customize es-mode.
-(defun ahw-es-response-reformat-json (status content-type body-buffer)
-  (when (and (= 200 status) (string-lessp "application/json" content-type))
-    (with-current-buffer body-buffer
-      (save-excursion
-        (goto-char (point-min))
-        ;; (search-forward "\n\n")
-        (json-reformat-region (point) (point-max))))))
-
-(defun ahw-es-response-enable-hs-minor-mode (status content-type body-buffer)
-  (with-current-buffer body-buffer
-    (setq-local comment-start "// ")
-    (setq-local comment-end "")
-    (hs-minor-mode)
-    (hideshowvis-minor-mode)
-    (hideshowvis-symbols)))
-
-(use-package es-mode
-  :config
-  (add-to-list 'hs-special-modes-alist '(es-mode "{" "}" "/[*/]" nil))
-  (add-to-list 'hs-special-modes-alist '(es-result-mode "{" "}" "/[*/]" nil))
-
-  (add-hook 'es-mode-hook 'hideshowvis-symbols)
-  (add-hook 'es-mode-hook 'hideshowvis-minor-mode)
-  (add-hook 'es-mode-hook 'hs-minor-mode)
-  (add-hook 'es-mode-hook 'smartparens-mode)
-
-  (add-hook 'es-response-success-functions 'ahw-es-response-enable-hs-minor-mode)
-  (add-hook 'es-response-success-functions 'ahw-es-response-reformat-json))
-
 ;; Hooks for built-in things to built-in things.
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 (add-hook 'ielm-mode-hook 'eldoc-mode)
-
-(setq ruby-use-smie nil)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; ibuffer is nicer.
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -341,3 +262,6 @@
 
 ;; Load any .el files in user-lisp.
 (dolist (f (directory-files "~/.emacs.d/user-lisp" t "\\.el\\'")) (load f))
+
+(provide '.emacs)
+;;; .emacs ends here
