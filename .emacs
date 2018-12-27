@@ -47,7 +47,51 @@
      ("melpa" . "https://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (ag apropospriate-theme cider cmake-mode company company-go dockerfile-mode ecb elisp--witness--lisp es-mode flycheck flycheck-flow flycheck-gometalinter flycheck-rust glsl-mode go-mode groovy-mode haml-mode ido-completing-read+ js2-mode json-mode json-reformat magit markdown-mode paredit paredit-menu projectile protobuf-mode racer ripgrep rpm-spec-mode ruby-end ruby-hash-syntax ruby-tools smartparens smex toml-mode use-package web-mode yaml-mode zenburn-theme)))
+    (ag
+     apropospriate-theme
+     cider
+     cmake-mode
+     company
+     company-go
+     company-lsp
+     dockerfile-mode
+     ecb
+     elisp--witness--lisp
+     es-mode
+     flycheck
+     flycheck-flow
+     flycheck-gometalinter
+     flycheck-rust
+     glsl-mode
+     go-mode
+     groovy-mode
+     haml-mode
+     ido-completing-read+
+     js2-mode
+     json-mode
+     json-reformat
+     lsp-mode
+     lsp-rust
+     lsp-ui
+     magit
+     markdown-mode
+     paredit
+     paredit-menu
+     projectile
+     protobuf-mode
+     racer
+     ripgrep
+     rpm-spec-mode
+     ruby-end
+     ruby-hash-syntax
+     ruby-tools
+     smartparens
+     smex
+     toml-mode
+     use-package
+     web-mode
+     yaml-mode
+     zenburn-theme)))
  '(projectile-global-mode t)
  '(ring-bell-function (quote ignore))
  '(ripgrep-arguments (quote ("--sort-files")))
@@ -184,7 +228,8 @@
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
-  :after (lsp-mode))
+  :after (lsp-mode)
+  :pin melpa)
 
 (use-package magit
   :commands magit-status
