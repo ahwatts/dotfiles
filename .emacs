@@ -283,6 +283,9 @@
 (use-package yaml-mode
   :mode "\\.yml\\'")
 
+;; No customize option for this?
+(setq ruby-use-smie nil)
+
 ;; Hooks for built-in things to built-in things.
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 (add-hook 'ielm-mode-hook 'eldoc-mode)
