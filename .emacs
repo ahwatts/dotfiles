@@ -228,8 +228,7 @@
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
-  :after (lsp-mode)
-  :pin melpa)
+  :after (lsp-mode))
 
 (use-package magit
   :commands magit-status
