@@ -1,12 +1,3 @@
-;;; dotemacs --- My emacs customizations.
-;;; -*- mode: emacs-lisp; encoding: utf-8; -*-
-
-;;; Commentary:
-;;;
-;;; What is the deal with airplane peanuts?
-
-;;; Code:
-
 ;; Run custom first, so that the rest of the initialization process
 ;; can use what it sets.
 (custom-set-variables
@@ -25,6 +16,7 @@
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
  '(ecb-tip-of-the-day nil)
  '(ecb-windows-width 0.25)
+ '(flycheck-disabled-checkers (quote (emacs-lisp-checkdoc)))
  '(flycheck-javascript-flow-args nil)
  '(ido-create-new-buffer (quote always))
  '(ido-everywhere t)
@@ -309,6 +301,3 @@
 
 ;; Load any .el files in user-lisp.
 (dolist (f (directory-files "~/.emacs.d/user-lisp" t "\\.el\\'")) (load f))
-
-(provide '.emacs)
-;;; .emacs ends here
