@@ -27,6 +27,7 @@
  '(js-indent-level 2)
  '(js2-mode-show-parse-errors nil)
  '(js2-mode-show-strict-warnings nil)
+ '(lsp-prefer-flymake nil)
  '(magit-diff-arguments (quote ("--ignore-all-space" "--no-ext-diff" "--stat")))
  '(make-backup-files nil)
  '(menu-bar-mode t)
@@ -46,6 +47,7 @@
      company
      company-go
      company-lsp
+     direnv
      dockerfile-mode
      ecb
      elisp--witness--lisp
@@ -88,7 +90,6 @@
  '(ring-bell-function (quote ignore))
  '(ripgrep-arguments (quote ("--sort-files")))
  '(ruby-deep-indent-paren (quote (t)))
- '(safe-local-variable-values (quote ((encoding . utf-8))))
  '(server-mode t)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
@@ -111,6 +112,7 @@
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
+(setq use-package-compute-statistics 1)
 
 ;; Customize es-mode.
 (defun ahw-es-response-reformat-json (status content-type body-buffer)
@@ -162,6 +164,8 @@
 (use-package dockerfile-mode
   :mode "\\`Dockerfile")
 
+(use-package direnv)
+
 (use-package ecb
   :commands ecb-activate
   :ensure nil
@@ -185,10 +189,10 @@
 (use-package flycheck-flow
   :after (flycheck))
 
-(use-package flycheck-rust
-  :init (with-eval-after-load 'rust-mode
-          (add-hook 'flycheck-mode-hook 'flycheck-rust-setup))
-  :after (rust flycheck))
+;; (use-package flycheck-rust
+;;   :init (with-eval-after-load 'rust-mode
+;;           (add-hook 'flycheck-mode-hook 'flycheck-rust-setup))
+;;   :after (rust flycheck))
 
 (use-package flycheck-gometalinter
   :config (flycheck-gometalinter-setup))
@@ -212,11 +216,12 @@
 
 (use-package json-reformat)
 
-(use-package lsp-mode)
+(use-package lsp-mode
+  :hook (rust-mode . lsp))
 
-(use-package lsp-rust
-  :hook (rust-mode . lsp-rust-enable)
-  :after (lsp-mode rust-mode))
+;; (use-package lsp-rust
+;;   :hook (rust-mode . lsp-rust-enable)
+;;   :after (lsp-mode rust-mode))
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
@@ -274,8 +279,16 @@
 (use-package yaml-mode
   :mode "\\.yml\\'")
 
+;; (require 'lsp)
+;; (require 'lsp-rust)
+
 ;; No customize option for this?
 (setq ruby-use-smie nil)
+
+;; Can't set this in customize because I want to change it later in
+;; the process, but then when we load a custom theme, any subsequent
+;; modifications are clobbered.
+(setq safe-local-variable-values '((encoding . utf-8)))
 
 ;; Hooks for built-in things to built-in things.
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
