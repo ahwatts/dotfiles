@@ -1,5 +1,5 @@
 ;; User profiles.
-{:user
+#_{:user
  {:aliases {"slamhound" ["run" "-m" "slam.hound"]}
 
   :dependencies [[slamhound "1.5.5"]
@@ -15,3 +15,4 @@
                           "-Dapple.awt.UIElement=true")
                         (when (= "Windows 7" (System/getProperty "os.name"))
                           "-Dline.separator=\"\n\"")])))}}
+{}

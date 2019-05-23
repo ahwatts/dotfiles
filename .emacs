@@ -79,6 +79,7 @@
      ruby-end
      ruby-hash-syntax
      ruby-tools
+     rust-mode
      smartparens
      smex
      toml-mode
