@@ -51,6 +51,7 @@
      dockerfile-mode
      ecb
      elisp--witness--lisp
+     enh-ruby-mode
      es-mode
      flycheck
      flycheck-flow
@@ -261,6 +262,10 @@
 (use-package ripgrep)
 
 (use-package rpm-spec-mode)
+
+(use-package enh-ruby-mode
+  :mode (("\\.rb\\'" . enh-ruby-mode))
+  :interpreter "ruby")
 
 (use-package ruby-end
   :diminish ruby-end-mode)
