@@ -265,7 +265,8 @@
 
 (use-package enh-ruby-mode
   :mode (("\\.rb\\'" . enh-ruby-mode))
-  :interpreter "ruby")
+  :interpreter "ruby"
+  :config (add-hook 'enh-ruby-mode-hook (lambda () (local-unset-key (kbd "C-c /")))))
 
 (use-package ruby-end
   :diminish ruby-end-mode)
