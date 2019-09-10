@@ -10,7 +10,9 @@
  '(company-tooltip-align-annotations t)
  '(custom-safe-themes
    (quote
-    ("5a0eee1070a4fc64268f008a4c7abfda32d912118e080e18c3c865ef864d1bea" default)))
+    ("c3e6b52caa77cb09c049d3c973798bc64b5c43cc437d449eacf35b3e776bf85c"
+     "5a0eee1070a4fc64268f008a4c7abfda32d912118e080e18c3c865ef864d1bea"
+     default)))
  '(ecb-layout-name "right1")
  '(ecb-options-version "2.50")
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
@@ -50,6 +52,7 @@
      direnv
      dockerfile-mode
      ecb
+     ein
      elisp--witness--lisp
      enh-ruby-mode
      es-mode
@@ -172,6 +175,8 @@
   :commands ecb-activate
   :ensure nil
   :pin melpa)
+
+(use-package ein)
 
 (use-package es-mode
   :hook ((es-mode . hideshowvis-symbols)
