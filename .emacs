@@ -29,6 +29,7 @@
  '(js-indent-level 2)
  '(js2-mode-show-parse-errors nil)
  '(js2-mode-show-strict-warnings nil)
+ '(lsp-enable-snippet nil)
  '(lsp-prefer-flymake nil)
  '(magit-diff-arguments (quote ("--ignore-all-space" "--no-ext-diff" "--stat")))
  '(make-backup-files nil)
