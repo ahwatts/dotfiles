@@ -10,8 +10,8 @@
  '(company-tooltip-align-annotations t)
  '(custom-safe-themes
    (quote
-    ("c3e6b52caa77cb09c049d3c973798bc64b5c43cc437d449eacf35b3e776bf85c"
-     "5a0eee1070a4fc64268f008a4c7abfda32d912118e080e18c3c865ef864d1bea"
+    ("5a0eee1070a4fc64268f008a4c7abfda32d912118e080e18c3c865ef864d1bea"
+     "c3e6b52caa77cb09c049d3c973798bc64b5c43cc437d449eacf35b3e776bf85c"
      default)))
  '(ecb-layout-name "right1")
  '(ecb-options-version "2.50")
@@ -74,6 +74,7 @@
      lsp-ui
      magit
      markdown-mode
+     org
      paredit
      paredit-menu
      projectile
@@ -245,6 +246,8 @@
   :mode "\\.md\\'"
   :hook (markdown-mode . visual-line-mode))
 
+(use-package org)
+
 (use-package paredit
   :hook ((emacs-lisp-mode . paredit-mode)
          (ielm-mode . paredit-mode)))
@@ -272,13 +275,16 @@
 (use-package enh-ruby-mode
   :mode (("\\.rb\\'" . enh-ruby-mode))
   :interpreter "ruby"
-  :config (add-hook 'enh-ruby-mode-hook (lambda () (local-unset-key (kbd "C-c /")))))
+  :config (add-hook 'enh-ruby-mode-hook (lambda () (local-unset-key (kbd "C-c /"))))
+  :hook ((enh-ruby-mode . ruby-tools-mode)))
 
 (use-package ruby-end
   :diminish ruby-end-mode)
 
 (use-package ruby-tools
   :diminish ruby-tools-mode)
+
+(use-package ruby-hash-syntax)
 
 (use-package rust-mode)
 
